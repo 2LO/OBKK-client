@@ -1,0 +1,39 @@
+{
+  "name": "OBKK",
+  "version": "0.0.0",
+  "description": "Panel dla konferencji OBKK",
+  "main": "scrips/app.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "OBKK",
+    "becik",
+    "2lo",
+    "kołobrzeg"
+  ],
+  "authors": [
+    "Mateusz Bagiński"
+  ],
+  "license": "MIT",
+  "homepage": "obkk.pl",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.3.14",
+    "underscore": "~1.8.2",
+    "cryptojs": "*",
+    "semantic-ui": "~1.11.4",
+    "requirejs": "~2.1.16",
+    "require-less": "~0.1.5",
+    "require-css": "~0.1.8",
+    "angular-ui": "~0.4.0",
+    "angular-ui-router": "~0.2.13"
+  },
+  "devDependencies": {}
+}

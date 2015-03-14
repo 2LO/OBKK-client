@@ -1,0 +1,33 @@
+{
+  "name": "OBKK-server",
+  "version": "0.0.0",
+  "description": "OBKK server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2LO/OBKK-client"
+  },
+  "keywords": [
+    "server",
+    "obkk",
+    "node.js"
+  ],
+  "author": "Mateusz Bagiński",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2LO/OBKK-server/issues"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-shell": "^1.1.1"
+  },
+  "dependencies": {
+    "underscore": "^1.8.2"
+  }
+}
