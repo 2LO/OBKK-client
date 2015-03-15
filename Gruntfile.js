@@ -5,7 +5,8 @@ module.exports = function(grunt) {
 		    options 	: 	{ livereload: true },
 		    files 		: 	[
 				'js/**/*.js',
-				'assets/views/**/*.jade' 
+				'assets/views/**/*.jade',
+				'assets/less/**/*.less'
 		    ],
 		    tasks 		: 	[ 'jshint' ]
 	    }

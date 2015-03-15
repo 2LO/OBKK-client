@@ -4,7 +4,8 @@ var require = {
         'angular':   '../lib/angularjs/angular.min',
         'jquery':    '../lib/jquery/dist/jquery.min',
         'cryptojs':  '../lib/cryptojs/cryptojs',
-        'underscore':'../lib/underscore/underscore-min'
+        'underscore':'../lib/underscore/underscore-min',
+        'semantic':  '../lib/semantic-ui/dist/semantic.min'
     },
     map:  {
         '*': {
@@ -13,6 +14,10 @@ var require = {
         }
     },
     shim:  {
+        'semantic': {
+            exports: 'semantic',
+            deps: ['jquery']
+        },
         'angular':  {
             exports        :   'angular'
         },
@@ -21,12 +26,6 @@ var require = {
         },
         'underscore':    {
             exports: '_'
-        },
-        'bootstrap':    { 
-            'deps': ['jquery'] 
-        },
-        'bootbox':    { 
-            'deps': ['bootstrap'] 
         }
     },
     priority: [

@@ -1,0 +1,40 @@
+// Werset kroków
+div.ui.steps
+	// Licencja
+	a.completed.step
+		i.privacy.icon
+		div.content
+			div.title 		Licencja
+			div.description i informacje o stronie
+	// Rejestracja
+	a.active.step
+		i.truck.icon
+		div.content
+			div.title 		Rejestracja
+			div.description Tworzenie nowego konta
+	// Zatwierdzenie
+	a.disabled.step
+		i.info.icon
+		div.content
+			div.title 		Potwierdzenie
+			div.description Rejestracji konta
+
+div.ui.divider
+div#register-forms.ui.two.column.stackable.grid
+	div.column
+		div.ui.segment
+			div.ui.header
+				i.user.icon
+				div.content
+					| Użytkownik
+					div.sub.header uczestnik OBKK
+
+			include user.jade
+
+	div.column
+		div.ui.segment
+			div.ui.header
+				i.users.icon
+				div.content
+					| Firma
+					div.sub.header zgłasza uczestników
