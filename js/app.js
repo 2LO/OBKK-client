@@ -3,36 +3,19 @@
  * wykorzystują inne kontrolery, serwisy
  */
 define([
+			'domReady',
+            'underscore',
             'angular',
-            'underscore'
-        ], function(angular, _) {
-    var app = angular.module('app', []);
-    app
-        .filter('range', function() {
-            return function(input, total) {
-                total = parseInt(total);
-                for (var i=0; i<total; i++)
-                    input.push(i);
-                return input;
-            };
-        })
-        .filter('slice', function () {
-            return function (arr, start, end) {
-                return arr.slice(start, end);
-            };
-        })
-        .filter('int', function () {
-            return function (val) {
-                return parseInt(val);
-            };
-        })
-        .filter('ceil', function () {
-            return function (val) {
-                return parseInt(Math.ceil(val));
-            };
-        })
-        .controller('a', function($scope) {
-            $scope.dupa = 'ss';
-        });
+            'ui-router',
+            /** Moduły */
+            'register'
+        ], function(domReady, _, angular) {
+    var app = angular.module('app', [
+    	'ui.router',
+        'app.register'
+    ]);
+    domReady(function(){
+        angular.bootstrap(document, ['app']);
+    });
     return app;
 });

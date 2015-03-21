@@ -1,7 +1,17 @@
-html(lang="PL")
-	include head.jade
-	body(ng-app="app")
-		div.ui.page.grid
-			div.row
-				div.column
-					include login/login.jade
+extends layout.jade
+block content
+	nav.ui.fixed.menu.inverted.navbar.page.grid
+		a.brand.item 
+			i.home.icon.ui.inverted
+			| OBKK
+		a.active.item Strona Główna
+		a.item Kontakt
+
+		div.ui.right.menu
+			a.item Logowanie
+			a.item Rejestracja
+
+	div.ui.page.grid
+		div.row
+			div.column
+				div(ui-view)

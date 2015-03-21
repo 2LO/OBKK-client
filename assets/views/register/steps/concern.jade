@@ -1,0 +1,69 @@
+div.two.fields
+	div.field
+		label Email administratora:
+		div.ui.right.labeled.left.icon.input
+			i.at.icon
+			input(required, type="email", placeholder="abc@abc.pl")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.field
+		label Hasło:
+		div.ui.right.labeled.left.icon.input
+			i.lock.icon
+			input(required, type="password", placeholder="Hasło")
+			div.ui.corner.label
+				i.asterisk.icon
+
+div.fields
+	div.eleven.wide.field
+		label Nazwa firmy:
+		div.ui.right.labeled.left.icon.input
+			i.user.icon
+			input(required, type="text", placeholder="Nazwa Firmy")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.five.wide.field
+		label NIP:
+		div.ui.right.labeled.left.icon.input
+			i.privacy.icon
+			input(required, type="text", placeholder="NIP", maxlength="10")
+			div.ui.corner.label
+				i.asterisk.icon
+
+div.ui.horizontal.divider Dane adresowe:
+div.fields
+	div.eleven.wide.field
+		label Ulica:
+		div.ui.right.labeled.left.icon.input
+			i.home.icon
+			input(required, type="text", placeholder="Ulica")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.five.wide.field
+		label Kod:
+		div.ui.right.labeled.left.icon.input
+			i.home.icon
+			input(required, type="text", placeholder="78-113", maxlength="7")
+			div.ui.corner.label
+				i.asterisk.icon
+
+div.fields
+	div.five.wide.field
+		label Miejscowość:
+		div.ui.right.labeled.left.icon.input
+			i.home.icon
+			input(required, type="text", placeholder="Miasto")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.eleven.wide.field
+		label Strona internetowa:
+		div.ui.left.icon.input
+			i.world.icon
+			input(type="text", placeholder="http://example.com")
+
+div.field
+	input.ui.button.red(type="submit", value="Przejdź dalej")

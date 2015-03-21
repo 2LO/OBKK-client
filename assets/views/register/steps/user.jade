@@ -1,0 +1,50 @@
+div.two.fields
+	div.field
+		label Imie:
+		div.ui.right.labeled.left.icon.input
+			i.user.icon
+			input(required, type="text", placeholder="Imię", ng-model="form.user.name")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.field
+		label Nazwisko:
+		div.ui.right.labeled.left.icon.input
+			i.user.icon
+			input(required, type="text", placeholder="Nazwisko", ng-model="form.user.surname")
+			div.ui.corner.label
+				i.asterisk.icon
+
+div.field
+	label Hasło:
+	div.ui.right.labeled.left.icon.input
+		i.lock.icon
+		input(required, type="password", placeholder="Hasło", ng-model="form.user.password")
+		div.ui.corner.label
+			i.asterisk.icon
+
+div.two.fields
+	div.field
+		label Email:
+		div.ui.right.labeled.left.icon.input
+			i.at.icon
+			input(required, type="email", placeholder="abc@abc.pl", ng-model="form.user.email")
+			div.ui.corner.label
+				i.asterisk.icon
+
+	div.field
+		label Telefon:
+		div.ui.right.labeled.left.icon.input
+			i.text.telephone.icon
+			input(required, type="tel", ng-model="form.user.tel")
+			div.ui.corner.label
+				i.asterisk.icon
+	
+div.field
+	label Typ:
+	div.ui.checkbox
+		input(type="checkbox", id="type", ng-model="form.user.type")
+		label(for="type") Rejestruj jako wykładowca
+
+div.field
+	input.ui.button.red(type="submit", value="Przejdź dalej")

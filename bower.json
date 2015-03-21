@@ -33,7 +33,8 @@
     "require-less": "~0.1.5",
     "require-css": "~0.1.8",
     "angular-ui": "~0.4.0",
-    "angular-ui-router": "~0.2.13"
+    "angular-ui-router": "~0.2.13",
+    "domReady": "~2.0.1"
   },
   "devDependencies": {}
 }

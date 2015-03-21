@@ -1,0 +1,20 @@
+div.ui.two.column.relaxed.fitted.stackable.grid
+	div.column
+		div.ui.segment
+			div.ui.header
+				i.user.icon
+				div.content
+					| Użytkownik
+					div.sub.header uczestnik OBKK
+			form.ui.form(ng-submit="nextStep()")
+				include user.jade
+
+	div.column
+		div.ui.segment
+			div.ui.header
+				i.users.icon
+				div.content
+					| Firma
+					div.sub.header zgłasza uczestników
+			form.ui.form(ng-submit="nextStep()")
+				include concern.jade
