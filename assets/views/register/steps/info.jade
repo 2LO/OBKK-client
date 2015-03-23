@@ -1,20 +1,31 @@
-div.ui.two.column.relaxed.fitted.stackable.grid
-	div.column
-		div.ui.segment
+form.ui.form(ng-submit="nextStep()")
+	div.ui.two.column.relaxed.fitted.stackable.grid
+		div.column
 			div.ui.header
 				i.user.icon
 				div.content
 					| Użytkownik
-					div.sub.header uczestnik OBKK
-			form.ui.form(ng-submit="nextStep()")
-				include user.jade
+					div.sub.header uczestnik/administrator firmy OBKK
+			include user.jade
 
-	div.column
-		div.ui.segment
+			div.field
+				label Typ:
+				div.ui.checkbox
+					input(type="checkbox", id="type", ng-model="form.user.type")
+					label(for="type") Rejestruj jako wykładowca
+
+			div.field
+				div.ui.checkbox
+					input(type="checkbox", id="company", ng-model="company")
+					label(for="company") Rejestruj jako firma
+
+		div.column
 			div.ui.header
 				i.users.icon
 				div.content
 					| Firma
 					div.sub.header zgłasza uczestników
-			form.ui.form(ng-submit="nextStep()")
-				include concern.jade
+			include company.jade
+
+			div.right.field
+				input.ui.button.red(type="submit", value="Przejdź dalej")

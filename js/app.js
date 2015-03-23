@@ -7,10 +7,12 @@ define([
             'underscore',
             'angular',
             'ui-router',
+            'angular-res',
             /** Moduły */
             'register'
         ], function(domReady, _, angular) {
     var app = angular.module('app', [
+    	'ngResource',
     	'ui.router',
         'app.register'
     ]);

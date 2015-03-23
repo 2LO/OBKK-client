@@ -4,12 +4,13 @@ var require = {
     ],
     paths:      {
         'angular':   '../lib/angularjs/angular.min',
+        'angular-res': '../lib/angular-resource/angular-resource.min',
         'ui-router': '../lib/angular-ui-router/release/angular-ui-router.min',
         'jquery':    '../lib/jquery/dist/jquery.min',
         'cryptojs':  '../lib/cryptojs/cryptojs',
         'underscore':'../lib/underscore/underscore-min',
-        'semantic':  '../lib/semantic-ui/dist/semantic.min',
-        'domReady':  '../lib/domReady/domReady'
+        'domReady':  '../lib/domReady/domReady',
+        'semantic':  '../lib/semantic/dist/semantic.min'
     },
     map:  {
         '*': {
@@ -18,10 +19,6 @@ var require = {
         }
     },
     shim:  {
-        'semantic': {
-            exports: 'semantic',
-            deps: ['jquery']
-        },
         'angular':  {
             exports:   'angular'
         },
@@ -31,6 +28,8 @@ var require = {
         'underscore':    {
             exports: '_'
         },
-        'ui-router': ['angular']
+        'ui-router': ['angular'],
+        'angular-res': ['angular'],
+        'semantic': ['jquery']
     }
 };

@@ -1,7 +1,7 @@
 define([
 	'./register'
 ], function(mod) {
-	mod.controller('RegisterCtrl', function($scope, $state) {
+	return mod.controller('RegisterCtrl', function($scope, $state) {
 		var Step = function(title, subtitle, icon, state) {
 			this.title = title;
 			this.subtitle = subtitle;

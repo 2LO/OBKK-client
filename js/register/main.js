@@ -1,5 +1,4 @@
 define([
-	'./register.ctrl', 
-	'./register.res', 
+	'./register.ctrl',
 	'./register.svc'
 ]);
