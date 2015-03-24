@@ -1,6 +1,6 @@
 var require = {
     packages:   [
-        'register'
+        'register', 'user'
     ],
     paths:      {
         'angular':   '../lib/angularjs/angular.min',

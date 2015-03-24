@@ -9,11 +9,13 @@ define([
             'ui-router',
             'angular-res',
             /** Moduły */
-            'register'
+            'register',
+            'user',
         ], function(domReady, _, angular) {
     var app = angular.module('app', [
     	'ngResource',
     	'ui.router',
+        'app.user',
         'app.register'
     ]);
     domReady(function(){

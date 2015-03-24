@@ -6,8 +6,8 @@ define([
 			register: {
 				method: 'PUT',
 				params: {
-					user: '@id',
-					company: '@id'
+					user: '@user',
+					company: '@company'
 				}
 			}
 		});
