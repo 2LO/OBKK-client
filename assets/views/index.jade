@@ -1,25 +1,25 @@
 extends layout.jade
 block content
-	div.container
-		div.ui.text.menu
-			h3.header.item 
-				i.desktop.icon
-				| OBKK
-			a.item Strona Główna
-			a.item Kontakt
-			a.item Informacje
-			a.active.item Rejestracja
-			a.item Logowanie
-		
-		div(ui-view)
+    div.container
+        div.ui.text.menu
+            h3.header.item 
+                i.desktop.icon
+                | OBKK
+            a.item Strona Główna
+            a.item Kontakt
+            a.item Informacje
+            a.active.item Rejestracja
+            a.item Logowanie
+        
+        div(ui-view)
 
-		div.ui.divider.hidden
-		div.ui.three.column.grid
-			div.column(ng-repeat="n in [ 0, 1, 2 ]")
-				div.ui.header 
-					i.call.icon
-					div.content 
-						div.header Kontakt
-						div.sub.header z administracją
-				| Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        div.ui.divider.hidden
+        div.ui.three.column.grid
+            div.column(ng-repeat="n in [ 0, 1, 2 ]")
+                div.ui.header 
+                    i.call.icon
+                    div.content 
+                        div.header Kontakt
+                        div.sub.header z administracją
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 

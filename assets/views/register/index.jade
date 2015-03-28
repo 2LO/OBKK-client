@@ -1,12 +1,12 @@
 div.ui(ng-controller="RegisterCtrl")
-	div.ui.grid
-		div.four.wide.column
-			div.ui.vertical.steps
-				a.step(ng-repeat="step in steps.list", ng-class="{ 'active': $index==steps.active, 'disabled': $index>steps.active }")
-					i.icon(ng-class="step.icon")
-					div.content
-						div.title 		{{ step.title }}
-						div.description {{ step.subtitle }}
+    div.ui.grid
+        div.four.wide.column
+            div.ui.vertical.steps
+                a.step(ng-repeat="step in steps.list", ng-class="{ 'active': $index==steps.active, 'disabled': $index>steps.active }")
+                    i.icon(ng-class="step.icon")
+                    div.content
+                        div.title         {{ step.title }}
+                        div.description {{ step.subtitle }}
 
-		div.twelve.wide.column
-			div(ui-view="steps")
+        div.twelve.wide.column
+            div(ui-view="steps")

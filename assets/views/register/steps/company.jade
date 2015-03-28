@@ -1,49 +1,49 @@
 fieldset(ng-disabled="!company")
-	div.field
-		label Nazwa firmy:
-		div.ui.right.labeled.left.icon.input
-			i.user.icon
-			input(required, type="text", placeholder="Nazwa Firmy", ng-model="form.company.name")
-			div.ui.corner.label
-				i.asterisk.icon
+    div.field
+        label Nazwa firmy:
+        div.ui.right.labeled.left.icon.input
+            i.user.icon
+            input(required, type="text", placeholder="Nazwa Firmy", ng-model="form.company.name")
+            div.ui.corner.label
+                i.asterisk.icon
 
-	div.field
-		label NIP:
-		div.ui.right.labeled.left.icon.input
-			i.privacy.icon
-			input(required, type="text", ng-placeholder="DDD-DD-DD-DDD", maxlength="13", ng-model="form.company.nip")
-			div.ui.corner.label
-				i.asterisk.icon
+    div.field
+        label NIP:
+        div.ui.right.labeled.left.icon.input
+            i.privacy.icon
+            input(required, type="text", ng-placeholder="DDD-DD-DD-DDD", maxlength="13", ng-model="form.company.nip")
+            div.ui.corner.label
+                i.asterisk.icon
 
-	div.ui.horizontal.divider Dane adresowe:
-	div.fields
-		div.ten.wide.field
-			label Ulica:
-			div.ui.right.labeled.left.icon.input
-				i.home.icon
-				input(required, type="text", placeholder="Ulica", ng-model="form.company.info.street")
-				div.ui.corner.label
-					i.asterisk.icon
+    div.ui.horizontal.divider Dane adresowe:
+    div.fields
+        div.ten.wide.field
+            label Ulica:
+            div.ui.right.labeled.left.icon.input
+                i.home.icon
+                input(required, type="text", placeholder="Ulica", ng-model="form.company.info.street")
+                div.ui.corner.label
+                    i.asterisk.icon
 
-		div.six.wide.field
-			label Kod:
-			div.ui.right.labeled.left.icon.input
-				i.home.icon
-				input(required, type="text", ng-placeholder="DD-DDD", maxlength="6", ng-model="form.company.info.code")
-				div.ui.corner.label
-					i.asterisk.icon
+        div.six.wide.field
+            label Kod:
+            div.ui.right.labeled.left.icon.input
+                i.home.icon
+                input(required, type="text", ng-placeholder="DD-DDD", maxlength="6", ng-model="form.company.info.code")
+                div.ui.corner.label
+                    i.asterisk.icon
 
-	div.two.fields
-		div.field
-			label Miejscowość:
-			div.ui.right.labeled.left.icon.input
-				i.home.icon
-				input(required, type="text", placeholder="Miasto", ng-model="form.company.info.city")
-				div.ui.corner.label
-					i.asterisk.icon
+    div.two.fields
+        div.field
+            label Miejscowość:
+            div.ui.right.labeled.left.icon.input
+                i.home.icon
+                input(required, type="text", placeholder="Miasto", ng-model="form.company.info.city")
+                div.ui.corner.label
+                    i.asterisk.icon
 
-		div.field
-			label Strona internetowa:
-			div.ui.left.icon.input
-				i.world.icon
-				input(type="text", placeholder="http://example.com", , ng-model="form.company.info.webpage")
+        div.field
+            label Strona internetowa:
+            div.ui.left.icon.input
+                i.world.icon
+                input(type="text", placeholder="http://example.com", , ng-model="form.company.info.webpage")

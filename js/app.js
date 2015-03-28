@@ -3,7 +3,7 @@
  * wykorzystują inne kontrolery, serwisy
  */
 define([
-			'domReady',
+            'domReady',
             'underscore',
             'angular',
             'ui-router',
@@ -13,8 +13,8 @@ define([
             'user',
         ], function(domReady, _, angular) {
     var app = angular.module('app', [
-    	'ngResource',
-    	'ui.router',
+        'ngResource',
+        'ui.router',
         'app.user',
         'app.register'
     ]);
