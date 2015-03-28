@@ -15,10 +15,7 @@ define([
 				new Step('Potwierdzenie', 'Rejestracji konta', 'info', 'register.info')
 			]
 		};
-		$scope.form = {
-			user 	: 	{},
-			company : 	{}
-		};
+		$scope.form = {};
 		$scope.nextStep = function() {
 			$scope.steps.active = ++$scope.steps.active>=$scope.steps.list.length?0:$scope.steps.active;
 			$state.go('register.confirm');

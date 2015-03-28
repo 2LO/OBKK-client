@@ -3,7 +3,7 @@ div.two.fields
 		label Imie:
 		div.ui.right.labeled.left.icon.input
 			i.user.icon
-			input(required, type="text", placeholder="Imię", ng-model="form.user.name")
+			input(required, type="text", placeholder="Imię", ng-model="form.user.info.name")
 			div.ui.corner.label
 				i.asterisk.icon
 
@@ -11,7 +11,7 @@ div.two.fields
 		label Nazwisko:
 		div.ui.right.labeled.left.icon.input
 			i.user.icon
-			input(required, type="text", placeholder="Nazwisko", ng-model="form.user.surname")
+			input(required, type="text", placeholder="Nazwisko", ng-model="form.user.info.surname")
 			div.ui.corner.label
 				i.asterisk.icon
 
@@ -36,6 +36,6 @@ div.two.fields
 		label Telefon:
 		div.ui.right.labeled.left.icon.input
 			i.text.telephone.icon
-			input(required, type="tel", ng-model="form.user.phone")
+			input(required, type="tel", ng-placeholder="DDD-DDD-DDD", ng-model="form.user.info.phone", maxlength="11")
 			div.ui.corner.label
 				i.asterisk.icon

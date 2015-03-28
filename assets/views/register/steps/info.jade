@@ -11,7 +11,7 @@ form.ui.form(ng-submit="nextStep()")
 			div.field
 				label Typ:
 				div.ui.checkbox
-					input(type="checkbox", id="type", ng-model="form.user.type")
+					input(type="checkbox", id="type", ng-model="form.user.prelegant")
 					label(for="type") Rejestruj jako wykładowca
 
 			div.field
@@ -19,6 +19,9 @@ form.ui.form(ng-submit="nextStep()")
 					input(type="checkbox", id="company", ng-model="company")
 					label(for="company") Rejestruj jako firma
 
+			div.field
+				input.ui.button.red(type="submit", value="Przejdź dalej")
+					
 		div.column
 			div.ui.header
 				i.users.icon
@@ -26,6 +29,3 @@ form.ui.form(ng-submit="nextStep()")
 					| Firma
 					div.sub.header zgłasza uczestników
 			include company.jade
-
-			div.right.field
-				input.ui.button.red(type="submit", value="Przejdź dalej")
