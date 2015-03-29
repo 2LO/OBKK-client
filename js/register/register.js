@@ -1,30 +1,32 @@
 define([
-    'angular',
-    'underscore'
-], function(angular, _) {
+      'angular'
+    , 'underscore'
+], function(
+      angular
+    , _
+) {
     var mod = angular.module('app.register', []);
     mod
         /** Konfiguracja routingu */
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/register');
-                $stateProvider
-                    .state('register', {
-                        url: '/register',
-                        templateUrl: 'views/register/index.jade',
-                        abstract: true
-                    })
-                    .state('register.info', {
-                        url: '',
-                          views: {
-                              'steps': {templateUrl: 'views/register/steps/info.jade'}
-                          }
-                    })
-                    .state('register.confirm', {
-                        url: '/confirm',
-                          views: {
-                              'steps': {templateUrl: 'views/register/steps/confirm.jade'}
-                          }
-                    });
+            $stateProvider
+                .state( 'register'
+                      , { url: '/register'
+                        , templateUrl: 'views/register/index.jade'
+                        , abstract: true
+                        }
+                      )
+                .state( 'register.info'
+                      , { url: ''
+                        , views: {'steps': {templateUrl: 'views/register/steps/info.jade'}}
+                        }
+                      )
+                .state( 'register.confirm'
+                      , { url: '/confirm'
+                        , views: {'steps': {templateUrl: 'views/register/steps/confirm.jade'}}
+                        }
+                      );
         })
         /** Automatyczne wstawianie znaków do string */
         .directive('ngPlaceholder', function() {
@@ -42,17 +44,19 @@ define([
                 else if(index < pattern.length && !/^[CD]$/.test(pattern[index]))
                     val += pattern[index];
                 elem.val(val);
-            }
-            return {
-                restrict: 'A',
-                link: function(scope, elem, attr) {
-                    var placeholder = attr.ngPlaceholder;
-                    elem.attr('placeholder', placeholder);
-                    scope.$watch(
-                        attr.ngModel, 
-                        _.bind(matchPattern, this, placeholder, elem));
+            };
+
+            var link = function(scope, elem, attr) {
+                var placeholder = attr.ngPlaceholder;
+                elem.attr('placeholder', placeholder);
+                scope.$watch( attr.ngModel 
+                            , _.bind(matchPattern, this, placeholder, elem));
+            };
+            return (
+                { restrict: 'A'
+                , link: link
                 }
-              }
+            );
         });
     return mod;
 });

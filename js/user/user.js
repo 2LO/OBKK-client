@@ -1,5 +1,7 @@
 define([
     'angular'
-], function(angular) {
+], function(
+	angular
+) {
     return angular.module('app.user', []);
 });
