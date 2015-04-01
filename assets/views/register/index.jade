@@ -5,7 +5,7 @@ div.ui(ng-controller="RegisterCtrl")
                 a.step(ng-repeat="step in steps.list", ng-class="{ 'active': $index==steps.active, 'disabled': $index>steps.active }")
                     i.icon(ng-class="step.icon")
                     div.content
-                        div.title         {{ step.title }}
+                        div.title       {{ step.title }}
                         div.description {{ step.subtitle }}
 
         div.twelve.wide.column

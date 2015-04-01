@@ -13,18 +13,18 @@ define([
             $stateProvider
                 .state( 'register'
                       , { url: '/register'
-                        , templateUrl: 'views/register/index.jade'
+                        , templateUrl: 'views/register/index.html'
                         , abstract: true
                         }
                       )
                 .state( 'register.info'
                       , { url: ''
-                        , views: {'steps': {templateUrl: 'views/register/steps/info.jade'}}
+                        , views: {'steps': {templateUrl: 'views/register/steps/info.html'}}
                         }
                       )
                 .state( 'register.confirm'
                       , { url: '/confirm'
-                        , views: {'steps': {templateUrl: 'views/register/steps/confirm.jade'}}
+                        , views: {'steps': {templateUrl: 'views/register/steps/confirm.html'}}
                         }
                       );
         })

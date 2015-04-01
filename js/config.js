@@ -20,7 +20,7 @@ var require = {
     },
     shim:  {
         'angular':  {
-            exports:   'angular'
+            exports: 'angular'
         },
         'jquery':  {
             exports: 'jquery'

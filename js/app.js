@@ -23,7 +23,7 @@ define([
         , 'app.register'
     ]);
     domReady(function(){
-        angular.bootstrap(document, ['app']);
+        angular.bootstrap(document, [ 'app' ]);
     });
     return app;
 });

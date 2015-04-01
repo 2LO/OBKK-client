@@ -1,3 +1,3 @@
 define([
-    './user.svc'
+    './user_svc'
 ]);

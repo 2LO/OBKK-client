@@ -39,9 +39,6 @@ define([
             };
             res.login(data, success, error);
         };
-        login({ login: 'cziken@vp.pl' 
-              , password: 'Piessuzinka1'
-              });
         return (
             { register: res.register
             , login: login
