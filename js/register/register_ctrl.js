@@ -10,20 +10,28 @@ define([
             this.icon = icon;
             this.state = state;
         };
+
+        /** Lista kroków */
         $scope.steps = 
             { active: 0
             , list: 
-                [ new Step('Rejestracja', 'Tworzenie nowego konta', 'truck', 'register.confirm')
-                , new Step('Potwierdzenie', 'Rejestracji konta', 'info', 'register.info')
+                [ new Step('Rejestracja', 'Tworzenie nowego konta', 'truck', 'register.info')
+                , new Step('Potwierdzenie', 'Rejestracji konta', 'info', 'register.confirm')
                 ]
             };
+        $scope.$on("$stateChangeSuccess", function() {
+            $scope.state = $state.current.name;
+        });  
+
+        /** Rejestracja użytkownika */
         $scope.form = {};
-        $scope.nextStep = function() {
-            $scope.steps.active = ++$scope.steps.active >= $scope.steps.list.length
-                                    ? 0
-                                    : $scope.steps.active;
-            $state.go('register.confirm');
-            User.register($scope.form);
+        $scope.error = '';
+        $scope.register = function() {
+            User.register($scope.form, function() {
+                $state.transitionTo('register.confirm');
+            }, function(error) {
+                $scope.error = error.data.message;
+            });
         };
     });
 });

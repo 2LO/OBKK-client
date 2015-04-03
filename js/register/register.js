@@ -1,9 +1,7 @@
 define([
-      'angular'
-    , 'underscore'
+    'angular'
 ], function(
-      angular
-    , _
+    angular
 ) {
     var mod = angular.module('app.register', []);
     mod
@@ -30,7 +28,7 @@ define([
         })
         
         /** Automatyczne wstawianie znaków do string */
-        .directive('ngPlaceholder', function() {
+        .directive('ngPlaceholder', function(_) {
             var matchPattern = function(pattern, elem, val) {
                 if(typeof val === 'undefined')
                     return;

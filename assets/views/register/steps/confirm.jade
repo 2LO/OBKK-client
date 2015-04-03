@@ -3,6 +3,11 @@ div.ui.icon.message
     div.content
         div.header Link aktywacyjny
         p 
-            | został wysłany pod wprowadzony email. 
+            | został wysłany pod adres email 
+            strong {{ form.user.email }}.
             | W celu doepłnienia rejestracji konta kliknij 
             | w link aktywacyjny w nadesłanej wiadomości.
+
+        p 
+            | W razie braku wiadomości w skrzynce, proszę sprawdzić folder SPAM. 
+            | W przeciwnym wypadku proszony jest kontakt z administracją.

@@ -19,9 +19,9 @@ define([
          * Logowanie użytkownika, dekodowanie tokenu
          * @param  {Assoc}  data    {login:'', pass:''}
          */
-        var login = function(data) {
+        var login = function(data, error) {
             /**
-             * Pomyślne zalogowanie
+             * Obsługa błędów logowania
              * @param  {Assoc} data  Access Token
              */
             var success = function(data) {
@@ -29,13 +29,6 @@ define([
                 var token = data.token
                   , user  = JSON.parse(atob(/\.(.*)\./.exec(token)[1]));
                 console.log(user);
-            };
-            /**
-             * Błąd logowania
-             * @param  {Assoc} error Wartość błedu
-             */
-            var error = function(error) {
-
             };
             res.login(data, success, error);
         };
