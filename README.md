@@ -11,7 +11,6 @@ Tested in Firefox and Chrome
 - MongoDB
 - Grunt
 - Bower
-- WebGL
 
 ## License
 ```

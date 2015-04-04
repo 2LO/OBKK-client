@@ -1,17 +1,16 @@
-div.ui(ng-controller="RegisterCtrl")
-    div.ui.grid
-        div.four.wide.column
-            div.ui.vertical.steps
-                a.step( ng-repeat="step in steps.list"
-                      , ui-sref="{{ step.state }}" 
-                      , ng-class="step.state !== state ? 'disabled' : 'active'")
-                    i.icon(ng-class="step.icon")
-                    div.content
-                        div.title       {{ step.title }}
-                        div.description {{ step.subtitle }}
-            div(ng-show="state === 'register.info' && error.length")
-                div.ui.horizontal.divider Błędy:
-                div.ui.error.message
-                    {{ error }}
-        div.twelve.wide.column
-            div(ui-view="steps")
+div.ui.grid(ng-controller="RegisterCtrl")
+    div.four.wide.column(ng-controller="RegisterCtrl")
+        div.ui.vertical.steps
+            a.step( ng-repeat="step in steps"
+                  , ui-sref="{{ step.state }}" 
+                  , ng-class="step.state !== state ? 'disabled' : 'active'")
+                i.icon(ng-class="step.icon")
+                div.content
+                    div.title       {{ step.title }}
+                    div.description {{ step.subtitle }}
+        div(ng-show="state === 'register.info' && error.length")
+            div.ui.horizontal.divider Błędy:
+            div.ui.error.message
+                {{ error }}
+    div.twelve.wide.column
+        div(ui-view="steps")

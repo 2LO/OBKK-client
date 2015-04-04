@@ -1,0 +1,35 @@
+div.ui.one.column.center.aligned.grid(ng-controller="LoginCtrl")
+    div.twelve.wide.column
+        div.ui.two.column.stackable.middle.aligned.relaxed.grid(style="position: relative")
+                div.left.aligned.column
+                    div.ui.error.icon.message(ng-show="error.length")
+                        i.lock.icon
+                        div.content
+                            div.header Błąd logowania
+                            {{ error }}
+                    form.ui.form(ng-submit="login()")
+                        div.field
+                            label Login:
+                            div.ui.right.labeled.left.icon.input
+                                i.user.icon
+                                input(required, type="email", placeholder="Email", ng-model="form.login")
+                                div.ui.corner.label
+                                    i.asterisk.icon
+
+                        div.field
+                            label Hasło:
+                            div.ui.right.labeled.left.icon.input
+                                i.lock.icon
+                                input(required, type="password", placeholder="Hasło", ng-model="form.password")
+                                div.ui.corner.label
+                                    i.asterisk.icon
+
+                        div.right.aligned.field
+                            input.ui.button.blue(type="submit", value="Zaloguj")
+
+                div.ui.vertical.divider LUB
+
+                div.center.aligned.column
+                    a.huge.green.ui.labeled.icon.button(ui-sref="register.info")
+                        i.signup.icon
+                        | Zarejestruj się

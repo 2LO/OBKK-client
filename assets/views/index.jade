@@ -4,14 +4,15 @@ block content
         div.ui.text.menu
             h3.header.item 
                 i.desktop.icon
-                | OBKKe
+                | OBKK 2.0
             a.item Strona Główna
             a.item Kontakt
             a.item Informacje
-            a.active.item Rejestracja
-            a.item(href="#/login") Logowanie
+            a.item(ui-sref="register.info", ui-sref-active="active") Rejestracja
+            a.item(ui-sref="login", ui-sref-active="active") Logowanie
 
-        div(ui-view)
+        div.ui.grid
+            div.row(ui-view)
 
         div.ui.divider.hidden
         div.ui.three.column.grid

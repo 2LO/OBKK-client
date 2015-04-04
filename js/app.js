@@ -8,9 +8,9 @@ define([
     , 'underscore'
     , 'ui-router'
     , 'angular-res'
+    , 'ng-storage'
     /** Moduły */
-    , 'register'
-    , 'user'
+    , 'auth'
 ], function(
       domReady
     , angular
@@ -23,10 +23,10 @@ define([
 
     var app = angular.module('app', [
           'ngResource'
+        , 'ngStorage'
         , 'ui.router'
         , 'underscore'
-        , 'app.user'
-        , 'app.register'
+        , 'app.auth'
     ]);
     domReady(function(){
         angular.bootstrap(document, ['app']);
