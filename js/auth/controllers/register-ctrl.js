@@ -24,7 +24,18 @@ define([
 
         /** Rejestracja użytkownika */
         $scope.orders = Order.list();
-        $scope.form = {};
+        $scope.form = { 
+              user: { orders: [] }
+            , company: {}
+        };
+
+        /** Obserwowanie listy */
+        $scope.$watchCollection('form.user.orders', function(o) {
+            $scope.total_cost = _.reduce($scope.form.user.orders
+                , function(mem, el) {
+                    return mem + el.price;
+            }, 0)
+        });
         $scope.register = function() {
             User.register($scope.form, function() {
                 $state.transitionTo('register.confirm');

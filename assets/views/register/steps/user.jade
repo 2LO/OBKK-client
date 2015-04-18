@@ -40,8 +40,24 @@ div.two.fields
             div.ui.corner.label
                 i.asterisk.icon
 
-//- div.ui.divider.horizontal Opcje:
 div.fields
+    div.ten.wide.field
+        label Usługi:
+        div.grouped.fields
+            div.field(ng-repeat="order in orders")
+                div.ui.checkbox
+                    input(type="checkbox"
+                        , id="{{ order._id }}"
+                        , ng-name="order._id"
+                        , ng-checkbox-value="order"
+                        , ng-checkbox-list="form.user.orders")
+                    label(for="{{ order._id }}") {{ order.name }} - {{ order.price }} zł
+
+            div.ui.divider
+            div.inline.fields
+                label Łączne koszty:
+                div.field {{ total_cost || 0 }} zł
+
     div.six.wide.field
         label Typ konta:
         div.grouped.fields
@@ -54,13 +70,3 @@ div.fields
                 div.ui.checkbox
                     input(type="checkbox", id="company", ng-model="company")
                     label(for="company") Firma
-
-    div.ten.wide.field
-        label Koszta:
-        div.grouped.fields
-            div.field(ng-repeat="order in orders")
-                div.ui.checkbox
-                    input(type="checkbox", id="type", ng-model="form.user.prelegant")
-                    label(for="type") {{ order.name }}
-
-            div.right.aligned d

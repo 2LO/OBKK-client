@@ -12,17 +12,17 @@ define([
     })
     /** Serwis obsługujący użytkownika */
     .factory('User', function($resource, $localStorage) {
-        var res = $resource( '/user/:action'
-                            , {}
-                            , { register: 
-                                    { method: 'PUT'
-                                    , params: { action: 'register' }
-                                    }
-                              , login:
-                                    { method: 'POST'
-                                    , params: { action: 'login' }
-                                    }
-                              });
+        var res = $resource('/user/:action'
+            , {}
+            , { register: 
+                { method: 'PUT'
+                , params: { action: 'register' }
+                }
+            , login:
+                { method: 'POST'
+                , params: { action: 'login' }
+                }
+        });
         /**
          * Parsowanie tokenu
          * @param  {String} token Token
