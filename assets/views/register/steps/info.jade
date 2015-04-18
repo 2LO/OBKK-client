@@ -9,17 +9,6 @@ form.ui.form(ng-submit="register()")
             include user.jade
 
             div.field
-                label Typ:
-                div.ui.checkbox
-                    input(type="checkbox", id="type", ng-model="form.user.prelegant")
-                    label(for="type") Rejestruj jako wykładowca
-
-            div.field
-                div.ui.checkbox
-                    input(type="checkbox", id="company", ng-model="company")
-                    label(for="company") Rejestruj jako firma
-
-            div.field
                 input.ui.button.red(type="submit", value="Przejdź dalej")
                     
         div.column

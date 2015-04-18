@@ -39,3 +39,28 @@ div.two.fields
             input(required, type="tel", ng-placeholder="DDD-DDD-DDD", ng-model="form.user.info.phone", maxlength="11")
             div.ui.corner.label
                 i.asterisk.icon
+
+//- div.ui.divider.horizontal Opcje:
+div.fields
+    div.six.wide.field
+        label Typ konta:
+        div.grouped.fields
+            div.field
+                div.ui.checkbox
+                    input(type="checkbox", id="type", ng-model="form.user.prelegant")
+                    label(for="type") Wykładowca
+
+            div.field
+                div.ui.checkbox
+                    input(type="checkbox", id="company", ng-model="company")
+                    label(for="company") Firma
+
+    div.ten.wide.field
+        label Koszta:
+        div.grouped.fields
+            div.field(ng-repeat="order in orders")
+                div.ui.checkbox
+                    input(type="checkbox", id="type", ng-model="form.user.prelegant")
+                    label(for="type") {{ order.name }}
+
+            div.right.aligned d

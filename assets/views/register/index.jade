@@ -1,5 +1,5 @@
 div.ui.grid(ng-controller="RegisterCtrl")
-    div.four.wide.column(ng-controller="RegisterCtrl")
+    div.three.wide.column(ng-controller="RegisterCtrl")
         div.ui.vertical.steps
             a.step( ng-repeat="step in steps"
                   , ui-sref="{{ step.state }}" 
@@ -12,5 +12,6 @@ div.ui.grid(ng-controller="RegisterCtrl")
             div.ui.horizontal.divider Błędy:
             div.ui.error.message
                 {{ error }}
-    div.twelve.wide.column
+
+    div.thirteen.wide.column
         div(ui-view="steps")

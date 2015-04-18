@@ -35,6 +35,11 @@ define([
         var user = $localStorage.token
                         ? parseToken($localStorage.token)
                         : {};
+
+        /** Weryfikacja ważności tokenu */
+        if(new Date().getTime()/1000 >= user.exp)
+            user = {};
+
         /**
          * Logowanie użytkownika do systemu
          * @param  {Assoc} data    Login i Hasło
@@ -42,19 +47,24 @@ define([
          * @param  {Func}  success Callback sukcesu
          */
         var login = function(data, error, success) {
-            console.log(user);
             if(!_.isEmpty(user))
                 throw new Error('User must be empty!');
+
             res.login(data, function(data) {
                 /** Ładowanie tokenu do pamięci lokalnej */
                 _.extend(user, parseToken(data.token));
                 $localStorage.token = data.token;
+                /** Jeśli zalgoowano, callback */
                 success && success();
             }, error);
         };
+
+        /** Wylogowywanie użytkownika */
+        var logout = _.bind($localStorage.$reset, this);
         return (
             { register: res.register
             , login: login
+            , logout: logout
             }
         );
     });

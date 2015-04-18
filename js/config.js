@@ -3,7 +3,7 @@ var require = {
         'auth'
     ]
     , paths: {
-        'angular': '../lib/angularjs/angular.min'
+          'angular': '../lib/angularjs/angular.min'
         , 'angular-res': '../lib/angular-resource/angular-resource.min'
         , 'ui-router': '../lib/angular-ui-router/release/angular-ui-router.min'
         , 'jquery': '../lib/jquery/dist/jquery.min'
@@ -12,6 +12,7 @@ var require = {
         , 'domReady': '../lib/domReady/domReady'
         , 'semantic': '../lib/semantic/dist/semantic.min'
         , 'ng-storage': '../lib/ngstorage/ngStorage.min'
+        , 'loading-bar': '../lib/angular-loading-bar/build/loading-bar.min'
     }
     , map: {
         '*': {
@@ -32,6 +33,7 @@ var require = {
         , 'ui-router': ['angular']
         , 'angular-res': ['angular']
         , 'ng-storage': ['angular']
+        , 'loading-bar': ['angular']
         , 'semantic': ['jquery']
     }
 };

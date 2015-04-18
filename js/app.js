@@ -9,6 +9,7 @@ define([
     , 'ui-router'
     , 'angular-res'
     , 'ng-storage'
+    , 'loading-bar'
     /** Moduły */
     , 'auth'
 ], function(
@@ -24,10 +25,14 @@ define([
     var app = angular.module('app', [
           'ngResource'
         , 'ngStorage'
+        , 'angular-loading-bar'
         , 'ui.router'
         , 'underscore'
         , 'app.auth'
     ]);
+    app.config(function(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.latencyThreshold = 100;
+    });
     domReady(function(){
         angular.bootstrap(document, ['app']);
     });

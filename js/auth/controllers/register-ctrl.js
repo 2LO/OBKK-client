@@ -5,7 +5,7 @@ define([
 ) {
     return mod
     /** Kontroller rejestacji */
-    .controller('RegisterCtrl', function($scope, $state, User) {
+    .controller('RegisterCtrl', function($scope, $state, User, Order) {
         var Step = function(title, subtitle, icon, state) {
             this.title = title;
             this.subtitle = subtitle;
@@ -23,6 +23,7 @@ define([
         });  
 
         /** Rejestracja użytkownika */
+        $scope.orders = Order.list();
         $scope.form = {};
         $scope.register = function() {
             User.register($scope.form, function() {
