@@ -1,11 +1,13 @@
 define([
-    '../auth'
+      'underscore'
+    , '../auth'
 ], function(
-    mod
+      _
+    , mod
 ) {
     return mod
     /** Automatyczne dodawanie checkboxa do listy */
-    .directive('ngCheckboxList', function(_) {
+    .directive('ngCheckboxList', function() {
         var link = function(scope, elem, attr) {
             var modify = function() {
                 if(elem[0].checked) {
@@ -31,7 +33,7 @@ define([
         );
     })
     /** Automatyczne wstawianie znaków pomiędzy */
-    .directive('ngPlaceholder', function(_) {
+    .directive('ngPlaceholder', function() {
         var matchPattern = function(pattern, elem, val) {
             if(typeof val === 'undefined')
                 return;

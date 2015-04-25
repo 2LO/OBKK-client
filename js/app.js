@@ -3,8 +3,7 @@
  * wykorzystują inne kontrolery, serwisy
  */
 define([
-      'domReady'
-    , 'angular'
+      'angular'
     , 'underscore'
     , 'ui-router'
     , 'angular-res'
@@ -12,9 +11,9 @@ define([
     , 'loading-bar'
     /** Moduły */
     , 'auth'
+    , 'mod'
 ], function(
-      domReady
-    , angular
+    angular
 ) {
     /** Underscore deklarowany globalnie */
     var underscore = angular.module('underscore', []);
@@ -29,12 +28,10 @@ define([
         , 'ui.router'
         , 'underscore'
         , 'app.auth'
+        , 'app.mod'
     ]);
     app.config(function(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.latencyThreshold = 100;
-    });
-    domReady(function(){
-        angular.bootstrap(document, ['app']);
     });
     return app;
 });

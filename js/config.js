@@ -1,6 +1,7 @@
 var require = {
     packages: [
-        'auth'
+          'auth'
+        , 'mod'
     ]
     , paths: {
           'angular': '../lib/angularjs/angular.min'

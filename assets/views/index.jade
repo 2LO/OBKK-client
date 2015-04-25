@@ -5,9 +5,7 @@ block content
             h3.header.item 
                 i.desktop.icon
                 | OBKK 2.0
-            a.item Strona Główna
-            a.item Kontakt
-            a.item Informacje
+            a.item(ui-sref="home") Strona Główna
             a.item(ui-sref="register.info", ui-sref-active="active") Rejestracja
             a.item(ui-sref="login", ui-sref-active="active") Logowanie
 
@@ -16,7 +14,7 @@ block content
 
         div.ui.divider.hidden
         div.ui.three.column.grid
-            div.column(ng-repeat="n in [ 0, 1, 2 ]")
+            div.column(ng-repeat="n in [] | range:2")
                 div.ui.header 
                     i.call.icon
                     div.content 
