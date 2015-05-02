@@ -5,7 +5,7 @@ define([
 ) {
     return mod
     /** Kontroller rejestacji */
-    .controller('RegisterCtrl', function($scope, $state, User, Order) {
+    .controller('RegisterCtrl', function($scope, $state, Auth, Order) {
         var Step = function(title, subtitle, icon, state) {
             this.title = title;
             this.subtitle = subtitle;
@@ -31,13 +31,13 @@ define([
 
         /** Obserwowanie listy */
         $scope.$watchCollection('form.user.orders', function(o) {
-            $scope.total_cost = _.reduce($scope.form.user.orders
+            $scope.totalCost = _.reduce($scope.form.user.orders
                 , function(mem, el) {
                     return mem + el.price;
             }, 0)
         });
         $scope.register = function() {
-            User.register($scope.form, function() {
+            Auth.register($scope.form, function() {
                 $state.transitionTo('register.confirm');
             }, function(error) {
                 $scope.error = error.data.message;

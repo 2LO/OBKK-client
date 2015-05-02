@@ -1,18 +1,24 @@
 extends layout.jade
 block content
     div.container
-        div.ui.text.menu
+        div.ui.large.menu
             h3.header.item 
                 i.desktop.icon
                 | OBKK 2.0
-            a.item(ui-sref="home") Strona Główna
-            a.item(ui-sref="register.info", ui-sref-active="active") Rejestracja
-            a.item(ui-sref="login", ui-sref-active="active") Logowanie
+            a.item( ui-sref="home") Strona Główna
+            a.item( ui-sref="register.info"
+                  , ui-sref-active="active"
+                  , app-permission="{anonymous: true}") Rejestracja
+            a.item( ui-sref="login"
+                  , ui-sref-active="active"
+                  , app-permission="{anonymous: true}") Logowanie
+            span.right.menu
+                a.item( app-permission="{anonymous: false}") Wyloguj
 
         div.ui.grid
             div.row(ui-view)
 
-        div.ui.divider.hidden
+        div.ui.divider
         div.ui.three.column.grid
             div.column(ng-repeat="n in [] | range:2")
                 div.ui.header 

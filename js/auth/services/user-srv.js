@@ -1,17 +1,31 @@
 define([
-      'underscore'
-    , '../auth'
+    '../auth'
 ], function(
-      _
-    , mod
+    mod
 ) {
     return mod
+    /** 
+     * Kody błędów zwracane tylko w JSON
+     * Do każdego zapytania dołączony jest token
+     */
+    .config(function($httpProvider) {
+        $httpProvider.interceptors.push('authInterceptor');
+    })
+    .factory('authInterceptor', function () {
+        return {
+            request: function (config) {
+                config.headers.Accept = 'application/json, text/javascript';
+                return config;
+            }
+        };
+    })
+
     /** Stałe eventy usera */
     .constant('USER_EVENTS', {
         loginSuccess: 'login-success'
     })
     /** Serwis obsługujący użytkownika */
-    .factory('User', function($resource, $localStorage) {
+    .factory('Auth', function($resource, $localStorage) {
         var res = $resource('/user/:action'
             , {}
             , { register: 
@@ -65,6 +79,8 @@ define([
             { register: res.register
             , login: login
             , logout: logout
+            , user: user
+            , isLogged: function() { return !_.isEmpty(user); }
             }
         );
     });

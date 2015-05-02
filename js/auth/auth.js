@@ -10,23 +10,29 @@ define([
         $urlRouterProvider.otherwise('/login');
         $stateProvider
             /** Ekran rejestracji */
-            .state('register'
-                , { url: '/register'
+            .state('register', { 
+                  url: '/register'
                 , templateUrl: 'views/register/index.html'
                 , abstract: true
+                , data: {
+                    anonymous: true
+                }
             })
-            .state('register.info'
-                , { url: ''
+            .state('register.info', { 
+                  url: ''
                 , views: {'steps': {templateUrl: 'views/register/steps/info.html'}}
             })
-            .state('register.confirm'
-                , { url: '/confirm'
+            .state('register.confirm', { 
+                  url: '/confirm'
                 , views: {'steps': {templateUrl: 'views/register/steps/confirm.html'}}
             })
             /** Ekran logowania */
-            .state('login'
-                , { url: '/login'
+            .state('login', { 
+                  url: '/login'
                 , templateUrl: 'views/login/index.html'
+                , data: {
+                    anonymous: true
+                }
             })
     });
     return mod;
