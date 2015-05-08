@@ -17,7 +17,7 @@ var require = {
     }
     , map: {
         '*': {
-            'less': '../lib/require-less/less'
+              'less': '../lib/require-less/less'
             , 'css': '../lib/require-css/css.min'
         }
     }

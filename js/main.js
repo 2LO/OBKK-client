@@ -9,10 +9,12 @@ define([
       'domReady'
     , 'semantic'
     , 'app'
+
     , 'controllers/layout-ctrl'
+    , 'controllers/home-ctrl'
     , 'directives/app-dir'
 ], function(domReady) {
-    domReady(function(){
-        angular.bootstrap(document, ['app']);
+    domReady(function() {
+        angular.bootstrap(document, [ 'app' ]);
     });
 });

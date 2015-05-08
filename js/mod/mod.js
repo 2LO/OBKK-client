@@ -15,7 +15,7 @@ define([
             .state('error', { 
                   url: '/error/:name'
                 , templateUrl: function($stateParams) {
-                    return 'views/error/'+$stateParams.name+'.html';
+                    return 'views/error/' + $stateParams.name + '.html';
                 }
             })
             /** Root moduł */
@@ -23,12 +23,30 @@ define([
                   url: '/home'
                 , templateUrl: 'views/home/index.html'
                 , abstract: true
+                , controller: 'HomeCtrl'
+                , data: {
+                    anonymous: false
+                }
             })
             /** Ekran modułu */
             .state('home.mod', { 
-                  url: '/mod/:name'
-                , templateUrl: function($stateParams) {
-                    return 'views/mod/'+$stateParams.name+'.html';
+                  url: '/:name'
+                , views: {
+                    'mod': {
+                          templateUrl: function($stateParams) {
+                            return 'views/mod/' + $stateParams.name + '.html';
+                        }
+                        , resolve: {
+                            /** Leniwe ładowanie modułów aplikacji */
+                            __load: function($q, $stateParams) {
+                                var deferred = $q.defer();
+                                require([ 
+                                    'mod/_/' + $stateParams.name  
+                                ], function() { deferred.resolve(); });
+                                return deferred.promise;
+                            }
+                        }
+                    }
                 }
             })
     });

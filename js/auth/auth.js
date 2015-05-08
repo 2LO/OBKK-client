@@ -13,6 +13,7 @@ define([
             .state('register', { 
                   url: '/register'
                 , templateUrl: 'views/register/index.html'
+                , controller: 'RegisterCtrl'
                 , abstract: true
                 , data: {
                     anonymous: true
@@ -30,6 +31,7 @@ define([
             .state('login', { 
                   url: '/login'
                 , templateUrl: 'views/login/index.html'
+                , controller: 'LoginCtrl'
                 , data: {
                     anonymous: true
                 }

@@ -21,11 +21,11 @@ define([
     })
 
     /** Stałe eventy usera */
-    .constant('USER_EVENTS', {
-        loginSuccess: 'login-success'
+    .constant('UserEvents', {
+        loginChange: 'login-change'
     })
     /** Serwis obsługujący użytkownika */
-    .factory('Auth', function($resource, $localStorage) {
+    .factory('Auth', function($rootScope, $resource, $localStorage, UserEvents) {
         var res = $resource('/user/:action'
             , {}
             , { register: 
@@ -50,10 +50,6 @@ define([
                         ? parseToken($localStorage.token)
                         : {};
 
-        /** Weryfikacja ważności tokenu */
-        if(new Date().getTime()/1000 >= user.exp)
-            user = {};
-
         /**
          * Logowanie użytkownika do systemu
          * @param  {Assoc} data    Login i Hasło
@@ -69,12 +65,22 @@ define([
                 _.extend(user, parseToken(data.token));
                 $localStorage.token = data.token;
                 /** Jeśli zalgoowano, callback */
+                $rootScope.$broadcast(UserEvents.loginChange);
                 success && success();
             }, error);
         };
 
         /** Wylogowywanie użytkownika */
-        var logout = _.bind($localStorage.$reset, this);
+        var logout = function() {
+            user = {};
+            $localStorage.$reset();
+            $rootScope.$broadcast(UserEvents.loginChange);
+        };
+
+        /** Weryfikacja ważności tokenu */
+        if(new Date().getTime()/1000 >= user.exp)
+            logout();
+
         return (
             { register: res.register
             , login: login
