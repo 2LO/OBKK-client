@@ -1,5 +1,11 @@
-div.two.wide.column
-    | KOLUMNA
+.three.wide.column
+    .ui.vertical.text.menu
+          .header.item Moduły
+          a.item( ng-repeat="m in modules"
+                , ui-sref="home.mod({ name: '{{ m.name }}' })"
+                , ui-sref-active="active")
+            <i class="icon {{ m.dom.icon }}"></i> {{ m.dom.title }}
 
-div.ten.wide.column
+
+.thirteen.wide.column
     div(ui-view="mod")

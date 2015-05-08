@@ -1,51 +1,51 @@
-div.two.fields
-    div.field
+.two.fields
+    .field
         label Imie:
-        div.ui.right.labeled.left.icon.input
+        .ui.right.labeled.left.icon.input
             i.user.icon
             input(required, type="text", placeholder="Imię", ng-model="form.user.info.name")
-            div.ui.corner.label
+            .ui.corner.label
                 i.asterisk.icon
 
-    div.field
+    .field
         label Nazwisko:
-        div.ui.right.labeled.left.icon.input
+        .ui.right.labeled.left.icon.input
             i.user.icon
             input(required, type="text", placeholder="Nazwisko", ng-model="form.user.info.surname")
-            div.ui.corner.label
+            .ui.corner.label
                 i.asterisk.icon
 
-div.field
+.field
     label Hasło:
-    div.ui.right.labeled.left.icon.input
+    .ui.right.labeled.left.icon.input
         i.lock.icon
         input(required, type="password", placeholder="Hasło", ng-model="form.user.password")
-        div.ui.corner.label
+        .ui.corner.label
             i.asterisk.icon
 
-div.two.fields
-    div.field
+.two.fields
+    .field
         label Email:
-        div.ui.right.labeled.left.icon.input
+        .ui.right.labeled.left.icon.input
             i.at.icon
             input(required, type="email", placeholder="abc@abc.pl", ng-model="form.user.email")
-            div.ui.corner.label
+            .ui.corner.label
                 i.asterisk.icon
 
-    div.field
+    .field
         label Telefon:
-        div.ui.right.labeled.left.icon.input
+        .ui.right.labeled.left.icon.input
             i.text.telephone.icon
             input(required, type="tel", ng-placeholder="DDD-DDD-DDD", ng-model="form.user.info.phone", maxlength="11")
-            div.ui.corner.label
+            .ui.corner.label
                 i.asterisk.icon
 
-div.fields
-    div.ten.wide.field
+.fields
+    .ten.wide.field
         label Usługi:
-        div.grouped.fields
-            div.field(ng-repeat="order in orders")
-                div.ui.checkbox
+        .grouped.fields
+            .field(ng-repeat="order in orders")
+                .ui.checkbox
                     input(type="checkbox"
                         , id="{{ order._id }}"
                         , ng-name="order._id"
@@ -53,20 +53,20 @@ div.fields
                         , ng-checkbox-list="form.user.orders")
                     label(for="{{ order._id }}") {{ order.name }} - {{ order.price }} zł
 
-            div.ui.divider
-            div.inline.fields
+            .ui.ider
+            .inline.fields
                 label Łączne koszty:
-                div.field {{ totalCost || 0 }} zł
+                .field {{ totalCost || 0 }} zł
 
-    div.six.wide.field
+    .six.wide.field
         label Typ konta:
-        div.grouped.fields
-            div.field
-                div.ui.checkbox
+        .grouped.fields
+            .field
+                .ui.checkbox
                     input(type="checkbox", id="type", ng-model="form.user.prelegant")
                     label(for="type") Wykładowca
 
-            div.field
-                div.ui.checkbox
+            .field
+                .ui.checkbox
                     input(type="checkbox", id="company", ng-model="company")
                     label(for="company") Firma

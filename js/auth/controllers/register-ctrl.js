@@ -18,9 +18,6 @@ define([
               new Step('Rejestracja', 'Tworzenie nowego konta', 'truck', 'register.info')
             , new Step('Potwierdzenie', 'Rejestracji konta', 'info', 'register.confirm')
         ];
-        $scope.$on("$stateChangeSuccess", function() {
-            $scope.state = $state.current.name;
-        });  
 
         /** Rejestracja użytkownika */
         $scope.orders = Order.list();

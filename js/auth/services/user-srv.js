@@ -78,8 +78,10 @@ define([
         };
 
         /** Weryfikacja ważności tokenu */
-        if(new Date().getTime()/1000 >= user.exp)
+        if(new Date().getTime() / 1000 >= user.exp) {
+            alert('Token uległ przedawnieniu!');
             logout();
+        }
 
         return (
             { register: res.register

@@ -11,7 +11,6 @@ define([
     , 'app'
 
     , 'controllers/layout-ctrl'
-    , 'controllers/home-ctrl'
     , 'directives/app-dir'
 ], function(domReady) {
     domReady(function() {

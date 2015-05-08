@@ -1,16 +1,15 @@
-div.three.wide.column
-    div.ui.vertical.steps
+.three.wide.column
+    .ui.vertical.steps
         a.step( ng-repeat="step in steps"
               , ui-sref="{{ step.state }}" 
-              , ng-class="step.state !== state ? 'disabled' : 'active'")
+              , ui-sref-active="active")
             i.icon(ng-class="step.icon")
-            div.content
-                div.title       {{ step.title }}
-                div.description {{ step.subtitle }}
+            .content
+                .title       {{ step.title }}
+                .description {{ step.subtitle }}
     div(ng-show="state === 'register.info' && error.length")
-        div.ui.horizontal.divider Błędy:
-        div.ui.error.message
+        .ui.error.message
             {{ error }}
 
-div.thirteen.wide.column
+.thirteen.wide.column
     div(ui-view="steps")

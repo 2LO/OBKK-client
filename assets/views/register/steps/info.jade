@@ -1,20 +1,20 @@
 form.ui.form(ng-submit="register()")
-    div.ui.two.column.relaxed.fitted.stackable.grid
-        div.column
-            div.ui.header
+    .ui.two.column.relaxed.fitted.stackable.grid
+        .column
+            .ui.header
                 i.user.icon
-                div.content
+                .content
                     | Użytkownik
-                    div.sub.header uczestnik/administrator firmy OBKK
+                    .sub.header uczestnik/administrator firmy OBKK
             include user.jade
 
-            div.field
+            .field
                 input.ui.button.red(type="submit", value="Przejdź dalej")
                     
-        div.column
-            div.ui.header
+        .column
+            .ui.header
                 i.users.icon
-                div.content
+                .content
                     | Firma
-                    div.sub.header zgłasza uczestników
+                    .sub.header zgłasza uczestników
             include company.jade

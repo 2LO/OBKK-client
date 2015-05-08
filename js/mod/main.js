@@ -1,3 +1,3 @@
 define([
-    './controllers/mod-ctrl'
+    './mod'
 ]);

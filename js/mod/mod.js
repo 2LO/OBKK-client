@@ -23,7 +23,9 @@ define([
                   url: '/home'
                 , templateUrl: 'views/home/index.html'
                 , abstract: true
-                , controller: 'HomeCtrl'
+                , controller: function($scope, Auth) {
+                    $scope.modules = Auth.user.groups;
+                }
                 , data: {
                     anonymous: false
                 }

@@ -1,7 +1,7 @@
 extends layout.jade
 block content
-    div.container(ng-controller="LayoutCtrl")
-        div.ui.text.large.menu
+    .container(ng-controller="LayoutCtrl")
+        .ui.text.large.menu
             h3.header.item 
                 i.desktop.icon
                 | OBKK 2.0
@@ -22,16 +22,16 @@ block content
                 | Wyloguj: 
                 strong {{ userName }}
 
-        div.ui.grid
-            div.row(ui-view)
+        .ui.grid
+            .row(ui-view)
 
-        div.ui.divider
-        div.ui.three.column.grid
-            div.column(ng-repeat="n in [] | range:2")
-                div.ui.header 
+        .ui.ider
+        .ui.three.column.grid
+            .column(ng-repeat="n in [] | range:2")
+                .ui.header 
                     i.call.icon
-                    div.content 
-                        div.header Kontakt
-                        div.sub.header z administracją
+                    .content 
+                        .header Kontakt
+                        .sub.header z administracją
                 | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
