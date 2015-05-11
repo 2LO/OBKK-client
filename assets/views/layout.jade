@@ -8,5 +8,8 @@ html(lang="PL")
         script(src="js/config.js")
         script(data-main="js/main.js" src="lib/requirejs/require.js")
 
-    body
-        block content
+    body    
+        .container(ng-controller="LayoutCtrl")
+            block menu
+            block content
+            block footer

@@ -43,7 +43,10 @@ define([
          * @return {Object}       Użytkownik
          */
         var parseToken = function(token) {
-            return JSON.parse(atob(/\.(.*)\./.exec(token)[1]));
+            return JSON.parse(
+                        decodeURIComponent(
+                            escape(atob(/\.(.*)\./.exec(token)[1]))
+                        ));
         };
         /** Zalogowany użytkownik */
         var user = $localStorage.token

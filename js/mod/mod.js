@@ -33,6 +33,11 @@ define([
             /** Ekran modułu */
             .state('home.mod', { 
                   url: '/:name'
+                , data: {
+                    authorize: function(params) {
+                        return { mods: [ params.name ] };
+                    }
+                }
                 , views: {
                     'mod': {
                           templateUrl: function($stateParams) {

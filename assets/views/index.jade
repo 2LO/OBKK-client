@@ -1,37 +1,40 @@
 extends layout.jade
+
+block menu
+    .ui.text.large.menu
+        h3.header.item 
+            i.desktop.icon
+            | OBKK 2.0
+        a.item( ui-sref="home.mod({name: 'index'})"
+              , ui-sref-active="active"
+              , app-permission) Strona Główna
+
+        a.item( ui-sref="register.info"
+              , ui-sref-active="active"
+              , app-permission) Rejestracja
+
+        a.item( ui-sref="login"
+              , ui-sref-active="active"
+              , app-permission) Logowanie
+
+        a.item( ng-click="logout()"
+              , app-permission="{anonymous: false}")
+            | Wyloguj: 
+            strong {{ userName }}
+
 block content
-    .container(ng-controller="LayoutCtrl")
-        .ui.text.large.menu
-            h3.header.item 
-                i.desktop.icon
-                | OBKK 2.0
-            a.item( ui-sref="home.mod({name: 'index'})"
-                  , ui-sref-active="active"
-                  , app-permission) Strona Główna
+    .ui.grid
+        .row(ui-view)
 
-            a.item( ui-sref="register.info"
-                  , ui-sref-active="active"
-                  , app-permission) Rejestracja
+    .ui.ider
 
-            a.item( ui-sref="login"
-                  , ui-sref-active="active"
-                  , app-permission) Logowanie
-
-            a.item( ng-click="logout()"
-                  , app-permission="{anonymous: false}")
-                | Wyloguj: 
-                strong {{ userName }}
-
-        .ui.grid
-            .row(ui-view)
-
-        .ui.ider
-        .ui.three.column.grid
-            .column(ng-repeat="n in [] | range:2")
-                .ui.header 
-                    i.call.icon
-                    .content 
-                        .header Kontakt
-                        .sub.header z administracją
-                | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+block footer
+    .ui.three.column.grid
+        .column(ng-repeat="n in [] | range:2")
+            .ui.header 
+                i.call.icon
+                .content 
+                    .header Kontakt
+                    .sub.header z administracją
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
