@@ -5,17 +5,16 @@ block menu
         h3.header.item 
             i.desktop.icon
             | OBKK 2.0
-        a.item( ui-sref="home.mod({name: 'index'})"
-              , ui-sref-active="active"
-              , app-permission) Strona Główna
 
-        a.item( ui-sref="register.info"
-              , ui-sref-active="active"
-              , app-permission) Rejestracja
+        mixin item(sref, title)
+            a.item( ui-sref=sref
+                  , ui-sref-active="active"
+                  , app-permission)
+                = title
 
-        a.item( ui-sref="login"
-              , ui-sref-active="active"
-              , app-permission) Logowanie
+        +item("home.mod({name: 'index'})", "Strona Główna")
+        +item("register.info", "Rejestracja")
+        +item("login", "Logowanie")
 
         a.item( ng-click="logout()"
               , app-permission="{anonymous: false}")
@@ -30,11 +29,12 @@ block content
 
 block footer
     .ui.three.column.grid
-        .column(ng-repeat="n in [] | range:2")
-            .ui.header 
-                i.call.icon
-                .content 
-                    .header Kontakt
-                    .sub.header z administracją
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        each v in [ 1, 2, 3 ]
+            .column
+                .ui.header 
+                    i.call.icon
+                    .content 
+                        .header Kontakt
+                        .sub.header z administracją
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 

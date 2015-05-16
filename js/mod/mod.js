@@ -1,3 +1,4 @@
+/** Deklaracja modułu */
 define([
     'angular'
 ], function(
@@ -9,7 +10,43 @@ define([
         'unauthorized': 401
     })
     /** Konfiguracja routingu */
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function( $stateProvider
+                    , $urlRouterProvider, $controllerProvider
+                    , $compileProvider, $provide) {
+        /** Używane w modułach */
+        mod.cache = {
+              controller: $controllerProvider.register
+            , directive: $compileProvider.directive
+            , service: $provide.service
+            , factory: $provide.factory
+        };
+
+        /** Dynamiczne wczytywanie modułów */
+        var modLoader = {
+              templateUrl: function($stateParams) {
+                return 'views/mod/' + $stateParams.name + '.html';
+            }
+            , controllerProvider: function ($q, $stateParams) {
+                var ctrl = $stateParams.name + 'Ctrl';
+                return ctrl.replace(/^(\w)/, function(c) {
+                    return c.toUpperCase();
+                });
+            }
+            , resolve: {
+                /** Leniwe ładowanie modułów aplikacji */
+                __load: function($q, $stateParams) {
+                    var deferred = $q.defer();
+                    require([ 
+                        'mod/_/' + $stateParams.name
+                    ], function(m) {
+                        deferred.resolve();
+                    });
+                    return deferred.promise;
+                }
+            }
+        };
+
+        /** Routing dla strony głównej */
         $stateProvider
             /** Ekran błędu */
             .state('error', { 
@@ -39,21 +76,7 @@ define([
                     }
                 }
                 , views: {
-                    'mod': {
-                          templateUrl: function($stateParams) {
-                            return 'views/mod/' + $stateParams.name + '.html';
-                        }
-                        , resolve: {
-                            /** Leniwe ładowanie modułów aplikacji */
-                            __load: function($q, $stateParams) {
-                                var deferred = $q.defer();
-                                require([ 
-                                    'mod/_/' + $stateParams.name  
-                                ], function() { deferred.resolve(); });
-                                return deferred.promise;
-                            }
-                        }
-                    }
+                    'mod': modLoader
                 }
             })
     });

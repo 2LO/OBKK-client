@@ -1,3 +1,4 @@
+{{ a }}
 .ui.text.menu
     a.active.item Wszyscy
     a.item Administracja
@@ -7,7 +8,22 @@
 table.ui.very.basic.table
     thead
         tr
-            th ID
+            th.one.wide
+                .ui.checkbox 
+                    input(type="checkbox", id="f")
+                    label(for="f")
+            th E-Mail
             th Imię
             th Nazwisko
             th Moduły
+    tbody
+        each v in [ 1, 2, 3, 4, 5, 6 ]
+            tr
+                td 
+                    .ui.checkbox 
+                        input(type="checkbox", id="f")
+                        label(for="f")
+                td cziken@vp.pl
+                td Mateusz
+                td Bagiński
+                td [ #[i.icon.home] #[strong index], #[i.icon.settings] #[strong mod_mgmt] ]
