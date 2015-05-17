@@ -4,29 +4,22 @@
  */
 define([
       'angular'
-    , 'underscore'
     , 'ui-router'
     , 'angular-res'
     , 'ng-storage'
     , 'loading-bar'
     /** Moduły */
+    , 'exts'
     , 'auth'
     , 'mod'
 ], function(
     angular
 ) {
-    /** Underscore deklarowany globalnie */
-    var underscore = angular.module('underscore', []);
-    underscore.factory('_', function() {
-        return window._;
-    });
-
     var app = angular.module('app', [
           'ngResource'
         , 'ngStorage'
         , 'angular-loading-bar'
         , 'ui.router'
-        , 'underscore'
         , 'app.auth'
         , 'app.mod'
     ]);

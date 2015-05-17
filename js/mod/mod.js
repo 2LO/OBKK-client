@@ -14,12 +14,12 @@ define([
                     , $urlRouterProvider, $controllerProvider
                     , $compileProvider, $provide) {
         /** Używane w modułach */
-        mod.cache = {
+        mod.cache = _({
               controller: $controllerProvider.register
             , directive: $compileProvider.directive
             , service: $provide.service
             , factory: $provide.factory
-        };
+        }).fluent();
 
         /** Dynamiczne wczytywanie modułów */
         var modLoader = {

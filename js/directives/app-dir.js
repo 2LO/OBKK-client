@@ -1,9 +1,7 @@
 define([
-      'underscore'
-    , '../app'
+    '../app'
 ], function(
-      _
-    , mod
+    mod
 ) {
     return mod
     /** Automatyczne dodawanie checkboxa do listy */
