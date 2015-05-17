@@ -1,7 +1,9 @@
 define([
-    '../auth'
+      'underscore'
+    , '../auth'
 ], function(
-    mod
+      _
+    , mod
 ) {
     return mod
     /** Serwis obsługujący użytkownika */

@@ -1,10 +1,12 @@
 define([
-    '../auth'
+      'underscore'
+    , '../auth'
 ], function(
-    mod
+      _
+    , mod
 ) {
     return mod
-    /** Automatyczne dodawanie checkboxa do listy */
+    /** Automatyczne dodawanie zaznaczonego checkboxa do listy */
     .directive('appPermission', function($state, $rootScope, Permission, UserEvents) {
         var link = function(scope, elem, attr) {
             /** 

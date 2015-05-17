@@ -1,8 +1,11 @@
 define([
-    'angular'
+    'underscore'
 ], function(
-    angular
+    _
 ) {
+    /** Wyłączenie globalnych nazw */
+    _.noConflict(true);
+
     /** Tworzenie łańcucha */
     var fluent = function(assoc) {
         return _(assoc).each(function(val, key) {

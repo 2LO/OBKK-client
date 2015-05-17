@@ -1,7 +1,9 @@
 define([
-    '../auth'
+      'underscore'
+    , '../auth'
 ], function(
-    mod
+      _
+    , mod
 ) {
     return mod
     /** 
@@ -28,15 +30,16 @@ define([
     .factory('Auth', function($rootScope, $resource, $localStorage, UserEvents) {
         var res = $resource('/user/:action'
             , {}
-            , { register: 
-                { method: 'PUT'
-                , params: { action: 'register' }
-                }
-            , login:
-                { method: 'POST'
-                , params: { action: 'login' }
-                }
-        });
+            , { 
+                register: 
+                    { method: 'PUT'
+                    , params: { action: 'register' }
+                    }
+                , login:
+                    { method: 'POST'
+                    , params: { action: 'login' }
+                    }
+            });
         /**
          * Parsowanie tokenu
          * @param  {String} token Token

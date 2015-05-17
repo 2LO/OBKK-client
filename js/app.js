@@ -9,7 +9,6 @@ define([
     , 'ng-storage'
     , 'loading-bar'
     /** Moduły */
-    , 'exts'
     , 'auth'
     , 'mod'
 ], function(

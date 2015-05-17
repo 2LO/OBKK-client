@@ -1,8 +1,10 @@
 /** Deklaracja modułu */
 define([
-    'angular'
+      'underscore'
+    , 'angular'
 ], function(
-    angular
+      _
+    , angular
 ) {
     var mod = angular.module('app.mod', []);
     mod
@@ -14,7 +16,7 @@ define([
                     , $urlRouterProvider, $controllerProvider
                     , $compileProvider, $provide) {
         /** Używane w modułach */
-        mod.cache = _({
+        mod.api = _({
               controller: $controllerProvider.register
             , directive: $compileProvider.directive
             , service: $provide.service
@@ -37,7 +39,7 @@ define([
                 __load: function($q, $stateParams) {
                     var deferred = $q.defer();
                     require([ 
-                        'mod/_/' + $stateParams.name
+                        'mod/js/' + $stateParams.name
                     ], function(m) {
                         deferred.resolve();
                     });

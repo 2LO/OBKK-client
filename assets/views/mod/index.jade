@@ -1,6 +1,5 @@
-{{ a }}
 .ui.text.menu
-    a.active.item Wszyscy
+    a.item Wszyscy
     a.item Administracja
     a.item Preleganci
     a.item Firmy
@@ -9,21 +8,24 @@ table.ui.very.basic.table
     thead
         tr
             th.one.wide
-                .ui.checkbox 
-                    input(type="checkbox", id="f")
-                    label(for="f")
+                .ui.checkbox
+                    input(type="checkbox", id="selectAll")
+                    label(for="selectAll", ng-click="selectAll()")
             th E-Mail
             th Imię
             th Nazwisko
             th Moduły
     tbody
-        each v in [ 1, 2, 3, 4, 5, 6 ]
-            tr
-                td 
-                    .ui.checkbox 
-                        input(type="checkbox", id="f")
-                        label(for="f")
-                td cziken@vp.pl
-                td Mateusz
-                td Bagiński
-                td [ #[i.icon.home] #[strong index], #[i.icon.settings] #[strong mod_mgmt] ]
+        tr(ng-repeat="user in list")
+            td 
+                .ui.checkbox 
+                    input( type="checkbox", id="{{ 'checkbox_' + user._id }}"
+                         , ng-model="user.selected")
+                    label(for="{{ 'checkbox_' + user._id }}")
+            td {{ user.email }}
+            td {{ user.info.name }}
+            td {{ user.info.surname }}
+            td 
+                span(ng-repeat="group in user.groups" style="padding-right: 5px")
+                    <i class="icon {{ group.dom.icon }}"></i> 
+                    strong {{ group.name }}

@@ -23,13 +23,11 @@ var require = {
     }
     , shim: {
         'angular': {
-            exports: 'angular'
+              exports: 'angular'
+            , deps: [ 'underscore' ]
         }
         , 'jquery': {
             exports: 'jquery'
-        }
-        , 'underscore': {
-            exports: '_'
         }
         , 'ui-router': ['angular']
         , 'angular-res': ['angular']

@@ -21,11 +21,11 @@ define([
             })
             .state('register.info', { 
                   url: ''
-                , views: {'steps': {templateUrl: 'views/register/steps/info.html'}}
+                , views: {'steps': { templateUrl: 'views/register/steps/info.html'} }
             })
             .state('register.confirm', { 
                   url: '/confirm'
-                , views: {'steps': {templateUrl: 'views/register/steps/confirm.html'}}
+                , views: {'steps': { templateUrl: 'views/register/steps/confirm.html'} }
             })
             /** Ekran logowania */
             .state('login', { 

@@ -8,6 +8,7 @@ require([
 define([
       'domReady'
     , 'semantic'
+    , 'exts'
     , 'app'
 
     , 'controllers/layout-ctrl'
