@@ -7,7 +7,7 @@ define([
     mod
     /** Konfiguracja routingu */
     .config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/home/index');
         $stateProvider
             /** Ekran rejestracji */
             .state('register', { 

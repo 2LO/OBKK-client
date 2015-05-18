@@ -16,7 +16,7 @@ define([
                     }
                 });
         })
-        .controller('IndexCtrl', function($scope, Users) {
+        .controller('IndexCtrl', function($scope, Users, $state) {
             $scope.list = Users.list();
             $scope.selectAll = function() {
                 _($scope.list).each(function(val) {

@@ -11,6 +11,16 @@ define([
     .constant('ERROR_CODE', {
         'unauthorized': 401
     })
+    /** Tworzenie nowych stanów podczas działania aplikacji */
+    .provider('runtimeStates', function runtimeStates($stateProvider) {
+        this.$get = function($q, $timeout, $state) {
+            return { 
+                addState: function(name, state) {
+                    $stateProvider.state(name, state);
+                }
+            };
+        }
+    })
     /** Konfiguracja routingu */
     .config(function( $stateProvider
                     , $urlRouterProvider, $controllerProvider
@@ -21,6 +31,7 @@ define([
             , directive: $compileProvider.directive
             , service: $provide.service
             , factory: $provide.factory
+            , state: $stateProvider.state
         }).fluent();
 
         /** Dynamiczne wczytywanie modułów */
@@ -65,9 +76,7 @@ define([
                 , controller: function($scope, Auth) {
                     $scope.modules = Auth.user.groups;
                 }
-                , data: {
-                    anonymous: false
-                }
+                , data: { anonymous: false }
             })
             /** Ekran modułu */
             .state('home.mod', { 
@@ -77,9 +86,7 @@ define([
                         return { mods: [ params.name ] };
                     }
                 }
-                , views: {
-                    'mod': modLoader
-                }
+                , views: { 'mod': modLoader }
             })
     });
     return mod;
