@@ -1,6 +1,7 @@
 *~
 .*
 !.gitignore
+!.bowerrc
 build/
 data/ts_def/
 data/lib/
