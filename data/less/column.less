@@ -1,0 +1,47 @@
+@import "util";
+
+/** dla wszystkich */
+* { 
+    box-sizing: border-box; 
+};
+
+/** kolumny */
+@columns: 10;
+@spacing: 5px;
+.col {
+    display:        inline-block;
+    vertical-align: top;
+    margin-bottom:  @spacing;
+    padding:        5px;
+    .for(1, @columns+1); .-each(@proc) {
+        @val: `parseInt(100 / @{columns} * @{proc})`;
+        &@{val}:extend(.col) {
+            width: percentage(@val / 100);
+        };
+        &-offset@{val} { 
+            margin-left: percentage(@val / 100);
+        };
+    };
+};
+.row {
+    margin: @spacing 0 @spacing 0;     
+    width:  100%;
+};
+.centered {
+    text-align: center;
+};
+
+/** kontener na strone */
+@page_size: 1024px;
+.container {
+    width:  @page_size;
+    margin: 0 auto;
+};
+.row, .container {
+    overflow: auto;
+};
+
+/** Podzielenie */
+div.divider:extend(.row) {
+    border-bottom: 1px solid @info;
+};

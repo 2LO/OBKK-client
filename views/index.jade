@@ -1,0 +1,72 @@
+doctype html
+html(lang='pl')
+    head
+        title Strona internetowa
+        meta(charset="UTF8")
+
+        // bower:css
+        link(rel='stylesheet', href='../data/lib/font-awesome/css/font-awesome.css')
+        // endbower
+        
+        link(href='../data/font/style.css', rel='stylesheet')
+        link(href='../css/page.css', rel='stylesheet')
+
+    body
+        // bower:js
+        script(src='../data/lib/angularjs/angular.js')
+        // endbower
+
+        script(src='http://localhost:35729/livereload.js')
+        script(src='../js/app.js')
+
+        nav(ng-controller='HomeCtrl')
+            .col60
+                .row.pull-left 
+                    h4.inline OBKK
+                    .inline.subheader
+                        span.text-divider.small Oficjalna aplikacja konferencji "Od becika każdy klika"
+                ul.row
+                    li.item Strona główna
+                    li.item.active Administracja
+                    li.item Informacje
+                    li.item Kontakt
+
+            .col30.col-offset10
+                .col60
+                    span.medium #[strong Mateusz Bagiński]
+                    .small ostatnia wizyta: 7-09-2015
+                .col40
+                    .fa.fa-sign-out.fa-2x
+
+            ul.row.centered
+                li.item.active Zarządzaj użytkownikami
+                li.item Faktury
+                li.item Statystki
+        article
+            .container
+                .col20
+                    ul.vertical.menu
+                        li 
+                .col80
+                    table
+                        tr
+                            th #[input(type='checkbox')]
+                            th Imię
+                            th Nazwisko
+                            th Email
+                            th Dostępne moduły
+                        
+                        each val in [1, 2, 3, 4, 5]
+                            tr
+                                td #[input(type='checkbox')]
+                                td Mateusz
+                                td Bagiński
+                                td cziken58@gmail.com
+                                td userMgmt, groupMgmt
+                    .btngroup
+                        button.default #[i.fa.fa-camera.fa-1g]
+                        button.default #[i.fa.fa-trash.fa-1g]
+                        button.default #[i.fa.fa-question.fa-1g]
+
+
+

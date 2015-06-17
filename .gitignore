@@ -1,0 +1,8 @@
+*~
+.*
+!.gitignore
+build/
+data/ts_def/
+data/lib/
+node_modules/
+typings/

@@ -1,0 +1,26 @@
+{
+  "name": "OBKK-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/2LO/OBKK-client",
+  "authors": [
+    "Mateusz Bagiński <cziken58@gmail.com>"
+  ],
+  "description": "OBKK Conference panel client",
+  "main": "js/app.js",
+  "keywords": [
+    "client"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.0",
+    "font-awesome": "~4.3.0"
+  }
+}

@@ -1,0 +1,117 @@
+@import "color";
+@import "column";
+
+body {
+    font-family: "Myriad Pro";
+    margin:      0;
+};
+
+/** Konwersja na inline */
+.inline { display: inline; };
+
+/** Nagłówki */
+h5, h4, h3, h2 {
+    margin-top:     0;
+    margin-bottom:  5px;
+};
+.subheader {
+    font-weight:   bold;
+    &.inline       { margin-left: 5px; };
+    &:not(.inline) { margin-top:  5px; };
+};
+
+/** Kontrolki */
+* {
+    &:focus {
+        outline: 0;
+    };
+    &::selection {
+        background: @danger;
+        color:      white;
+    };
+};
+.control {
+    padding:        4px 9px 4px 9px;
+    height:         32px;
+    font-size:      14px;
+    border:         1px solid @info;
+    border-radius:  4px;
+    vertical-align: middle;
+};
+/** Textbox */
+input:extend(.control) {
+    &[type="text"] {
+        &:focus {
+            border-color: @danger;
+            box-shadow:   0 0 8px @danger;
+        };
+        &:not(:focus) {
+        }
+    };
+};
+/** Przycisk */
+button, .label {
+    &:extend(.control, .btn);
+    .create(@name, @color, @text) {
+        &.@{name} {
+            background:    @color;
+            color:         @text;
+            border-color:  darken(@color, 4%);
+            &:not(.label):active {
+                background: darken(@color, 10%);
+            }
+        }
+    };
+    .create(danger, @danger, white);
+    .create(turquoise, @turquoise, white);
+    .create(default, white, black);
+};
+button {
+    padding-left:  6px;
+    padding-right: 6px; 
+};
+.btngroup button {
+    &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+        border-right:  0;
+        border-left:   0;
+    };
+    &:first-of-type {
+        border-top-right-radius:    0;
+        border-bottom-right-radius: 0;
+    };
+    &:last-of-type {
+        border-top-left-radius:    0;
+        border-bottom-left-radius: 0;
+    };
+};
+.label {
+    margin-left:   13px;
+    padding:       4px 0.3em;
+    cursor:        default;
+    font-weight:   bold;
+};
+
+/** Umiejscowienie */
+.pull-left  { float: left;  };
+.pull-right { float: right; };
+
+/** Tabele */
+table {
+    width:              100%;
+    border-collapse:    collapse;
+    border-spacing:     0;
+
+    input[type="checkbox"] { 
+        margin:  0;
+        padding: 0;
+        height:  auto;
+    };
+    th {
+        text-align:    left;
+        border-bottom: 1px solid @divider;
+    };
+    tr:nth-child(even) > td {
+        background-color: @divider;
+    };
+};

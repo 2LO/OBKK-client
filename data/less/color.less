@@ -1,0 +1,21 @@
+@import "util";
+
+@danger:    #ce4844;
+@info:      #dddddd;
+@turquoise: #00b5ad;
+@divider:   #eeeeee;
+
+/** Wielkości czcionek */
+.smallest { font-size: 0.75em; };
+.small    { font-size: 0.85em; };
+.medium   { font-size: 1.0em;  };
+
+/** Kolory */
+.text {
+    @colors: info, danger, divider;
+    .for(@colors); .-each(@col) {
+        &-@{col} {
+            color: @@col;
+        };
+    };
+};
