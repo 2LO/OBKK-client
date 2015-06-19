@@ -1,26 +1,45 @@
 @import "page";
 
 /** Menu */
-nav:extend(.container) {
-    @menu_padding: 24px;
+nav {
+    @menu_padding: 14px;
     padding:   @menu_padding 0 @menu_padding 0;
     ul {
         list-style-type: none;
         padding:         0;
+        margin:          0;
     };
 
     @item_spacing: 20px;
     li.item {
-        vertical-align:  middle;
+        vertical-align:  top;
         display:         inline-block;
-        &:not(:last-child) { 
-            margin-right: @item_spacing;
-        };
-        &.active {
-            border-bottom: 1px solid @divider;
+        cursor:          pointer;
+        &:not(:last-child) { margin-right: @item_spacing;       };
+        &.active           { border-bottom: 1px solid @divider; };
+    };
+    ul.horizontal {
+        padding-left: 20px;
+        li.item {
+            display: block;
         };
     };
 };
 
 /** Aktywny link */
-.active { font-weight: bold; };
+span.header, .active { font-weight: bold; };
+
+
+/** Panel z tytułem */
+.panel {
+    // border-radius: @control_radius;
+    // border:        1px solid @divider;
+    .head, .body {
+        padding: 10px;
+    };
+    .head {
+        background: @divider;
+        text-align: center;
+        &:extend(.active);
+    };
+};

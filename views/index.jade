@@ -19,54 +19,76 @@ html(lang='pl')
         script(src='http://localhost:35729/livereload.js')
         script(src='../js/app.js')
 
-        nav(ng-controller='HomeCtrl')
-            .col60
-                .row.pull-left 
-                    h4.inline OBKK
-                    .inline.subheader
-                        span.text-divider.small Oficjalna aplikacja konferencji "Od becika każdy klika"
-                ul.row
-                    li.item Strona główna
-                    li.item.active Administracja
-                    li.item Informacje
-                    li.item Kontakt
-
-            .col30.col-offset10
+        .container
+            nav(ng-controller='HomeCtrl')
                 .col60
-                    span.medium #[strong Mateusz Bagiński]
-                    .small ostatnia wizyta: 7-09-2015
-                .col40
-                    .fa.fa-sign-out.fa-2x
+                    .row.pull-left 
+                        h4.inline OBKK
+                        .inline.subheader
+                            span.text-divider.small Oficjalna aplikacja konferencji "Od becika każdy klika"
+                    ul.row
+                        li.item Strona główna
+                        li.item.active Administracja
+                        li.item Informacje
+                        li.item Kontakt
 
-            ul.row.centered
-                li.item.active Zarządzaj użytkownikami
-                li.item Faktury
-                li.item Statystki
-        article
-            .container
-                .col20
-                    ul.vertical.menu
-                        li 
-                .col80
-                    table
-                        tr
-                            th #[input(type='checkbox')]
-                            th Imię
-                            th Nazwisko
-                            th Email
-                            th Dostępne moduły
-                        
-                        each val in [1, 2, 3, 4, 5]
-                            tr
-                                td #[input(type='checkbox')]
-                                td Mateusz
-                                td Bagiński
-                                td cziken58@gmail.com
-                                td userMgmt, groupMgmt
-                    .btngroup
-                        button.default #[i.fa.fa-camera.fa-1g]
-                        button.default #[i.fa.fa-trash.fa-1g]
-                        button.default #[i.fa.fa-question.fa-1g]
+                .col30.col-offset10
+                    .col60
+                        span.medium #[strong Mateusz Bagiński]
+                        .small ostatnia wizyta: 7-09-2015
+                    .col40
+                        .fa.fa-sign-out.fa-2x
+
+                ul.col100.small
+                    li.item
+                        span.header Zarządzaj użytkownikami
+                        ul.horizontal
+                            li.item Dodaj użytkownika
+                            li.item Edycja użytkowników
+                     li.item
+                        span.header Zarządzaj obiektami
+                        ul.horizontal
+                            li.item Zarządzanie klasami
+                            li.item Zarządzanie budynkami
+
+                    li.item 
+                        span.header Faktury
+                        ul.horizontal
+                            li.item Twórz fakturę
+                            li.item Przeglądaj faktury
+                    li.item 
+                        span.header Statystki
+                        ul.horizontal
+                            li.item Lista zarejestrowanych
+                            li.item Logi
+            article
+                .row
+                    .col70
+                        .panel
+                            .body
+                                .row
+                                    .pull-left.head Lista użytkowników:
+                                    .pull-right
+                                        span.strong Z wybranymi:
+                                        span.btngroup
+                                            button.default #[i.fa.fa-camera.fa-1g]
+                                            button.default #[i.fa.fa-trash.fa-1g]
+                                            button.default #[i.fa.fa-question.fa-1g]
+                                table                                    
+                                    each val in [1, 2, 3, 4, 5]
+                                        tr
+                                            td #[input(type='checkbox')]
+                                            td Mateusz
+                                            td Bagiński
+                                            td cziken58@gmail.com
+                                            td userMgmt, groupMgmt
+
+                                    tr
+                                        th #[input(type='checkbox')]
+                                        th Imię
+                                        th Nazwisko
+                                        th Email
+                                        th Dostępne moduły
 
 
 

@@ -1,6 +1,9 @@
 @import "color";
 @import "column";
 
+/** Domyślne zaokrąglenie */
+@control_radius: 4px;
+
 body {
     font-family: "Myriad Pro";
     margin:      0;
@@ -35,7 +38,7 @@ h5, h4, h3, h2 {
     height:         32px;
     font-size:      14px;
     border:         1px solid @info;
-    border-radius:  4px;
+    border-radius:  @control_radius;
     vertical-align: middle;
 };
 /** Textbox */
@@ -70,19 +73,22 @@ button {
     padding-left:  6px;
     padding-right: 6px; 
 };
-.btngroup button {
-    &:not(:first-child):not(:last-child) {
-        border-radius: 0;
-        border-right:  0;
-        border-left:   0;
-    };
-    &:first-of-type {
-        border-top-right-radius:    0;
-        border-bottom-right-radius: 0;
-    };
-    &:last-of-type {
-        border-top-left-radius:    0;
-        border-bottom-left-radius: 0;
+.btngroup {
+    margin: 0 5px 0 5px;
+    button {
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+            border-right:  0;
+            border-left:   0;
+        };
+        &:first-of-type {
+            border-top-right-radius:    0;
+            border-bottom-right-radius: 0;
+        };
+        &:last-of-type {
+            border-top-left-radius:    0;
+            border-bottom-left-radius: 0;
+        };
     };
 };
 .label {
@@ -108,10 +114,11 @@ table {
         height:  auto;
     };
     th {
-        text-align:    left;
-        border-bottom: 1px solid @divider;
+        text-align:  left;
+        padding-top: 7px;
+        border-top:  1px solid @divider;
     };
-    tr:nth-child(even) > td {
+    tr:nth-child(even):not(:last-child) > td {
         background-color: @divider;
     };
 };
