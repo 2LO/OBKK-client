@@ -1,16 +1,18 @@
-/// <reference path="../data/ts_def/angularjs/angular.d.ts" />
-class HomeCtrl {
-    public static $inject = [
-        '$scope'
+/// <reference path="./_all.ts" />
+/// <reference path="./shared/_all.ts" />
+
+'use strict';
+module Application {
+    let coreMods = [
+          'ui.router'
+        , 'ngResource'
+        , 'ngStorage'
+        , 'shared'
     ];
-    constructor( private $scope) {
-        console.log($scope);
-    }
+    angular.module('app', coreMods);
 };
-
-let app = angular.module('app', [])
-    .controller('HomeCtrl', HomeCtrl);
-
-angular
-    .element(document)
-    .ready(angular.bootstrap.bind(null, document, [ 'app' ]));
+(() => {
+    angular
+        .element(document)
+        .ready(angular.bootstrap.bind(null, document, [ 'app' ]));
+})();

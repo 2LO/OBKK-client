@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         }
         , wiredep: {
             task: {
-                  src: [ 'views/index.jade' ]
+                  src: [ 'views/template.jade' ]
                 , dependencies: true
                 , devDependencies: false
             }

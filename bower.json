@@ -21,6 +21,9 @@
   ],
   "dependencies": {
     "angularjs": "~1.4.0",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.1",
+    "ngstorage": "~0.3.6"
   }
 }
