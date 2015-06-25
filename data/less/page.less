@@ -2,7 +2,7 @@
 @import "column";
 
 /** Domyślne zaokrąglenie */
-@control_radius: 4px;
+@control_radius: 0;
 
 body {
     font-family: "Myriad Pro";
@@ -33,28 +33,77 @@ h5, h4, h3, h2 {
         color:      white;
     };
 };
+.control, .labeled *, .icon+input * {
+    padding: 4px 9px 4px 9px;
+};
 .control {
-    padding:        4px 9px 4px 9px;
     height:         32px;
     font-size:      14px;
     border:         1px solid @info;
     border-radius:  @control_radius;
     vertical-align: middle;
 };
-/** Textbox */
-input:extend(.control) {
-    &[type="text"] {
-        &:focus {
-            border-color: @danger;
-            box-shadow:   0 0 8px @danger;
-        };
-        &:not(:focus) {
-        }
+
+/** Grupy */
+.form .group {
+    margin: 10px 0 10px 0;
+    padding: 5px 0 0;
+    .labeled {
+        position: relative;
+    };
+    & > input, & > .labeled > input {
+        width:  100%;
     };
 };
+
+/** Ikony w textbox */
+@label_size: 2.0em;
+.icon {
+    & i:extend(.inline) {
+        position:    absolute;
+        color:       @info;
+        height:      100%;
+        line-height: 100%;
+    };
+    &.left {
+        i     { left: 0; }
+        input { padding-left: @label_size; };
+    };
+    &.right {
+        i     { right: 0; }
+        input { padding-right: @label_size; }
+    };
+};
+.labeled input:extend(.icon.right input) {
+    #corner-style() {
+        text-align: right;
+        font-size:  1.2em;
+
+        /** Zamalowanie */
+        &.star::after { content: "*"; };
+    };
+    &+.label:extend(.icon i, .icon.right i) {
+        &.corner { #corner-style(); }
+        top:        0;
+        color:      black;
+        background: @info;
+    };
+};
+.labeled {
+    i, .label { padding-top: 0.45em; };
+};
+
+/** Textbox */
+input {
+    @focus: darken(@info, 10%);
+
+    &:extend(.control);
+    &:focus        { border-color: @focus; };
+    &:focus+.label { background: @focus; };
+};
+
 /** Przycisk */
-button, .label {
-    &:extend(.control, .btn);
+button:extend(.control, .active) {
     .create(@name, @color, @text) {
         &.@{name} {
             background:    @color;
@@ -62,8 +111,8 @@ button, .label {
             border-color:  darken(@color, 4%);
             &:not(.label):active {
                 background: darken(@color, 10%);
-            }
-        }
+            };
+        };
     };
     .create(danger, @danger, white);
     .create(turquoise, @turquoise, white);
@@ -74,7 +123,7 @@ button {
     padding-right: 6px; 
 };
 .btngroup {
-    margin: 0 5px 0 5px;
+    margin: 0 5px;
     button {
         &:not(:first-child):not(:last-child) {
             border-radius: 0;
@@ -92,8 +141,6 @@ button {
     };
 };
 .label {
-    margin-left:   13px;
-    padding:       4px 0.3em;
     cursor:        default;
     font-weight:   bold;
 };

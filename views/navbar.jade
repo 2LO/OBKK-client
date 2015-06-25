@@ -1,0 +1,39 @@
+.col80
+    .row
+        .row.pull-left 
+            h4.inline OBKK
+            .inline.subheader
+                span.text-divider.small Oficjalna aplikacja konferencji "Od becika każdy klika"
+        ul.row
+            li.item Strona główna
+            li.item.active Administracja
+            li.item Informacje
+            li.item Kontakt
+
+    ul.row.small
+        li.item
+            span.header Zarządzaj użytkownikami
+            ul.horizontal
+                li.item Dodaj użytkownika
+                li.item Edycja użytkowników
+         li.item
+            span.header Zarządzaj obiektami
+            ul.horizontal
+                li.item Zarządzanie klasami
+                li.item Zarządzanie budynkami
+
+        li.item 
+            span.header Faktury
+            ul.horizontal
+                li.item Twórz fakturę
+                li.item Przeglądaj faktury
+        li.item 
+            span.header Statystki
+            ul.horizontal
+                li.item Lista zarejestrowanych
+                li.item Logi
+.col20
+    span.medium {{ displayName }}
+    .small zalogowano: {{ lastLogged }}
+    .small 
+        strong.pull-right #[a(href='', ng-click='caller.logout()') Wyloguj się!]

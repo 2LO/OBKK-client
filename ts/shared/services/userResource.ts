@@ -1,4 +1,4 @@
-/// <reference path="../interfaces/registration_data.ts" />
+/// <reference path="../interfaces/registrationData.ts" />
 
 module Shared {
     /**

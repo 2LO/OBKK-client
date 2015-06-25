@@ -1,4 +1,4 @@
-/// <reference path="./login_data.ts" />
+/// <reference path="./loginData.ts" />
 
 /**
  * Dane potrzebne do poprawnej

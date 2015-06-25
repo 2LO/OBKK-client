@@ -1,12 +1,11 @@
-/// <reference path="../interfaces/login_data.ts" />
-/// <reference path="./user_resource.ts" />
+/// <reference path="../interfaces/loginData.ts" />
+/// <reference path="./userResource.ts" />
 
 /**
  * Autoryzacja użytkownika odbywa się
  * przez wysłanie JSONa z postacią interfejsu
  * User
  */
-
 module Shared {
     /**
      * Serwis odpowiedzialny za logowanie
@@ -84,7 +83,7 @@ module Shared {
          * nie dopuszczenie do przeładowania strony
          */
         public logout() {
-            this.$localStorage.reset();
+            this.$localStorage.$reset();
             this.user = null;
         };
     };
