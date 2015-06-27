@@ -1,0 +1,104 @@
+div(ng-controller='RegistrationCtrl')
+    .row
+        h3.header Rejestracaja użytkownika:
+        .col60
+            .col50.group
+                .header.small Imię:
+                .left.labeled.icon
+                    i.right.fa.fa-user
+                    input(type='text', placeholder='imię')
+                    .label.corner.star
+            .col50.group
+                .header.small Nazwisko:
+                .left.labeled.icon
+                    i.right.fa.fa-user
+                    input(type='text', placeholder='nazwisko')
+                    .label.corner.star
+
+            .col100.group
+                .header.small Hasło:
+                .left.labeled.icon
+                    i.right.fa.fa-key
+                    input(type='password', placeholder='hasło')
+                    .label.corner.star
+
+
+            .col50.group
+                .header.small e-mail:
+                .left.labeled.icon
+                    i.right.fa.fa-envelope-o
+                    input(type='text', placeholder='abc@de.fg')
+                    .label.corner.star
+            .col50.group
+                .header.small Telefon:
+                .left.labeled.icon
+                    i.right.fa.fa-phone
+                    input(type='text', ng-placeholder='DDD-DDD-DDD', ng-model='phone')
+                    .label.corner.star
+
+
+        .col40.group.small
+            .header Wybrane usługi:
+
+            ul.input.list(ng-repeat='order in orders')
+                li #[input(type='checkbox', ng-checkbox-value='order', ng-checkbox-list='form.user.orders')] #[ {{ order.name }} ({{ order.price }}zł)]
+
+            .divider.vertical
+            | Łączny koszt: #[strong {{ totalCost }}]zł
+
+        .col100
+            .header.small Rejestruj jako:
+            ul.input.list
+                li
+                    input(type='checkbox', ng-click='advanced = !advanced')
+                    | administrator firmy&nbsp;
+                    span.smallest (konieczne wypełnienie dodatkowego formularza)
+
+                li(ng-show='advanced')
+                    input(type='checkbox')
+                    | prelegent&nbsp;
+                    span.smallest (stajesz się prelegentem stworzonej firmy)
+    .row(ng-show='advanced', ng-animate="'animate'")
+        h3.header Rejestracja firmy:
+        .col40
+            .col100.group
+                .header.small Nazwa firmy
+                .left.labeled.icon
+                    i.right.fa.fa-user
+                    input(type='text', placeholder='nazwa firmy')
+                    .label.corner.star
+
+            .col100.group
+                .header.small NIP
+                .left.labeled.icon
+                    i.right.fa.fa-key
+                    input(type='text', ng-placeholder='DDD-DD-DD-DDD')
+                    .label.corner.star
+
+        .col60
+            .col50.group
+                .header.small Miejscowość
+                .left.labeled.icon
+                    i.right.fa.fa-globe
+                    input(type='text', placeholder='miejscowość')
+                    .label.corner.star
+
+            .col50.group
+                .header.small Kod
+                .left.labeled.icon
+                    i.right.fa.fa-key
+                    input(type='text', ng-placeholder='DD-DDD')
+                    .label.corner.star
+
+            .col100.group
+                .header.small Ulica
+                .left.labeled.icon
+                    i.right.fa.fa-home
+                    input(type='text', placeholder='ulica')
+                    .label.corner.star
+
+    .row
+        .pull-right
+            .left.labeled
+                button.green Zarejestruj się!
+                .label.fa.fa-send

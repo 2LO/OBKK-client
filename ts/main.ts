@@ -7,11 +7,11 @@ module Application {
           $stateProvider: ng.ui.IStateProvider
         , $urlRouterProvider: ng.ui.IUrlRouterProvider
     ) {
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/home');
         $stateProvider
             .state('login', {
                   url: '/login'
-                , templateUrl: 'views/login.html'
+                , templateUrl: 'views/home.html'
                 , controller: 'LoginCtrl'
             });
     };
@@ -20,6 +20,7 @@ module Application {
           'ui.router'
         , 'ngResource'
         , 'ngStorage'
+        , 'ngAnimate'
         , 'shared'
     ];
     angular

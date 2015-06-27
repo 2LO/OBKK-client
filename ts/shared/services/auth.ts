@@ -1,26 +1,20 @@
-/// <reference path="../interfaces/loginData.ts" />
-/// <reference path="./userResource.ts" />
+/// <reference path="../api/api.ts" />
 
 /**
  * Autoryzacja użytkownika odbywa się
  * przez wysłanie JSONa z postacią interfejsu
  * User
  */
-module Shared {
+module Shared.Services {
     /**
      * Serwis odpowiedzialny za logowanie
      * oraz rejestracje użytkownika
      */
     export class Auth {
-        static $inject = [
-              '$rootScope'
-            , '$localStorage'
-            , 'userResource'
-        ];
         constructor(
               private $rootScope: ng.IRootScopeService
             , private $localStorage
-            , private resource: IUserResource
+            , private api: IApi
         ) {
             this.reloadUser();
         };
@@ -70,7 +64,7 @@ module Shared {
             if(this.user)
                 throw new Error('User is already logged in');
             
-            this.resource.login(form).$promise.then(data => {
+            this.api.User.login(form).$promise.then(data => {
                 /** Token ładowany jest do localstorage */
                 this.$localStorage.token = data.token;
                 this.reloadUser();

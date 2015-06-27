@@ -5,16 +5,16 @@
  * Kontroller paska menu strony, 
  * pokazuje powiadomienia itp.
  */
-module Shared {
-    interface INavbarScope extends ICtrlScope<NavbarCtrl>  {
+module Shared.Controllers {
+    interface INavbarScope extends ICtrlScope<Navbar>  {
         displayName: string;
         lastLogged: string;
     };
 
-    export class NavbarCtrl {
+    export class Navbar {
         constructor(
               private $scope: INavbarScope
-            , private auth: Shared.Auth
+            , private auth: Services.Auth
         ) {
             if(!auth.logged) {
                 auth.login({

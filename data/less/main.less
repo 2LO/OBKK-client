@@ -1,31 +1,5 @@
 @import "page";
 
-/** Menu */
-nav {
-    @menu_padding: 14px;
-    padding:   @menu_padding 0 @menu_padding 0;
-    ul {
-        list-style-type: none;
-        padding:         0;
-        margin:          0;
-    };
-
-    @item_spacing: 20px;
-    li.item {
-        vertical-align:  top;
-        display:         inline-block;
-        cursor:          pointer;
-        &:not(:last-child) { margin-right: @item_spacing;       };
-        &.active           { border-bottom: 1px solid @divider; };
-    };
-    ul.horizontal {
-        padding-left: 20px;
-        li.item {
-            display: block;
-        };
-    };
-};
-
 /** Aktywny link */
 .header, .active { font-weight: bold; };
 .row.middle > * { 
@@ -46,5 +20,12 @@ nav {
     };
 };
 
+/** Zawartość strony */
+.segment {
+    margin: 0 8px;
+};
+
 /** Logowanie */
 @import "login";
+@import "menu";
+@import "main";

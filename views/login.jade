@@ -1,21 +1,27 @@
-.row.middle
-    .col20.col-offset10
-        .form
-            .group
-                .header.small Login:
-                .labeled.left.icon
-                    input(type='text', placeholder='login')
-                    .label.corner.star
-                    i.fa.fa-home
+#login-box.row.middle(ng-controller='LoginCtrl')
+    .form
+        .row
+            .col50
+                .group
+                    .header.small Login:
+                    .left.labeled.icon
+                        i.right.fa.fa-home
+                        input(type='text', placeholder='login')
+                        .label.corner.star
 
-            .group
-                .header.small Hasło:
-                .labeled.left.icon
-                    input(type='password', placeholder='hasło')
-                    .label.corner.star
-                    i.fa.fa-key
+                .group
+                    .header.small Hasło:
+                    .left.labeled.icon
+                        i.right.fa.fa-key
+                        input(type='password', placeholder='hasło')
+                        .label.corner.star
 
-            .group
-                button.danger Zaloguj
-    .col50.col-offset20
-        | BLA
+                .group
+                    .left.labeled
+                        button.danger Zaloguj się!
+                        .label.fa.fa-sign-in
+
+            .col30.col-offset20
+                .left.labeled
+                    button.green(ng-click='caller.showRegisterForm()') Zarejestruj!
+                    .label.fa.fa-key
