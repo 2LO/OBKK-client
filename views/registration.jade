@@ -99,6 +99,10 @@ form.form(ng-controller='RegistrationCtrl as f', ng-submit='f.register()')
                 span.smallest (stajesz się prelegentem stworzonej firmy)
 
     .row
+        .col100
+            .message.danger(ng-show='error') 
+                i.fa.fa-exclamation-triangle.fa-2
+                | &nbsp;{{ error }}
         .pull-right
             .left.labeled
                 button.green(type='submit') Zarejestruj się!

@@ -9,6 +9,7 @@ module Shared.Controllers {
         form: IRegistrationForm;
         orders: IOrder[];
         totalCost: number;
+        error: string;
     };
 
     export class Registration {
@@ -41,11 +42,24 @@ module Shared.Controllers {
         };
 
         /**
+         * Callback z serwera, czytelniej wystawić
+         * to poza funkcję
+         */
+        private onError(error) {
+            this.$scope.error = error.data;
+            /** TODO: jakieś animacje itp. */
+        };
+
+        /**
          * Rejestracja użytkownika wywoływana 
          * przy ng-submit w formularzu
          */
         public register() {
-            console.log(this.$scope.form);
+            this.api.User
+                .register(this.$scope.form)
+                .$promise.then(() => {
+                    /** TODO: routing do strony głównej */
+                }, this.onError.bind(this));
         };
     };
 };

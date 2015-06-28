@@ -61,7 +61,7 @@ module Shared {
      * i autoryzacji użytkownika
      */
     export interface IUserResource extends ng.resource.IResourceClass<IUserToken> {
-        register(regForm: IRegistrationForm): void;
+        register(regForm: IRegistrationForm): IUserToken;
         login(loginForm: ILoginForm): IUserToken;
     };
 

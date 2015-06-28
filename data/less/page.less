@@ -200,3 +200,14 @@ table {
         height: 100%; 
     };
 };
+
+/** Wiadomość */
+.message {
+    @color: rgba(0, 0, 0, 0.85);
+    &.danger { background: #fff0f0; };
+
+    border:   1px solid @color;
+    color:    @color;
+    padding:  5px;
+    overflow: hidden;
+};
