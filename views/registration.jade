@@ -1,25 +1,25 @@
-div(ng-controller='RegistrationCtrl')
+form.form(ng-controller='RegistrationCtrl as f', ng-submit='f.register()')
+    h3.header Rejestracaja użytkownika:
     .row
-        h3.header Rejestracaja użytkownika:
         .col60
             .col50.group
                 .header.small Imię:
                 .left.labeled.icon
                     i.right.fa.fa-user
-                    input(type='text', placeholder='imię')
+                    input(type='text', placeholder='imię', ng-model='form.user.info.name', required)
                     .label.corner.star
             .col50.group
                 .header.small Nazwisko:
                 .left.labeled.icon
                     i.right.fa.fa-user
-                    input(type='text', placeholder='nazwisko')
+                    input(type='text', placeholder='nazwisko', ng-model='form.user.info.surname', required)
                     .label.corner.star
 
             .col100.group
                 .header.small Hasło:
                 .left.labeled.icon
                     i.right.fa.fa-key
-                    input(type='password', placeholder='hasło')
+                    input(type='password', placeholder='hasło', ng-model='form.user.password', required)
                     .label.corner.star
 
 
@@ -27,13 +27,13 @@ div(ng-controller='RegistrationCtrl')
                 .header.small e-mail:
                 .left.labeled.icon
                     i.right.fa.fa-envelope-o
-                    input(type='text', placeholder='abc@de.fg')
+                    input(type='text', placeholder='abc@de.fg', ng-model='form.user.email', required)
                     .label.corner.star
             .col50.group
                 .header.small Telefon:
                 .left.labeled.icon
                     i.right.fa.fa-phone
-                    input(type='text', ng-placeholder='DDD-DDD-DDD', ng-model='phone')
+                    input(type='text', ng-placeholder='DDD-DDD-DDD', ng-model='form.user.info.phone', required)
                     .label.corner.star
 
 
@@ -45,34 +45,22 @@ div(ng-controller='RegistrationCtrl')
 
             .divider.vertical
             | Łączny koszt: #[strong {{ totalCost }}]zł
-
-        .col100
-            .header.small Rejestruj jako:
-            ul.input.list
-                li
-                    input(type='checkbox', ng-click='advanced = !advanced')
-                    | administrator firmy&nbsp;
-                    span.smallest (konieczne wypełnienie dodatkowego formularza)
-
-                li(ng-show='advanced')
-                    input(type='checkbox')
-                    | prelegent&nbsp;
-                    span.smallest (stajesz się prelegentem stworzonej firmy)
-    .row(ng-show='advanced', ng-animate="'animate'")
+            
+    fieldset.row(ng-show='advanced', ng-disabled='!advanced')
         h3.header Rejestracja firmy:
         .col40
             .col100.group
-                .header.small Nazwa firmy
+                .header.small Ulica
                 .left.labeled.icon
-                    i.right.fa.fa-user
-                    input(type='text', placeholder='nazwa firmy')
+                    i.right.fa.fa-home
+                    input(type='text', placeholder='ulica', ng-model='form.company.info.street', required)
                     .label.corner.star
 
             .col100.group
                 .header.small NIP
                 .left.labeled.icon
                     i.right.fa.fa-key
-                    input(type='text', ng-placeholder='DDD-DD-DD-DDD')
+                    input(type='text', ng-placeholder='DDD-DD-DD-DDD', ng-model='form.company.nip', required)
                     .label.corner.star
 
         .col60
@@ -80,25 +68,38 @@ div(ng-controller='RegistrationCtrl')
                 .header.small Miejscowość
                 .left.labeled.icon
                     i.right.fa.fa-globe
-                    input(type='text', placeholder='miejscowość')
+                    input(type='text', placeholder='miejscowość', ng-model='form.company.info.city', required)
                     .label.corner.star
 
             .col50.group
                 .header.small Kod
                 .left.labeled.icon
                     i.right.fa.fa-key
-                    input(type='text', ng-placeholder='DD-DDD')
+                    input(type='text', ng-placeholder='DD-DDD', ng-model='form.company.info.code', required)
                     .label.corner.star
 
             .col100.group
-                .header.small Ulica
+                .header.small Nazwa firmy
                 .left.labeled.icon
-                    i.right.fa.fa-home
-                    input(type='text', placeholder='ulica')
+                    i.right.fa.fa-user
+                    input(type='text', placeholder='nazwa firmy', ng-model='form.company.name', required)
                     .label.corner.star
+
+    .row
+        .header.small Rejestruj jako:
+        ul.input.list
+            li
+                input(type='checkbox', ng-click='advanced = !advanced')
+                | administrator firmy&nbsp;
+                span.smallest (konieczne wypełnienie dodatkowego formularza)
+
+            li(ng-show='advanced')
+                input(type='checkbox', ng-model='form.user.prelegant')
+                | prelegent&nbsp;
+                span.smallest (stajesz się prelegentem stworzonej firmy)
 
     .row
         .pull-right
             .left.labeled
-                button.green Zarejestruj się!
+                button.green(type='submit') Zarejestruj się!
                 .label.fa.fa-send

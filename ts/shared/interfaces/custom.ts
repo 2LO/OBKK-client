@@ -11,6 +11,6 @@ module Shared {
      * np. w ng-click='caller.dupa()'
      */
     export interface ICtrlScope<T> extends ng.IScope {
-        caller: T;
+        fn: T;
     };
 };

@@ -24,7 +24,7 @@ module Shared.Controllers {
             }
             $scope.lastLogged = new Date(auth.logged.exp).toLocaleString();
             $scope.displayName = auth.logged.email;
-            $scope.caller = this;
+            $scope.fn = this;
         };
 
         /**

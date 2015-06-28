@@ -63,7 +63,7 @@ module Shared.Services {
         public login(form: ILoginForm): ILoggedUser {
             if(this.user)
                 throw new Error('User is already logged in');
-            
+
             this.api.User.login(form).$promise.then(data => {
                 /** Token ładowany jest do localstorage */
                 this.$localStorage.token = data.token;

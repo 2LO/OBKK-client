@@ -7,7 +7,7 @@ module Shared.Controllers {
         constructor(
             private $scope: any
         ) {
-            $scope.caller = this;
+            $scope.fn = this;
         };
     };
 };

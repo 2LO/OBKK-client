@@ -48,13 +48,17 @@ input[type='text'], input[type='password'], button {
 };
 
 /** Grupy */
-.form .group {
-    // &:not(.col100) {
-    //     margin: 10px 0 10px 0;
-    // };
-      & > input:not([type='checkbox'])
-    , & > .labeled > input:not([type='checkbox']) {
-        width:  100%;
+.form {
+    fieldset {
+        padding: 0;
+        margin:  0;
+        border:  0;  
+    };
+    .group {
+          & > input:not([type='checkbox'])
+        , & > .labeled > input:not([type='checkbox']) {
+            width:  100%;
+        };
     };
 };
 
