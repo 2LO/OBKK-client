@@ -1,25 +1,33 @@
 h4.header OBKK 2.0
 
-mixin item(title, icon)
-    li.item 
+mixin item(title, icon, opt)
+    li.item(ng-click=opt)
         i.fa(class="fa-#{icon} fa-fw")
         = title
 
-ul.segment
-    +item('Twoje konto', 'user')
-    +item('Wyloguj się', 'sign-out')
+anon-only
+    ul.segment
+        +item('Zaloguj się', 'sign-in')
 
-ul.segment
-    .divider.vertical
-    +item('Kalendarz', 'calendar')
-    +item('Moduły:', 'cog')
-    ul.submenu
-        li.item Zarządzaj userami
-        li.item Zarządzaj wykładami
-        li.item Awarie
-        li.item Logi
-        li.item Statystyki
-    .divider.vertical
+logged-only
+    ul.segment
+        +item('Twoje konto', 'user')
+        li.item
+            strong.small Zalogowano: {{ displayName }}
+            .smallest Ostatnio: {{ lastLogged }}
+        +item('Wyloguj się', 'sign-out', 'fn.logout()')
+
+    ul.segment
+        .divider.vertical
+        +item('Kalendarz', 'calendar')
+        +item('Moduły:', 'cog')
+        ul.submenu
+            li.item Zarządzaj userami
+            li.item Zarządzaj wykładami
+            li.item Awarie
+            li.item Logi
+            li.item Statystyki
+        .divider.vertical
 
 ul.segment
     +item('Informacje', 'info')

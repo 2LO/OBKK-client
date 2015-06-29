@@ -17,7 +17,7 @@ module Shared.Directives {
             , value: '=ngCheckboxValue' 
         };
 
-        link: ng.IDirectiveLinkFn = (scope: IListScope, element: ng.IAugmentedJQuery, attrs: any) => {
+        public link: ng.IDirectiveLinkFn = (scope: IListScope, element: ng.IAugmentedJQuery, attrs: any) => {
             element.bind('change', () => {
                 scope.$apply(this.modifyList.bind(this, scope, element));
             });

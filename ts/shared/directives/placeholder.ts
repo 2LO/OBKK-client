@@ -13,7 +13,7 @@ module Shared.Directives {
     export class Placeholder implements ng.IDirective {
         public restrict: string = 'A';
 
-        link: ng.IDirectiveLinkFn = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: any) => {
+        public link: ng.IDirectiveLinkFn = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: any) => {
             let placeholder = attrs.ngPlaceholder;
             element
                 .attr('placeholder', placeholder)

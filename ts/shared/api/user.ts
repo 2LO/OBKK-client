@@ -1,4 +1,13 @@
 module Shared {
+    /** Formularz logowania */
+    export interface ILoginForm {
+          login: string
+        , password: string
+    };
+    export interface ILoginResponse {
+        token: string;
+    };
+
     /**
      * Token zwracany przez serwer po pomyślnym
      * zalogowaniu, wrzucany do pamięci podręcznej
@@ -22,12 +31,6 @@ module Shared {
         /** Ważność tokenu */
         iat: number;
         exp: number;
-    };
-
-    /** Formularz logowania */
-    export interface ILoginForm {
-          login: string
-        , password: string
     };
 
     /** Użytkownik w formie rejestracyjnej */

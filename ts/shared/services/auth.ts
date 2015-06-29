@@ -46,11 +46,10 @@ module Shared.Services {
 
 
         /** Ponowne ładowanie użytkownika z tokenu */
-        private reloadUser() {
-            if(this.$localStorage.token) {
-                this.user = Auth.getJwtData(this.$localStorage.token);
-            }
-            return this.user;
+        private reloadUser(): ILoggedUser {
+            return this.$localStorage.token 
+                        ? this.user = Auth.getJwtData(this.$localStorage.token)
+                        : this.user;
         };
 
         /**
@@ -58,18 +57,19 @@ module Shared.Services {
          * wrapper UserResource, zapisywanie użytkownika
          * do LocalStorage i następne odtwarzanie
          * @param  {ILoginForm} form Formularz logowania
-         * @return {ILoggedUser}     Zalogowany user, jeśli null to nie zalogowano
          */
-        public login(form: ILoginForm): ILoggedUser {
+        public login(form: ILoginForm): ng.IPromise<any> {
             if(this.user)
                 throw new Error('User is already logged in');
 
-            this.api.User.login(form).$promise.then(data => {
-                /** Token ładowany jest do localstorage */
-                this.$localStorage.token = data.token;
-                this.reloadUser();
-            });
-            return this.user;
+            return (
+                this.api.User.login(form)
+                        .$promise.then((data: ILoginResponse) => {
+                    /** Token ładowany jest do localstorage */
+                    this.$localStorage.token = data.token;
+                    this.reloadUser();
+                })
+            );
         };
 
         /**

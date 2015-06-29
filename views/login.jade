@@ -1,27 +1,27 @@
-#login-box.row.middle(ng-controller='LoginCtrl')
-    .form
+#login-box.row.middle
+    form.form(ng-submit='fn.login()')
         .row
             .col50
                 .group
                     .header.small Login:
                     .left.labeled.icon
                         i.right.fa.fa-home
-                        input(type='text', placeholder='login')
+                        input(type='text', placeholder='login', ng-model='form.login', required)
                         .label.corner.star
 
                 .group
                     .header.small Hasło:
                     .left.labeled.icon
                         i.right.fa.fa-key
-                        input(type='password', placeholder='hasło')
+                        input(type='password', placeholder='hasło', ng-model='form.password', required)
                         .label.corner.star
 
                 .group
                     .left.labeled
-                        button.danger Zaloguj się!
+                        button.danger(type='submit') Zaloguj się!
                         .label.fa.fa-sign-in
 
             .col30.col-offset20
                 .left.labeled
-                    button.green(ng-click='caller.showRegisterForm()') Zarejestruj!
+                    button.green(ui-sref='register') Zarejestruj!
                     .label.fa.fa-key

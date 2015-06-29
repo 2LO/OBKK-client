@@ -7,13 +7,18 @@ module Application {
           $stateProvider: ng.ui.IStateProvider
         , $urlRouterProvider: ng.ui.IUrlRouterProvider
     ) {
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/login');
         $stateProvider
             .state('login', {
                   url: '/login'
-                , templateUrl: 'views/home.html'
+                , templateUrl: 'views/login.html'
                 , controller: 'LoginCtrl'
-            });
+            })
+            .state('register', {
+                  url: '/register'
+                , templateUrl: 'views/registration.html'
+                , controller: 'RegistrationCtrl'
+            });;
     };
 
     let coreMods = [

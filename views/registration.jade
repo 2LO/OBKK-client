@@ -1,4 +1,4 @@
-form.form(ng-controller='RegistrationCtrl as f', ng-submit='f.register()')
+form.form(ng-submit='fn.register()')
     h3.header Rejestracaja użytkownika:
     .row
         .col60
@@ -41,7 +41,7 @@ form.form(ng-controller='RegistrationCtrl as f', ng-submit='f.register()')
             .header Wybrane usługi:
 
             ul.input.list(ng-repeat='order in orders')
-                li #[input(type='checkbox', ng-checkbox-value='order', ng-checkbox-list='form.user.orders')] #[ {{ order.name }} ({{ order.price }}zł)]
+                li #[input(type='checkbox', ng-checkbox-value='order', ng-checkbox-list='form.user.orders')] #[ {{ ::order.name }} ({{ ::order.price }}zł)]
 
             .divider.vertical
             | Łączny koszt: #[strong {{ totalCost }}]zł

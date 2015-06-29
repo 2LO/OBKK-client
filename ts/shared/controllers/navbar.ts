@@ -16,14 +16,10 @@ module Shared.Controllers {
               private $scope: INavbarScope
             , private auth: Services.Auth
         ) {
-            if(!auth.logged) {
-                auth.login({
-                      login: 'cziken@vp.pl'
-                    , password: ''
-                });
+            if(auth.logged) {
+                $scope.lastLogged = new Date(auth.logged.exp).toLocaleString();
+                $scope.displayName = auth.logged.email;
             }
-            $scope.lastLogged = new Date(auth.logged.exp).toLocaleString();
-            $scope.displayName = auth.logged.email;
             $scope.fn = this;
         };
 

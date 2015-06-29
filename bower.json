@@ -24,7 +24,6 @@
     "angular-ui-router": "~0.2.15",
     "angular-resource": "~1.4.1",
     "ngstorage": "~0.3.6",
-    "angularjs": "~1.4.1",
     "ngAnimate": "*",
     "angular-animate": "~1.4.1",
     "underscore": "~1.8.3"
