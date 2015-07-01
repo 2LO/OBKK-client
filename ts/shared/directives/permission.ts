@@ -54,9 +54,10 @@ module Shared.Directives {
             };
 
             /** Czekanie na zalogowanie */
-            this.$rootScope.$on(
-                  Message[Message.USER_LOGGED]
-                , checkPermission.bind(this));
+            (<any> this.$rootScope)
+                .$onMany(
+                      [ Message.USER_LOGIN, Message.USER_LOGOUT ]
+                    , checkPermission.bind(this));
             checkPermission();
         };
 

@@ -37,7 +37,7 @@ module Shared.Services {
          * @return {boolean}           Jeśli użytkownik spełnia uprawnienia zawraca true
          */
         public check(data: Security.IElement|string): boolean {
-            if(_.isUndefined(data))
+            if(!data)
                 return true;
 
             else if(typeof data === 'string')
@@ -53,7 +53,8 @@ module Shared.Services {
                     return false;
 
                 /** Wymagania modułów */
-                if( !_.isUndefined(data.mods)
+                if(data.mods 
+                        && this.auth.logged
                         && _.difference(data.mods, _.pluck(this.auth.logged.groups, 'name')).length)
                     return false;
             }
@@ -81,6 +82,10 @@ module Shared.Services {
             if(data && _.isFunction(data.authorize))
                 _.extend(data, data.authorize(toParams));
 
+            /**
+             * Jeśli nie przejdzie testu to
+             * stan przekieruje na strone błędu 401
+             */
             if(!permission.check(data)) {
                 $state.go('error', { name: 401 });
                 event.preventDefault();

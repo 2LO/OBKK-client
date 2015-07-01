@@ -13,7 +13,8 @@ module Shared {
 
     /** Wiadomości na broadcast */
     export enum Message {
-        USER_LOGGED
+          USER_LOGIN
+        , USER_LOGOUT
     };
 
     let mod = angular
@@ -21,6 +22,12 @@ module Shared {
 
         .service('permission', Services.Permission)
         .run(Services.statePermission)
+        .run(($rootScope) => {
+            $rootScope.$onMany = function(events, fn) {
+                for (var i = 0; i < events.length; ++i)
+                    this.$on(Message[events[i]], fn);
+            };
+        })
 
         .service('auth', Services.Auth)
         .factory('api', API.Api)

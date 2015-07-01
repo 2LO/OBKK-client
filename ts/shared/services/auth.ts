@@ -12,8 +12,7 @@ module Shared.Services {
      */
     export class Auth {
         constructor(
-              private $rootScope: ng.IRootScopeService
-            , private $localStorage
+              private $localStorage
             , private api: IApi
         ) {
             this.reloadUser();
@@ -23,6 +22,9 @@ module Shared.Services {
         private user: ILoggedUser = null;
         public get logged(): ILoggedUser {
             return this.user;
+        };
+        public isLogged(): boolean {
+            return <any> this.user;
         };
 
         /**
@@ -37,7 +39,7 @@ module Shared.Services {
                 ));
 
             /** Weryfikacja ważności tokenu */
-            if(new Date().getTime() / 1000 >= decoded.exp) {
+            if(!decoded || new Date().getTime() / 1000 >= decoded.exp) {
                 console.log('Token expired!');
                 return null;
             } else
@@ -63,7 +65,8 @@ module Shared.Services {
                 throw new Error('User is already logged in');
 
             return (
-                this.api.User.login(form)
+                this.api.User
+                        .login(form)
                         .$promise.then((data: ILoginResponse) => {
                     /** Token ładowany jest do localstorage */
                     this.$localStorage.token = data.token;

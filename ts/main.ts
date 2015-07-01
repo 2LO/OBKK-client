@@ -7,7 +7,7 @@ module Application {
           $stateProvider: ng.ui.IStateProvider
         , $urlRouterProvider: ng.ui.IUrlRouterProvider
     ) {
-        $urlRouterProvider.otherwise('/login');
+        // $urlRouterProvider.otherwise('/login');
         $stateProvider
             .state('login', {
                   url: '/login'

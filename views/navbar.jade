@@ -1,12 +1,13 @@
 h4.header OBKK 2.0
 
-mixin item(title, icon, opt)
-    li.item(ng-click=opt)
+mixin item(title, icon, sref)
+    li(ui-sref=sref, ui-sref-active='active')&attributes(attributes).item
         i.fa(class="fa-#{icon} fa-fw")
         = title
 
 ul.segment(app-permission, app-flag='anon')
-    +item('Zaloguj się', 'sign-in')
+    +item('Zaloguj się', 'sign-in', 'login')
+    +item('Zarejestruj się', 'user-plus', 'register')
 
 logged-only
     ul.segment
@@ -14,7 +15,7 @@ logged-only
         li.item
             strong.small Zalogowano: {{ displayName }}
             .smallest Ostatnio: {{ lastLogged }}
-        +item('Wyloguj się', 'sign-out', 'fn.logout()')
+        +item('Wyloguj się', 'sign-out')(ng-click='fn.logout()')
 
     ul.segment
         .divider.vertical

@@ -11,16 +11,29 @@ module Shared.Controllers {
         lastLogged: string;
     };
 
+    /**
+     * Navbar zwykle nie jest przeładowywany
+     * po zalogowaniu aktualizowane są wartości
+     */
     export class Navbar {
         constructor(
               private $scope: INavbarScope
             , private auth: Services.Auth
+            , private $rootScope: ng.IRootScopeService
         ) {
-            if(auth.logged) {
-                $scope.lastLogged = new Date(auth.logged.exp).toLocaleString();
-                $scope.displayName = auth.logged.email;
-            }
             $scope.fn = this;
+            $rootScope.$on(Message[Message.USER_LOGIN], this.reload.bind(this));
+            this.reload();
+        };
+
+        /**
+         * Ponowne wczytywanie elementu
+         */
+        private reload() {
+            if(this.auth.logged) {
+                this.$scope.lastLogged = new Date(this.auth.logged.exp).toLocaleString();
+                this.$scope.displayName = this.auth.logged.email;
+            }
         };
 
         /**
@@ -29,7 +42,7 @@ module Shared.Controllers {
          */
         public logout() {
             this.auth.logout();
-            /** TODO: przekierowanie na stronę główną */
+            this.$rootScope.$broadcast(Message[Message.USER_LOGOUT]);
         };
     };
 };
