@@ -6,7 +6,6 @@ module Shared.Directives {
         return () => ({
               template: '<div ' + directive + '="' + param + '" ng-transclude></div>'
             , transclude: true
-            , replace: true
         });
     };
 

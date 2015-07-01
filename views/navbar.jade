@@ -5,9 +5,8 @@ mixin item(title, icon, opt)
         i.fa(class="fa-#{icon} fa-fw")
         = title
 
-anon-only
-    ul.segment
-        +item('Zaloguj się', 'sign-in')
+ul.segment(app-permission, app-flag='anon')
+    +item('Zaloguj się', 'sign-in')
 
 logged-only
     ul.segment
