@@ -111,7 +111,8 @@ input[type='text'], input[type='password'], button {
 /** Textbox */
 input {
     @focus: darken(@info, 10%);
-
+    box-shadow: none;
+    
     &:extend(.control);
     &:focus        { border-color: @focus; };
     &:focus+.label { background: @focus; };

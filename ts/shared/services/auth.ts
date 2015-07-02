@@ -7,12 +7,22 @@
  */
 module Shared.Services {
     /**
+     * Wszystkie zasoby aplikacji
+     * TODO: przeniesienie do innego
+     * pliku
+     */
+    export interface IAppStorage {
+        token: string;
+        $reset();
+    };
+
+    /**
      * Serwis odpowiedzialny za logowanie
      * oraz rejestracje użytkownika
      */
     export class Auth {
         constructor(
-              private $localStorage
+              private $localStorage: IAppStorage
             , private api: IApi
         ) {
             this.reloadUser();
@@ -22,9 +32,6 @@ module Shared.Services {
         private user: ILoggedUser = null;
         public get logged(): ILoggedUser {
             return this.user;
-        };
-        public isLogged(): boolean {
-            return <any> this.user;
         };
 
         /**

@@ -19,6 +19,10 @@ module Shared {
 
     let mod = angular
         .module('shared', [])
+        .config(($httpProvider) => {
+            $httpProvider.interceptors.push('authInterceptor');
+        })
+        .factory('authInterceptor', Services.AuthInterceptor.factory())
 
         .service('permission', Services.Permission)
         .run(Services.statePermission)

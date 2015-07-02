@@ -92,4 +92,47 @@ module Shared.Services {
             }
         });
     };
+
+    /**
+     * Podczas request'u na serwer dodawany jest
+     * do niego token użytkownika o ile jest zalogowany
+     * i dodatkowe parametry
+     */
+    export class AuthInterceptor {
+        constructor(
+            private $injector
+        ) {
+        };
+
+        /**
+         * Metoda wywoływana przed zapytaniem do serwera,
+         * dodawanie własnych nagłówków
+         */
+        public request: ng.IRequestShortcutConfig = (config: ng.IRequestConfig): ng.IRequestConfig => {
+            /** 
+             * Bugfix: Circular dependency problem.
+             * http://stackoverflow.com/questions/14681654/i-need-two-instances-of-angularjs-http-service-or-what
+             */
+            this.$injector.invoke(($localStorage: IAppStorage) => {
+                config.headers.Accept = 'application/json, text/javascript';
+                
+                let token = $localStorage.token;
+                if(token) {
+                    /** 
+                     * Mierzenie rozmiaru tokenu w bajtach, 
+                     * jeśli przekroczy 512B to ostrzega w aseracji
+                     */
+                    console.assert(
+                           encodeURI(token).split(/%..|./).length-1 > 512
+                        , 'Token is too big!');
+                    (<any> config.headers).user = token
+                }
+            });
+            return config;
+        };
+
+        static factory() {
+            return ($injector) => new AuthInterceptor($injector);
+        };
+    };
 };
