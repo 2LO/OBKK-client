@@ -1,11 +1,13 @@
 ## Description
 **OBKK-Conference-Panel** - web-based application that supports conference OBKK
 
+## Screens
+![Screenshoot](/doc/screen/1.png?raw=true "Screen")
+
 ## Browser Compatibility
 Tested in Firefox and Chrome
 
 ## Technology Used
-- HTML5
 - AngularJS
 - NodeJS
 - MongoDB
