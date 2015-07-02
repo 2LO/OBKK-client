@@ -178,12 +178,16 @@ table {
         padding: 0;
         height:  auto;
     };
-    th {
-        text-align:    left;
-        padding-top:   7px;
+    tr:not(:last-child) {
+        &:extend(.divider, .divider.vertical);
     };
-    tr:nth-child(even):not(:last-child) > td {
-        background-color: @divider;
+    td, th {
+        text-align: left;
+        input, button, .control {
+            padding: 4px;
+            height:  auto;
+            width:   100%;
+        };
     };
 };
 
@@ -192,16 +196,17 @@ table {
     @type: 1px dotted #e9e9e9;
     @margin: 5px;
     &.vertical   { 
-        border-top: @type;
-        padding: @margin 0;
-        width: 100%;  
+        border-bottom: @type;
+        padding:       @margin 0;
+        width:         100%;  
     };
     &.horizontal { 
         border-right: @type; 
-        padding: 0 @margin;
-        height: 100%; 
+        padding: 0    @margin;
+        height:       100%; 
     };
 };
+.header-title:extend(h2.header, .divider, .divider.vertical) {};
 
 /** Wiadomość */
 .message {

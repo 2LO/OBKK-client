@@ -1,5 +1,5 @@
 form.form(ng-submit='fn.register()')
-    h3.header Rejestracaja użytkownika:
+    h3.header-title Rejestracaja {{ advanced ? 'administratora' : 'użytkownika' }}:
     .row
         .col60
             .col50.group
@@ -45,9 +45,23 @@ form.form(ng-submit='fn.register()')
 
             .divider.vertical
             | Łączny koszt: #[strong {{ totalCost }}]zł
-            
+    
+    .row
+        .header.small Rejestruj jako:
+        .col100
+            ul.input.list
+                li
+                    input(type='checkbox', ng-click='advanced = !advanced')
+                    | administrator firmy&nbsp;
+                    span.smallest (konieczne wypełnienie dodatkowego formularza)
+
+                li(ng-show='advanced')
+                    input(type='checkbox', ng-model='form.user.prelegant')
+                    | prelegent&nbsp;
+                    span.smallest (stajesz się prelegentem stworzonej firmy)
+
     fieldset.row(ng-show='advanced', ng-disabled='!advanced')
-        h3.header Rejestracja firmy:
+        h3.header-title Rejestracja firmy:
         .col40
             .col100.group
                 .header.small Ulica
@@ -85,19 +99,36 @@ form.form(ng-submit='fn.register()')
                     input(type='text', placeholder='nazwa firmy', ng-model='form.company.name', required)
                     .label.corner.star
 
-    .row
-        .header.small Rejestruj jako:
-        ul.input.list
-            li
-                input(type='checkbox', ng-click='advanced = !advanced')
-                | administrator firmy&nbsp;
-                span.smallest (konieczne wypełnienie dodatkowego formularza)
+        h3.header-title Rejestracja uczestników z firmy:
+        .col20.group
+            .labeled.icon
+                i.left.fa.fa-user
+                input(type='text', placeholder='imię', ng-model='companyUser.name', required)
+        
+        .col20.group
+            .labeled.icon
+                i.left.fa.fa-user
+                input(type='text', placeholder='nazwisko', ng-model='companyUser.surname', required)
 
-            li(ng-show='advanced')
-                input(type='checkbox', ng-model='form.user.prelegant')
-                | prelegent&nbsp;
-                span.smallest (stajesz się prelegentem stworzonej firmy)
+        .col30.group
+            .labeled.icon
+                i.left.fa.fa-envelope-o
+                input(type='text', placeholder='email', ng-model='companyUser.email', required)
 
+        .col30
+            .left.labeled
+                button.danger(type='button', ng-click='fn.addCompanyUser()') Dodaj uczestnika
+                .label.fa.fa-save
+        .col100
+            table
+                tr(ng-repeat='user in form.company.users')
+                    td {{ ::user.name }}
+                    td {{ ::user.surname }}
+                    td {{ ::user.email }}
+                    td(style='width: 32px')
+                        button.danger(ng-click='fn.removeCompanyUser(user)') #[i.fa.fa-times]
+
+            .smallest.text-gray (każdy użytkownik dostanie email'a zwrotnego z dopełnieniem rejestracji)
     .row
         .col100
             .message.danger(ng-show='error') 

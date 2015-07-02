@@ -4,8 +4,13 @@ module Shared {
           login: string
         , password: string
     };
-    export interface ILoginResponse {
-        token: string;
+    interface IUserInfo {
+        email: string;
+        info: {
+              name: string
+            , surname: string
+            , phone: string
+        };
     };
 
     /**
@@ -20,24 +25,25 @@ module Shared {
      * Użytkownik wygenerowany po przetworzeniu
      * tokenu, który otrzymywany jest po zalogowaniu
      */
-    export interface ILoggedUser extends ng.resource.IResource<ILoggedUser> {
-        email: string;
-        info: {
-              name: string
-            , surname: string
-            , phone: string
-        };
-        groups?: any[];
+    export interface ILoggedUser extends IUserInfo, ng.resource.IResource<ILoggedUser> {
+        groups: any[];
         /** Ważność tokenu */
         iat: number;
         exp: number;
     };
 
     /** Użytkownik w formie rejestracyjnej */
-    export interface IRegistrationUser extends ILoggedUser {
+    export interface IRegistrationUser extends IUserInfo, ILoggedUser {
         password: string;
         orders: string[];
         prelegant: boolean;
+    };
+
+    /** Użytkownik rejestrowany przez firmę */
+    export interface ICompanyUser {
+        name: string;
+        surname: string;
+        email: string;
     };
 
     /**
@@ -49,9 +55,10 @@ module Shared {
         user: IRegistrationUser;
         company?: {
               name: string
+            , users: ICompanyUser[]
             , nip: string
             , info: {
-                street: string
+                  street: string
                 , code: string
                 , city: string
                 , website: string

@@ -2,21 +2,21 @@
     form.form(ng-submit='fn.login()')
         .row
             .col50
-                .group
+                .col100.group
                     .header.small Login:
                     .left.labeled.icon
                         i.right.fa.fa-home
                         input(type='text', placeholder='login', ng-model='form.login', required)
                         .label.corner.star
 
-                .group
+                .col100.group
                     .header.small Hasło:
                     .left.labeled.icon
                         i.right.fa.fa-key
                         input(type='password', placeholder='hasło', ng-model='form.password', required)
                         .label.corner.star
 
-                .group
+                .col100.group
                     .left.labeled
                         button.danger(type='submit') Zaloguj się!
                         .label.fa.fa-sign-in

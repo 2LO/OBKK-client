@@ -7,6 +7,8 @@
 module Shared.Controllers {
     interface IRegistrationScope extends ICtrlScope<Registration> {
         form: IRegistrationForm;
+        companyUser: ICompanyUser;
+
         orders: IOrder[];
         totalCost: number;
         error: string;
@@ -23,10 +25,9 @@ module Shared.Controllers {
             api.Orders.list().$promise.then(data => {
                 $scope.orders = data;
             });
-            $scope.form = <IRegistrationForm> {
-                user: {
-                    orders: []
-                }
+            $scope.form = <any> { 
+                  user: { orders: [] }
+                , company: { users: [] }
             };
 
             /** 
@@ -39,6 +40,28 @@ module Shared.Controllers {
                     , (mem, el: IOrder) => mem + el.price
                     , 0)
             });
+        };
+
+        /** getter/setter */
+        private get companyUsers(): ICompanyUser[]      { return this.$scope.form.company.users; };
+        private set companyUsers(users: ICompanyUser[]) { this.$scope.form.company.users = users; };
+
+        /**
+         * Dodawanie użytkownika zarejestrowanego
+         * przez firmę do formularza, użytkownik
+         * musi być potem aktywowany i dopełniony
+         * w rejestracji
+         */
+        public addCompanyUser() {
+            this.companyUsers.push(_.clone(this.$scope.companyUser));
+        };
+
+        /**
+         * Kasowanie użytkownika z listy uczestników
+         * @param {ICompanyUser} user Uczestnik zarejestrowany przez firmę
+         */
+        public removeCompanyUser(user: ICompanyUser) {
+            this.companyUsers = _(this.companyUsers).without(user);
         };
 
         /**

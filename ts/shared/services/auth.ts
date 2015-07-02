@@ -74,7 +74,7 @@ module Shared.Services {
             return (
                 this.api.User
                         .login(form)
-                        .$promise.then((data: ILoginResponse) => {
+                        .$promise.then((data: { token: string }) => {
                     /** Token ładowany jest do localstorage */
                     this.$localStorage.token = data.token;
                     this.reloadUser();
