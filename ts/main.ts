@@ -2,6 +2,7 @@
 /// <reference path="./shared/_all.ts" />
 
 'use strict';
+
 module Application {
     function config(
           $stateProvider: ng.ui.IStateProvider

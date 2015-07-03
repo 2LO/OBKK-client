@@ -12,6 +12,7 @@ module Shared {
         data: any;
     };
 
+    /** Wszystkie metody API */
     export interface IApi {
         User: IUserResource
         Orders: IOrderResource

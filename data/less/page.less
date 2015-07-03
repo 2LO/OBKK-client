@@ -54,13 +54,13 @@ input[type='text'], input[type='password'], button {
         margin:  0;
         border:  0;  
     };
-    .group {
-        margin-bottom: 5px;
-          & > input:not([type='checkbox'])
-        , & > .labeled > input:not([type='checkbox']) {
-            width:         100%;
-        };
-    };
+    // .group {
+    //     margin-bottom: 5px;
+    //       & > input:not([type='checkbox'])
+    //     , & > .labeled > input:not([type='checkbox']) {
+    //         width:         100%;
+    //     };
+    // };
 };
 
 /** Ikony w textbox */
@@ -89,6 +89,7 @@ input[type='text'], input[type='password'], button {
 
     input, button {
         &:extend(.icon input);
+        width: 100%;
         #corner-style() {
             font-size:  1.2em;
             &.star::after { content: "*"; };

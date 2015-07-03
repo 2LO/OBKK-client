@@ -12,6 +12,8 @@ module Shared.Controllers {
         orders: IOrder[];
         totalCost: number;
         error: string;
+
+        advanced: boolean;
     };
 
     export class Registration {
@@ -20,7 +22,8 @@ module Shared.Controllers {
             , private api: IApi
         ) {
             $scope.fn = this;
-
+            $scope.advanced = false;
+            
             /** Pobieranie listy ofert cenowych */
             api.Orders.list().$promise.then(data => {
                 $scope.orders = data;
@@ -40,6 +43,12 @@ module Shared.Controllers {
                     , (mem, el: IOrder) => mem + el.price
                     , 0)
             });
+        };
+
+        /** Pokazywanie formy rejestracyjnej firmy */
+        public toggleAdvanced() {
+            this.$scope.advanced = !this.$scope.advanced;
+            this.$scope.form.company = <any> { users: [] };
         };
 
         /** getter/setter */

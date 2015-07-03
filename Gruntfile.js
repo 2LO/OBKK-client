@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                     , 'views/**/*.jade'
                     , 'data/less/**/*.less' 
                 ]
-                , tasks: [ 'typescript', 'uglify', 'usebanner', 'less', 'wiredep', 'jade' ]
+                , tasks: [ 'typescript:base', 'typescript:exts', 'uglify', 'usebanner', 'less', 'wiredep', 'jade' ]
         	}
     	}
         , less: {
@@ -88,11 +88,19 @@ module.exports = function(grunt) {
             }
         }
         , typescript: {
-            base: {
-                  src: [ 'ts/**/*.ts' ]
+              base: {
+                  src: [ 'ts/**/*.ts', '!ts/exts/**/*.ts' ]
                 , dest: 'build/js/app.js'
                 , options: {
                     target: 'es5'
+                }
+            }
+            , exts: {
+                  src: [ 'ts/exts/**/*.ts' ]
+                , dest: 'build/js/exts'
+                , options: {
+                      target: 'es5'
+                    , module: 'commonjs'
                 }
             }
         }
