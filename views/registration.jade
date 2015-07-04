@@ -41,7 +41,7 @@ form.form(ng-submit='fn.register()')
             .header Wybrane usługi:
 
             ul.input.list(ng-repeat='order in orders')
-                li #[input(type='checkbox', ng-checkbox-value='order', ng-checkbox-list='form.user.orders')] #[ {{ ::order.name }} ({{ ::order.price }}zł)]
+                li #[input(type='checkbox', ng-checkbox-value='order._id', ng-checkbox-list='form.user.orders')] #[ {{ ::order.name }} ({{ ::order.price }}zł)]
 
             .divider.vertical
             | Łączny koszt: #[strong {{ totalCost }}]zł

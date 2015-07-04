@@ -26,7 +26,9 @@ module Shared {
      * tokenu, który otrzymywany jest po zalogowaniu
      */
     export interface ILoggedUser extends IUserInfo, ng.resource.IResource<ILoggedUser> {
-        groups: any[];
+        /** grupy to string może kiedyś stanie się strukturą */
+        groups: string[];
+        
         /** Ważność tokenu */
         iat: number;
         exp: number;

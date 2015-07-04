@@ -40,7 +40,7 @@ module Shared.Controllers {
             $scope.totalCost = 0;
             $scope.$watchCollection('form.user.orders', function(o) {
                 $scope.totalCost = _.reduce($scope.form.user.orders
-                    , (mem, el: IOrder) => mem + el.price
+                    , (mem, el: string) => mem + _($scope.orders).findWhere({ _id: el }).price
                     , 0)
             });
         };
