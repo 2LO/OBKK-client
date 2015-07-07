@@ -67,7 +67,7 @@ module Shared.Services {
          * do LocalStorage i następne odtwarzanie
          * @param  {ILoginForm} form Formularz logowania
          */
-        public login(form: ILoginForm): ng.IPromise<any> {
+        public login(form: Form.ILogin): ng.IPromise<any> {
             if(this.user)
                 throw new Error('User is already logged in');
 

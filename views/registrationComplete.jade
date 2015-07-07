@@ -1,0 +1,17 @@
+include ./functions.jade
+
+form.form(ng-submit='fn.complete()')
+    h3.header-title Dopełnienie rejestracji:
+    .row
+        .col50
+            .col100 #[+formField('Hasło', 'key', 'password', 'hasło', 'form.user.password')]
+            .col100 #[+formField('Telefon', 'phone', 'text', '', 'form.user.info.phone')(ng-placeholder='DDD-DDD-DDD')]
+        .col40.col-offset10.small
+            +orders
+
+    .row
+        +error
+        .col100
+            .pull-right.left.labeled
+                button.green(type='submit') Zapisz zmiany!
+                .label.fa.fa-save

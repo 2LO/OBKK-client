@@ -6,7 +6,7 @@
  */
 module Shared.Controllers {
     interface IRegistrationScope extends ICtrlScope<Registration> {
-        form: IRegistrationForm;
+        form: Form.IRegistration;
         companyUser: ICompanyUser;
 
         orders: IOrder[];
@@ -19,11 +19,17 @@ module Shared.Controllers {
     export class Registration {
         constructor(
               private $scope: IRegistrationScope
+            , private $state: { params: { id?: string } }
             , private api: IApi
         ) {
             $scope.fn = this;
             $scope.advanced = false;
-            
+            $scope.companyUser = {
+                  name: ''
+                , surname: ''
+                , email: ''
+            };
+
             /** Pobieranie listy ofert cenowych */
             api.Orders.list().$promise.then(data => {
                 $scope.orders = data;
@@ -77,10 +83,11 @@ module Shared.Controllers {
          * Callback z serwera, czytelniej wystawić
          * to poza funkcję
          */
-        private onError(error) {
-            this.$scope.error = error.data;
-            /** TODO: jakieś animacje itp. */
+        private onSuccess() {
+            this.$scope.error = null;
+            /** TODO: przekierowanie na stronę główną */
         };
+        private onError(error) { this.$scope.error = error.data; };
 
         /**
          * Rejestracja użytkownika wywoływana 
@@ -89,9 +96,25 @@ module Shared.Controllers {
         public register() {
             this.api.User
                 .register(this.$scope.form)
-                .$promise.then(() => {
-                    /** TODO: routing do strony głównej */
-                }, this.onError.bind(this));
+                .$promise.then(
+                      this.onSuccess.bind(this)
+                    , this.onError.bind(this));
+        };
+
+        /**
+         * Dopełnienie rejestracji użytkownika,
+         * wywoływana przy ng-submit w formie
+         */
+        public complete() {
+            let id = this.$state.params.id;
+            if(id) {
+                this.api.User
+                    .complete(<any> _(this.$scope.form).extend({id : id}))
+                    .$promise.then(
+                          this.onSuccess.bind(this)
+                        , this.onError.bind(this));
+            } else
+                throw new Error('Cannot complete registration!');
         };
     };
 };

@@ -1,0 +1,27 @@
+mixin orders
+    .header Wybrane usługi:
+    ul.input.list
+        li(ng-repeat='order in orders') 
+            input(type='checkbox', ng-checkbox-value='order._id', ng-checkbox-list='form.user.orders')
+            | {{ ::order.name }} ({{ ::order.price }}zł)
+
+    .divider.vertical
+    | Łączny koszt: #[strong {{ totalCost }}]zł
+
+mixin formField(header, icon, type, placeholder, model)
+    .header.small #{header}:
+        .left.labeled.icon
+            i(class='right fa fa-#{icon}')
+            input(type=type, placeholder=placeholder, ng-model=model, required)&attributes(attributes)
+            .label.corner.star
+
+mixin subformField(icon, type, placeholder, model)
+    .labeled.icon
+        i(class='left fa fa-#{icon}')
+        input(type=type, placeholder=placeholder, ng-model=model)&attributes(attributes)
+
+mixin error
+    .col100(ng-show='error') 
+        .message.danger
+            i.fa.fa-exclamation-triangle.fa-2
+            | &nbsp;{{ error }}

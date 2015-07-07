@@ -1,51 +1,17 @@
+include ./functions.jade
+
 form.form(ng-submit='fn.register()')
     h3.header-title Rejestracaja {{ advanced ? 'administratora' : 'użytkownika' }}:
     .row
         .col60
-            .col50
-                .header.small Imię:
-                .left.labeled.icon
-                    i.right.fa.fa-user
-                    input(type='text', placeholder='imię', ng-model='form.user.info.name', required)
-                    .label.corner.star
-            .col50
-                .header.small Nazwisko:
-                .left.labeled.icon
-                    i.right.fa.fa-user
-                    input(type='text', placeholder='nazwisko', ng-model='form.user.info.surname', required)
-                    .label.corner.star
-
-            .col100
-                .header.small Hasło:
-                .left.labeled.icon
-                    i.right.fa.fa-key
-                    input(type='password', placeholder='hasło', ng-model='form.user.password', required)
-                    .label.corner.star
-
-
-            .col50
-                .header.small e-mail:
-                .left.labeled.icon
-                    i.right.fa.fa-envelope-o
-                    input(type='text', placeholder='abc@de.fg', ng-model='form.user.email', required)
-                    .label.corner.star
-            .col50
-                .header.small Telefon:
-                .left.labeled.icon
-                    i.right.fa.fa-phone
-                    input(type='text', ng-placeholder='DDD-DDD-DDD', ng-model='form.user.info.phone', required)
-                    .label.corner.star
-
-
+            .col50  #[+formField('Imię', 'user', 'text', 'imię', 'form.user.info.name')]
+            .col50  #[+formField('Nazwisko', 'user', 'text', 'nazwisko', 'form.user.info.surname')]
+            .col100 #[+formField('Hasło', 'key', 'password', 'hasło', 'form.user.password')]
+            .col50  #[+formField('e-mail', 'envelope-o', 'text', 'abc@de.fg', 'form.user.email')]
+            .col50  #[+formField('Telefon', 'phone', 'text', '', 'form.user.info.phone')(ng-placeholder='DDD-DDD-DDD')]
         .col40.small
-            .header Wybrane usługi:
+            +orders
 
-            ul.input.list(ng-repeat='order in orders')
-                li #[input(type='checkbox', ng-checkbox-value='order._id', ng-checkbox-list='form.user.orders')] #[ {{ ::order.name }} ({{ ::order.price }}zł)]
-
-            .divider.vertical
-            | Łączny koszt: #[strong {{ totalCost }}]zł
-    
     .row
         .header.small Rejestruj jako:
         .col100
@@ -63,41 +29,13 @@ form.form(ng-submit='fn.register()')
     fieldset.row(ng-show='advanced', ng-disabled='!advanced')
         h3.header-title Rejestracja firmy:
         .col40
-            .col100
-                .header.small Ulica
-                .left.labeled.icon
-                    i.right.fa.fa-home
-                    input(type='text', placeholder='ulica', ng-model='form.company.info.street', required)
-                    .label.corner.star
-
-            .col100
-                .header.small NIP
-                .left.labeled.icon
-                    i.right.fa.fa-key
-                    input(type='text', ng-placeholder='DDD-DD-DD-DDD', ng-model='form.company.nip', required)
-                    .label.corner.star
+            .col100 #[+formField('Ulica', 'home', 'text', 'ulica', 'form.company.info.street')]
+            .col100 #[+formField('Miejscowość', 'globe', 'text', 'miejscowość', 'form.company.info.city')]
 
         .col60
-            .col50
-                .header.small Miejscowość
-                .left.labeled.icon
-                    i.right.fa.fa-globe
-                    input(type='text', placeholder='miejscowość', ng-model='form.company.info.city', required)
-                    .label.corner.star
-
-            .col50
-                .header.small Kod
-                .left.labeled.icon
-                    i.right.fa.fa-key
-                    input(type='text', ng-placeholder='DD-DDD', ng-model='form.company.info.code', required)
-                    .label.corner.star
-
-            .col100
-                .header.small Nazwa firmy
-                .left.labeled.icon
-                    i.right.fa.fa-user
-                    input(type='text', placeholder='nazwa firmy', ng-model='form.company.name', required)
-                    .label.corner.star
+            .col40  #[+formField('Kod', 'key', 'text', '', 'form.company.info.code')(ng-placeholder='DD-DDD')]
+            .col60  #[+formField('NIP', 'key', 'text', '', 'form.company.nip')(ng-placeholder='DDD-DD-DD-DDD')]
+            .col100 #[+formField('Nazwa firmy', 'user', 'text', 'nazwa firmy', 'form.company.name')]
 
         h3.header-title Rejestracja uczestników z firmy:
         .col100
@@ -112,31 +50,17 @@ form.form(ng-submit='fn.register()')
             .smallest.text-gray (każdy użytkownik dostanie email'a zwrotnego z dopełnieniem rejestracji)
 
         .col100
-            .col20
-                .labeled.icon
-                    i.left.fa.fa-user
-                    input(type='text', placeholder='imię', ng-model='companyUser.name', required)
-            
-            .col20
-                .labeled.icon
-                    i.left.fa.fa-user
-                    input(type='text', placeholder='nazwisko', ng-model='companyUser.surname', required)
-
-            .col30
-                .labeled.icon
-                    i.left.fa.fa-envelope-o
-                    input(type='text', placeholder='email', ng-model='companyUser.email', required)
-
-            .col30
+            .col20 #[+subformField('user', 'text', 'imię', 'companyUser.name')]
+            .col20 #[+subformField('user', 'text', 'nazwisko', 'companyUser.surname')]
+            .col30 #[+subformField('envelope-o', 'text', 'e-mail', 'companyUser.email')]
+            .col30 
                 .left.labeled
                     button.danger(type='button', ng-click='fn.addCompanyUser()') Dodaj uczestnika
                     .label.fa.fa-save
 
-    .col100
-        .message.danger(ng-show='error') 
-            i.fa.fa-exclamation-triangle.fa-2
-            | &nbsp;{{ error }}
-        .pull-right
-            .left.labeled
+    .row
+        +error
+        .col100
+            .pull-right.left.labeled
                 button.green(type='submit') Zarejestruj się!
                 .label.fa.fa-send

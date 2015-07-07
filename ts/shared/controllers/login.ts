@@ -4,7 +4,7 @@
  */
 module Shared.Controllers {
     interface ILoginScope extends ICtrlScope<Login> {
-        form: ILoginForm;
+        form: Form.ILogin;
     };
 
     export class Login {

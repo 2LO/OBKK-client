@@ -1,15 +1,45 @@
 module Shared {
-    /** Formularz logowania */
-    export interface ILoginForm {
-          login: string
-        , password: string
-    };
-    interface IUserInfo {
-        email: string;
-        info: {
-              name: string
-            , surname: string
-            , phone: string
+    export module Form {
+        /** Formularz logowania */
+        export interface ILogin {
+              login: string
+            , password: string
+        };
+
+
+        /**
+         * Formularz rejestrujący użytkownika
+         * oraz jego firmę, firma nie musi być
+         * rejestrująca
+         */
+        export interface IRegistration {
+            user: IRegistrationUser;
+            company?: {
+                  name: string
+                , users: ICompanyUser[]
+                , nip: string
+                , info: {
+                      street: string
+                    , code: string
+                    , city: string
+                    , website: string
+                }
+            };
+        };
+
+        /**
+         * Formularz, który dokańcza rejestracje
+         * użytkownika
+         */
+        export interface IComplete {
+            id: string;
+            user: {
+                info: {
+                    phone: string;
+                };
+                password: string;
+                orders: string[];
+            };
         };
     };
 
@@ -19,6 +49,16 @@ module Shared {
      */
     export interface IUserToken extends ng.resource.IResource<IUserToken> {
         token: string;
+    };
+
+    /** Interfejs, z którego dziedziczą ILoggedUser i IRegistrationUser */
+    interface IUserInfo {
+        email: string;
+        info: {
+              name: string
+            , surname: string
+            , phone: string
+        };
     };
 
     /**
@@ -49,32 +89,13 @@ module Shared {
     };
 
     /**
-     * Formularz rejestrujący użytkownika
-     * oraz jego firmę, firma nie musi być
-     * rejestrująca
-     */
-    export interface IRegistrationForm {
-        user: IRegistrationUser;
-        company?: {
-              name: string
-            , users: ICompanyUser[]
-            , nip: string
-            , info: {
-                  street: string
-                , code: string
-                , city: string
-                , website: string
-            }
-        };
-    }; 
-
-    /**
      * Interfejs resource dla rejestracji
      * i autoryzacji użytkownika
      */
     export interface IUserResource extends ng.resource.IResourceClass<IUserToken> {
-        register(regForm: IRegistrationForm): IUserToken;
-        login(loginForm: ILoginForm): IUserToken;
+        register(data: Form.IRegistration): IUserToken;
+        complete(data: Form.IComplete);
+        login(data: Form.ILogin): IUserToken;
     };
 
     export module API {
@@ -90,6 +111,16 @@ module Shared {
             , params: { action: 'register' }
         };
 
+        /** Akcja rejestrowania */
+        let completeAction: ng.resource.IActionDescriptor = {
+              method: 'PUT'
+            , url: '/user/:action/:id'
+            , params: { 
+                  action: 'complete' 
+                , id: '@id'
+            }
+        };
+
         /**
          * Zasób użytkownika, funkcja a nie klasa
          * bo jest to factory
@@ -98,6 +129,7 @@ module Shared {
             return <IUserResource> $resource('/user/:action', {}, {
                   login: loginAction
                 , register: registerAction
+                , complete: completeAction
             });
         };
     };

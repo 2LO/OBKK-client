@@ -17,9 +17,18 @@ module Application {
             })
             .state('register', {
                   url: '/register'
-                , templateUrl: 'views/registration.html'
+                , abstract: true
                 , controller: 'RegistrationCtrl'
-            });;
+                , template: '<div ui-view>'
+            })
+            .state('register.complete', {
+                  url: '/complete?id'
+                , templateUrl: 'views/registrationComplete.html'
+            })
+            .state('register.request', {
+                  url: '/request'
+                , templateUrl: 'views/registration.html'
+            });
     };
 
     let coreMods = [
