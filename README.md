@@ -3,8 +3,8 @@
 
 ## Screens
 ![Screenshoot](/doc/screen/1.png?raw=true "Screen")
-![Screenshoot](/doc/screen/2.png?raw=true "Screen")
 ![Screenshoot](/doc/screen/3.png?raw=true "Screen")
+![Screenshoot](/doc/screen/2.png?raw=true "Screen")
 
 ## Browser Compatibility
 Tested in Firefox and Chrome
