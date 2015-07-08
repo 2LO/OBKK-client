@@ -26,6 +26,11 @@ form.form(ng-submit='fn.register()')
                     | prelegent&nbsp;
                     span.smallest (stajesz się prelegentem stworzonej firmy)
 
+                li(ng-show='advanced')
+                    input(type='checkbox', ng-model='form.company.copyOrders')
+                    | skopiuj usługi do uczestników&nbsp;
+                    span.smallest (uczestnik w potwierdzeniu może je zmienić)
+
     fieldset.row(ng-show='advanced', ng-disabled='!advanced')
         h3.header-title Rejestracja firmy:
         .col40
@@ -48,7 +53,6 @@ form.form(ng-submit='fn.register()')
                         button.danger(ng-click='fn.removeCompanyUser(user)') #[i.fa.fa-times]
 
             .smallest.text-gray (każdy użytkownik dostanie email'a zwrotnego z dopełnieniem rejestracji)
-
         .col100
             .col20 #[+subformField('user', 'text', 'imię', 'companyUser.name')]
             .col20 #[+subformField('user', 'text', 'nazwisko', 'companyUser.surname')]
@@ -57,7 +61,6 @@ form.form(ng-submit='fn.register()')
                 .left.labeled
                     button.danger(type='button', ng-click='fn.addCompanyUser()') Dodaj uczestnika
                     .label.fa.fa-save
-
     .row
         +error
         .col100

@@ -19,7 +19,7 @@ module Shared.Controllers {
     export class Registration {
         constructor(
               private $scope: IRegistrationScope
-            , private $state: { params: { id?: string } }
+            , private $state: { params: { id?: string; orders?: string; } }
             , private api: IApi
         ) {
             $scope.fn = this;
@@ -33,10 +33,14 @@ module Shared.Controllers {
             /** Pobieranie listy ofert cenowych */
             api.Orders.list().$promise.then(data => {
                 $scope.orders = data;
+                $scope.form.user.orders =
+                        $state.params.orders
+                        ? JSON.parse(decodeURIComponent($state.params.orders))
+                        : [];
             });
             $scope.form = <any> { 
                   user: { orders: [] }
-                , company: { users: [] }
+                , company: { users: [], copyOrders: false }
             };
 
             /** 
@@ -44,10 +48,11 @@ module Shared.Controllers {
              * sumują się listy
              */
             $scope.totalCost = 0;
-            $scope.$watchCollection('form.user.orders', function(o) {
-                $scope.totalCost = _.reduce($scope.form.user.orders
-                    , (mem, el: string) => mem + _($scope.orders).findWhere({ _id: el }).price
-                    , 0)
+            $scope.$watchCollection('form.user.orders', orders => {
+                if($scope.orders)
+                    $scope.totalCost = _.reduce(orders
+                        , (mem, el: string) => mem + _($scope.orders).findWhere({ _id: el }).price
+                        , 0)
             });
         };
 
@@ -69,6 +74,11 @@ module Shared.Controllers {
          */
         public addCompanyUser() {
             this.companyUsers.push(_.clone(this.$scope.companyUser));
+            this.$scope.companyUser = {
+                  name: ''
+                , surname: ''
+                , email: ''
+            };
         };
 
         /**

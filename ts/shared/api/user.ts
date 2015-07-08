@@ -18,6 +18,7 @@ module Shared {
                   name: string
                 , users: ICompanyUser[]
                 , nip: string
+                , copyOrders: boolean /** kopiuje zamówienia admina do uczestników */
                 , info: {
                       street: string
                     , code: string

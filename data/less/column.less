@@ -13,6 +13,7 @@
     vertical-align: top;
     margin-bottom:  @spacing;
     padding:        5px;
+    white-space:    normal;
     .for(1, @columns+1); .-each(@proc) {
         @val: `parseInt(100 / @{columns} * @{proc})`;
         &@{val}:extend(.col) {

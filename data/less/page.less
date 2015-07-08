@@ -211,8 +211,13 @@ table {
 
 /** Wiadomość */
 .message {
+    i:first-of-type {
+        padding-top:   5px;
+        padding-right: 10px;
+    };
     @color: rgba(0, 0, 0, 0.85);
     &.danger { background: #fff0f0; };
+    &.info   { background: #f8f8f9; };
 
     border:   1px solid @color;
     color:    @color;

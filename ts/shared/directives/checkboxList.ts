@@ -18,6 +18,14 @@ module Shared.Directives {
         };
 
         public link: ng.IDirectiveLinkFn = (scope: IListScope, element: ng.IAugmentedJQuery, attrs: any) => {
+            /** Wczytywanie z listy z adresu i odbinowywanie */
+            var unbind = scope.$watch('list', list => {
+                if(_(list).contains(scope.value))
+                    element.prop('checked', true);
+                unbind();
+            });
+
+            /** Podczas zaznaczenia zmiana */
             element.bind('change', () => {
                 scope.$apply(this.modifyList.bind(this, scope, element));
             });
@@ -32,10 +40,8 @@ module Shared.Directives {
             if(element.attr('checked')) {
                 if(!_.contains(scope.list, scope.value))
                     scope.list.push(scope.value);
-            } else {
-                scope.list = _.without( scope.list
-                                      , _.findWhere(scope.list, scope.value));
-            }
+            } else
+                scope.list = _.without(scope.list, scope.value);
         };
 
         static factory(): ng.IDirectiveFactory {

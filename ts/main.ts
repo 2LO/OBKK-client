@@ -22,7 +22,7 @@ module Application {
                 , template: '<div ui-view>'
             })
             .state('register.complete', {
-                  url: '/complete?id'
+                  url: '/complete?id&orders'
                 , templateUrl: 'views/registrationComplete.html'
             })
             .state('register.request', {
