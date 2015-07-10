@@ -19,21 +19,27 @@ table.calendar
                     .time #{val}:00
                 td
                     mixin note(content, title, c)
-                        .note
-                            .content(class='#{c}')= content
-                                .title
-                                    .left-floated
-                                        i.fa.fa-lg.fa-thumb-tack
-                                        |   Łukasz Kurak
+                        .note(class='#{c}', ng-toggle-class='expand')
+                            .title
+                                i.fa.fa-lg.expand-icon
+                                .span.text-center #{title}
+                            .content #{content}
+                            .footer
+                                .left-floated
+                                    i.fa.fa-lg.fa-thumb-tack
+                                    |   Łukasz Kurak
 
-                                    .right-floated
-                                        i.fa.fa-lg.fa-clock-o
-                                        |  2h:30min
+                                .right-floated
+                                    i.fa.fa-lg.fa-clock-o
+                                    |  2h:30min
 
                     if val == 7
-                        +note('Novell, Inc. – amerykańskie przedsiębiorstwo specjalizujące się w sieciowych systemach operacyjnych takich jak NetWare i SUSE Linux.', 'Łukasz Kurak')
-                        +note('Microsoft [ˈmaɪkɹoʊˌsɑːft] – jedno z największych na świecie przedsiębiorstw z branży technologii informacyjnych[4]. Najbardziej znane jako producent systemów operacyjnych MS-DOS, Microsoft Windows i oprogramowania biurowego Microsoft Office.', 'Mateusz Bagiński', 'color-bg-purple')
+                        +note('Novell, Inc. amerykańskie przedsiębiorstwo specjalizujące się w sieciowych systemach operacyjnych takich jak NetWare i SUSE Linux.', 'Novell')
+                        +note('Microsoft [ˈmaɪkɹoʊˌsɑːft] – jedno z największych na świecie przedsiębiorstw z branży technologii informacyjnych[4]. Najbardziej znane jako producent systemów operacyjnych MS-DOS, Microsoft Windows i oprogramowania biurowego Microsoft Office.', 'Microsoft', 'color-bg-purple')
                 td
                     if val == 6
-                        +note('Novell, Inc. – amerykańskie przedsiębiorstwo specjalizujące się w sieciowych systemach operacyjnych takich jak NetWare i SUSE Linux.', 'Łukasz Kurak', 'color-bg-orange')
+                        +note('Novell, Inc. – amerykańskie przedsiębiorstwo specjalizujące się w sieciowych systemach operacyjnych takich jak NetWare i SUSE Linux.', 'Novell', 'color-bg-orange')
+
                 td
+                    if val == 9
+                        +note('Novell, Inc. – amerykańskie przedsiębiorstwo specjalizujące się w sieciowych systemach operacyjnych takich jak NetWare i SUSE Linux.', 'Novell', 'color-bg-turquoise')

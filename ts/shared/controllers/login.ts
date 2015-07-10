@@ -35,7 +35,7 @@ module Shared.Controllers {
         public login() {
             this.auth
                 .login(this.$scope.form)
-                .finally(this.onLogged.bind(this))
+                .then(this.onLogged.bind(this))
                 .catch(error => {
                     this.$scope.error = error.data;
                 });

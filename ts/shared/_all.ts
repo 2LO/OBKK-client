@@ -11,6 +11,7 @@
 /// <reference path="./directives/permission.ts" />
 /// <reference path="./directives/alias.ts" />
 /// <reference path="./directives/title.ts" />
+/// <reference path="./directives/toggleClass.ts" />
 
 module Shared {
     'use strict';
@@ -49,7 +50,8 @@ module Shared {
         .directive('ngCheckboxList', Directives.CheckboxList.factory())
 
         .directive('appPermission', Directives.Permission.factory())
-        .directive('appTitle', Directives.Title.factory());
+        .directive('appTitle', Directives.Title.factory())
+        .directive('ngToggleClass', Directives.ToggleClass.factory());
 
     /** Dodawanie alliasów */
     _(Directives.aliases).each((val: any, attribute: string) => {
