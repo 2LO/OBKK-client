@@ -5,9 +5,19 @@
 @control_radius: 0;
 
 body {
-    font-family: "Myriad Pro";
+    font-family: 'Myriad Pro';
     margin:      0;
     padding-top: 20px;
+};
+
+/** Wyłączenie zaznaczania */
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select:   none;
+    -khtml-user-select:    none;
+    -moz-user-select:      none;
+    -ms-user-select:       none;
+    user-select:           none;
 };
 
 /** Konwersja na inline */
@@ -18,7 +28,7 @@ h5, h4, h3, h2 {
     margin-top:     0;
     margin-bottom:  5px;
 };
-.subheader {
+.sub-header {
     font-weight:   bold;
     &.inline       { margin-left: 5px; };
     &:not(.inline) { margin-top:  5px; };
@@ -52,7 +62,7 @@ input[type='text'], input[type='password'], button {
     fieldset {
         padding: 0;
         margin:  0;
-        border:  0;  
+        border:  0;
     };
     // .group {
     //     margin-bottom: 5px;
@@ -113,7 +123,7 @@ input[type='text'], input[type='password'], button {
 input {
     @focus: darken(@info, 10%);
     box-shadow: none;
-    
+
     &:extend(.control);
     &:focus        { border-color: @focus; };
     &:focus+.label { background: @focus; };
@@ -139,7 +149,7 @@ button:extend(.control, .active) {
 };
 button {
     padding-left:  6px;
-    padding-right: 6px; 
+    padding-right: 6px;
 };
 .btngroup {
     margin: 0 5px;
@@ -173,13 +183,16 @@ table {
     width:              100%;
     border-collapse:    collapse;
     border-spacing:     0;
+    table-layout:       fixed;
 
-    input[type='checkbox'] { 
+    input[type='checkbox'] {
         margin:  0;
         padding: 0;
         height:  auto;
     };
-    tr:not(:last-child) {
+
+    /** Obramowanie */
+    &.dotted tr:not(:last-child) {
         &:extend(.divider, .divider.vertical);
     };
     td, th {
@@ -196,18 +209,20 @@ table {
 .divider {
     @type: 1px dotted #e9e9e9;
     @margin: 5px;
-    &.vertical   { 
+    &.vertical   {
         border-bottom: @type;
         padding:       @margin 0;
-        width:         100%;  
+        width:         100%;
     };
-    &.horizontal { 
-        border-right: @type; 
+    &.horizontal {
+        border-right: @type;
         padding: 0    @margin;
-        height:       100%; 
+        height:       100%;
     };
 };
-.header-title:extend(h2.header, .divider, .divider.vertical) {};
+.header-title:extend(h2.header, .divider, .divider.vertical) {
+    padding-top: 0px;
+};
 
 /** Wiadomość */
 .message {

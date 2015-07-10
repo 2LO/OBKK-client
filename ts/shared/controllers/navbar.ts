@@ -9,7 +9,7 @@ module Shared.Controllers {
     interface INavbarScope extends ICtrlScope<Navbar>  {
         displayName: string;
         lastLogged: string;
-    };
+    }
 
     /**
      * Navbar zwykle nie jest przeładowywany
@@ -24,7 +24,7 @@ module Shared.Controllers {
             $scope.fn = this;
             $rootScope.$on(Message[Message.USER_LOGIN], this.reload.bind(this));
             this.reload();
-        };
+        }
 
         /**
          * Ponowne wczytywanie elementu
@@ -34,7 +34,7 @@ module Shared.Controllers {
                 this.$scope.lastLogged = new Date(this.auth.logged.exp).toLocaleString();
                 this.$scope.displayName = this.auth.logged.email;
             }
-        };
+        }
 
         /**
          * Wylogowywanie się, przycisk wywoływany
@@ -43,6 +43,6 @@ module Shared.Controllers {
         public logout() {
             this.auth.logout();
             this.$rootScope.$broadcast(Message[Message.USER_LOGOUT]);
-        };
-    };
-};
+        }
+    }
+}

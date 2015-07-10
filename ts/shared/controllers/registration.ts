@@ -14,7 +14,7 @@ module Shared.Controllers {
         error: string;
 
         advanced: boolean;
-    };
+    }
 
     export class Registration {
         constructor(
@@ -54,17 +54,17 @@ module Shared.Controllers {
                         , (mem, el: string) => mem + _($scope.orders).findWhere({ _id: el }).price
                         , 0)
             });
-        };
+        }
 
         /** Pokazywanie formy rejestracyjnej firmy */
         public toggleAdvanced() {
             this.$scope.advanced = !this.$scope.advanced;
             this.$scope.form.company = <any> { users: [] };
-        };
+        }
 
         /** getter/setter */
-        private get companyUsers(): ICompanyUser[]      { return this.$scope.form.company.users; };
-        private set companyUsers(users: ICompanyUser[]) { this.$scope.form.company.users = users; };
+        private get companyUsers(): ICompanyUser[]      { return this.$scope.form.company.users;  }
+        private set companyUsers(users: ICompanyUser[]) { this.$scope.form.company.users = users; }
 
         /**
          * Dodawanie użytkownika zarejestrowanego
@@ -79,7 +79,7 @@ module Shared.Controllers {
                 , surname: ''
                 , email: ''
             };
-        };
+        }
 
         /**
          * Kasowanie użytkownika z listy uczestników
@@ -87,7 +87,7 @@ module Shared.Controllers {
          */
         public removeCompanyUser(user: ICompanyUser) {
             this.companyUsers = _(this.companyUsers).without(user);
-        };
+        }
 
         /**
          * Callback z serwera, czytelniej wystawić
@@ -96,8 +96,8 @@ module Shared.Controllers {
         private onSuccess() {
             this.$scope.error = null;
             /** TODO: przekierowanie na stronę główną */
-        };
-        private onError(error) { this.$scope.error = error.data; };
+        }
+        private onError(error) { this.$scope.error = error.data; }
 
         /**
          * Rejestracja użytkownika wywoływana 
@@ -109,7 +109,7 @@ module Shared.Controllers {
                 .$promise.then(
                       this.onSuccess.bind(this)
                     , this.onError.bind(this));
-        };
+        }
 
         /**
          * Dopełnienie rejestracji użytkownika,
@@ -125,6 +125,6 @@ module Shared.Controllers {
                         , this.onError.bind(this));
             } else
                 throw new Error('Cannot complete registration!');
-        };
-    };
-};
+        }
+    }
+}

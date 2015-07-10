@@ -1,7 +1,6 @@
 include ./functions.jade
 
 form.form(ng-submit='fn.register()')
-    h3.header-title Rejestracaja {{ advanced ? 'administratora' : 'użytkownika' }}:
     .row
         .col60
             .col50  #[+formField('Imię', 'user', 'text', 'imię', 'form.user.info.name')]
@@ -44,7 +43,7 @@ form.form(ng-submit='fn.register()')
 
         h3.header-title Rejestracja uczestników z firmy:
         .col100
-            table
+            table.dotted
                 tr(ng-repeat='user in form.company.users')
                     td {{ ::user.name }}
                     td {{ ::user.surname }}

@@ -12,5 +12,5 @@ module Shared {
      */
     export interface ICtrlScope<T> extends ng.IScope {
         fn: T;
-    };
-};
+    }
+}

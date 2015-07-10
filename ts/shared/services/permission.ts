@@ -6,14 +6,14 @@ module Shared.Services {
         export interface IElement {
             flags: string[];
             mods?: string[];
-        };
+        }
 
         /** W routingu przy stanach */
         export interface IState {
             authorize?: (params: any) => boolean;
             anonymous: boolean;
-        };
-    };
+        }
+    }
 
     /**
      * Serwis odpowiedzialny za prostą
@@ -23,7 +23,7 @@ module Shared.Services {
         constructor(
             private auth: Auth // flags są static
         ) {
-        };
+        }
 
         /** Flagi sprawdzane przy autoryzowaniu */
         public static flags = {
@@ -33,8 +33,8 @@ module Shared.Services {
 
         /**
          * Sprawdzanie przyzwoleń
-         * @param  {Security.IElement} data Uprawnienia
-         * @return {boolean}           Jeśli użytkownik spełnia uprawnienia zawraca true
+         * @param  {Security.IElement|string} data Uprawnienia
+         * @return {boolean}  Jeśli użytkownik spełnia uprawnienia zawraca true
          */
         public check(data: Security.IElement|string): boolean {
             if(!data)
@@ -59,20 +59,21 @@ module Shared.Services {
                     return false;
             }
             return true;
-        };
-    };
+        }
+    }
 
     /**
      * Funkcja wywoływana podczas zmiany stanu
+     * @param {ng.IRootScopeService} $rootScope
+     * @param {ng.ui.IStateService}  $state
      * @param {Permission}           permission Serwis zabezpieczeń
-     * @param {[type]}               ERROR_CODE [description]
      */
     export function statePermission(
               $rootScope: ng.IRootScopeService
             , $state: ng.ui.IStateService
             , permission: Permission) {
         $rootScope.$on( '$stateChangeStart'
-                      , (event, toState, toParams, fromState, fromParams) => {
+                      , (event, toState, toParams) => {
             let data = toState.data;
 
             /** 
@@ -91,7 +92,7 @@ module Shared.Services {
                 event.preventDefault();
             }
         });
-    };
+    }
 
     /**
      * Podczas request'u na serwer dodawany jest
@@ -102,7 +103,7 @@ module Shared.Services {
         constructor(
             private $injector
         ) {
-        };
+        }
 
         /**
          * Metoda wywoływana przed zapytaniem do serwera,
@@ -123,7 +124,7 @@ module Shared.Services {
                      * jeśli przekroczy 512B to ostrzega w aseracji
                      */
                     console.assert(
-                           encodeURI(token).split(/%..|./).length-1 > 512
+                           encodeURI(token).split(/%..|./).length-1 < 512
                         , 'Token is too big!');
                     (<any> config.headers).user = token
                 }
@@ -133,6 +134,6 @@ module Shared.Services {
 
         static factory() {
             return ($injector) => new AuthInterceptor($injector);
-        };
-    };
-};
+        }
+    }
+}

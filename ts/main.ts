@@ -5,15 +5,14 @@
 
 module Application {
     function config(
-          $stateProvider: ng.ui.IStateProvider
-        , $urlRouterProvider: ng.ui.IUrlRouterProvider
+        $stateProvider: ng.ui.IStateProvider
     ) {
-        // $urlRouterProvider.otherwise('/login');
         $stateProvider
             .state('login', {
                   url: '/login'
                 , templateUrl: 'views/login.html'
                 , controller: 'LoginCtrl'
+                , title: 'Logowanie użytkownika:'
             })
             .state('register', {
                   url: '/register'
@@ -24,12 +23,20 @@ module Application {
             .state('register.complete', {
                   url: '/complete?id&orders'
                 , templateUrl: 'views/registrationComplete.html'
+                , title: 'Dopełnienie rejestracji:'
             })
             .state('register.request', {
                   url: '/request'
                 , templateUrl: 'views/registration.html'
+                , title: 'Rejestracja użytkownika:'
+            })
+            .state('calendar', {
+                  url: '/calendar'
+                , templateUrl: 'views/calendar.html'
+                , controller: 'CalendarCtrl'
+                , title: 'Wykłady na konferencji:'
             });
-    };
+    }
 
     let coreMods = [
           'ui.router'
@@ -41,7 +48,7 @@ module Application {
     angular
         .module('app', coreMods)
         .config(config);
-};
+}
 (() => {
     angular
         .element(document)

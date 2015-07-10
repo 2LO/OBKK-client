@@ -1,6 +1,9 @@
+include ./functions.jade
+
 #login-box.row.middle
     form.form(ng-submit='fn.login()')
         .row
+            +error
             .col50
                 .col100
                     .header.small Login:
@@ -23,5 +26,5 @@
 
             .col30.col-offset20
                 .left.labeled
-                    button.green(ui-sref='register') Zarejestruj!
+                    button.green(ui-sref='register.request') Zarejestruj!
                     .label.fa.fa-key

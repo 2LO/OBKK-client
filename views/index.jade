@@ -27,7 +27,9 @@ html(lang='pl')
         .container
             aside.col20(ng-controller='NavbarCtrl')
                 include ./navbar.jade
-            .col60(ui-view)
+            .col60
+                h3.header-title(app-title)
+                div(ui-view)
 
 
 

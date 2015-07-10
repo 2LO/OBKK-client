@@ -5,7 +5,6 @@ include ./functions.jade
             i.fa.fa-exclamation-triangle.fa-lg
             | Po zapisaniu zmian zostaniesz przeniesiony do ekranu logowania!
 form.form(ng-submit='fn.complete()')
-    h3.header-title Dopełnienie rejestracji:
     .row
         .col50
             .col100 #[+formField('Hasło', 'key', 'password', 'hasło', 'form.user.password')]

@@ -8,7 +8,7 @@ module Shared.Directives {
     interface IListScope extends ng.IScope {
         list: any[];
         value: string;
-    };
+    }
 
     export class CheckboxList implements ng.IDirective {
         public restrict: string = 'A';
@@ -27,7 +27,7 @@ module Shared.Directives {
 
             /** Podczas zaznaczenia zmiana */
             element.bind('change', () => {
-                scope.$apply(this.modifyList.bind(this, scope, element));
+                scope.$apply(<any> _(CheckboxList.modifyList).partial(scope, element));
             });
         };
 
@@ -36,16 +36,16 @@ module Shared.Directives {
          * @param {IListScope}          scope   Scope
          * @param {ng.IAugmentedJQuery} element Element DOM
          */
-        private modifyList(scope: IListScope, element: ng.IAugmentedJQuery) {
+        public static modifyList(scope: IListScope, element: ng.IAugmentedJQuery) {
             if(element.attr('checked')) {
                 if(!_.contains(scope.list, scope.value))
                     scope.list.push(scope.value);
             } else
                 scope.list = _.without(scope.list, scope.value);
-        };
+        }
 
         static factory(): ng.IDirectiveFactory {
             return () => new CheckboxList;
-        };
-    };
-};
+        }
+    }
+}

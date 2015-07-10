@@ -1,5 +1,5 @@
-h4.header OBKK 2.0
-
+h3.header OBKK 2.0
+//- img(style='max-height: 128px; width: auto;', src='img/logo.png')
 mixin item(title, icon, sref)
     li(ui-sref=sref, ui-sref-active='active')&attributes(attributes).item
         i.fa(class="fa-#{icon} fa-fw")
@@ -12,22 +12,9 @@ ul.segment(app-permission, app-flag='anon')
 logged-only
     ul.segment
         +item('Twoje konto', 'user')
-        li.item
-            strong.small Zalogowano: {{ displayName }}
-            .smallest Ostatnio: {{ lastLogged }}
         +item('Wyloguj się', 'sign-out')(ng-click='fn.logout()')
 
     ul.segment
-        .divider.vertical
-        +item('Kalendarz', 'calendar')
-        +item('Moduły:', 'cog')
-        ul.submenu
-            li.item Zarządzaj userami
-            li.item Zarządzaj wykładami
-            li.item Awarie
-            li.item Logi
-            li.item Statystyki
-        .divider.vertical
-
+        +item('Kalendarz', 'calendar', 'calendar')
 ul.segment
     +item('Informacje', 'info')

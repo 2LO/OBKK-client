@@ -8,24 +8,19 @@
 
 /** Panel z tytułem */
 .panel {
-    // border-radius: @control_radius;
-    // border:        1px solid @divider;
     .head, .body {
         padding: 10px;
     };
-    .head {
-        // background: @divider;
+    .head:extend(.active) {
         text-align: center;
-        &:extend(.active);
     };
 };
 
 /** Zawartość strony */
-.segment {
-    margin: 0 8px;
-};
+.segment { margin: 0 8px; };
 
 /** Logowanie */
 @import "login";
 @import "menu";
 @import "main";
+@import "calendar";

@@ -1,8 +1,8 @@
 @import "util";
 
 /** dla wszystkich */
-* { 
-    box-sizing: border-box; 
+* {
+    box-sizing: border-box;
 };
 
 /** kolumny */
@@ -14,21 +14,21 @@
     margin-bottom:  @spacing;
     padding:        5px;
     white-space:    normal;
+    //float:          left;
     .for(1, @columns+1); .-each(@proc) {
         @val: `parseInt(100 / @{columns} * @{proc})`;
         &@{val}:extend(.col) {
             width: percentage(@val / 100);
         };
-        &-offset@{val} { 
+        &-offset@{val} {
             margin-left: percentage(@val / 100);
         };
     };
 };
 .row {
-    margin: @spacing 0 @spacing 0;     
+    margin: @spacing 0 @spacing 0;
     width:  100%;
 };
-.centered { text-align: center; };
 
 /** kontener na strone */
 @page_size: 1024px;

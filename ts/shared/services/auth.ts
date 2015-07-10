@@ -8,13 +8,12 @@
 module Shared.Services {
     /**
      * Wszystkie zasoby aplikacji
-     * TODO: przeniesienie do innego
-     * pliku
+     * TODO: przeniesienie do innego pliku
      */
     export interface IAppStorage {
         token: string;
         $reset();
-    };
+    }
 
     /**
      * Serwis odpowiedzialny za logowanie
@@ -26,13 +25,13 @@ module Shared.Services {
             , private api: IApi
         ) {
             this.reloadUser();
-        };
+        }
 
         /** Użytkownik null jeśli nie zalogowany */
         private user: ILoggedUser = null;
         public get logged(): ILoggedUser {
             return this.user;
-        };
+        }
 
         /**
          * Parsowanie części danych z tokena JWT
@@ -51,7 +50,7 @@ module Shared.Services {
                 return null;
             } else
                 return decoded;
-        };
+        }
 
 
         /** Ponowne ładowanie użytkownika z tokenu */
@@ -59,13 +58,13 @@ module Shared.Services {
             return this.$localStorage.token 
                         ? this.user = Auth.getJwtData(this.$localStorage.token)
                         : this.user;
-        };
+        }
 
         /**
          * Logowanie się użytkownika, jest to
          * wrapper UserResource, zapisywanie użytkownika
          * do LocalStorage i następne odtwarzanie
-         * @param  {ILoginForm} form Formularz logowania
+         * @param  {Form.ILogin} form Formularz logowania
          */
         public login(form: Form.ILogin): ng.IPromise<any> {
             if(this.user)
@@ -80,7 +79,7 @@ module Shared.Services {
                     this.reloadUser();
                 })
             );
-        };
+        }
 
         /**
          * Wylogowywanie użytkownika z systemu, broadcast
@@ -89,6 +88,6 @@ module Shared.Services {
         public logout() {
             this.$localStorage.$reset();
             this.user = null;
-        };
-    };
-};
+        }
+    }
+}

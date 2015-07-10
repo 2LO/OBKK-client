@@ -8,18 +8,19 @@
 module Shared.Directives {
     interface IPlaceholderAttrs extends ng.IAttributes {
         ngPlaceholder: string;
-    };
+        ngModel: any;
+    }
 
     export class Placeholder implements ng.IDirective {
         public restrict: string = 'A';
 
-        public link: ng.IDirectiveLinkFn = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: any) => {
+        public link: ng.IDirectiveLinkFn = (scope: ng.IScope, element: ng.IAugmentedJQuery, attrs: IPlaceholderAttrs) => {
             let placeholder = attrs.ngPlaceholder;
             element
                 .attr('placeholder', placeholder)
                 .attr('maxlength', placeholder.length);
 
-            scope.$watch(attrs.ngModel, this.match.bind(this, placeholder, element))
+            scope.$watch(attrs.ngModel, <any> _(Placeholder.match).partial(placeholder, element))
         };
 
         /**
@@ -28,7 +29,7 @@ module Shared.Directives {
          * @param {ng.IAugmentedJQuery} element Element DOM
          * @param {string}              val     Wartość elementu DOM z Controller'a
          */
-        private match(pattern: string, element: ng.IAugmentedJQuery, val: string) {
+        public static match(pattern: string, element: ng.IAugmentedJQuery, val: string) {
             if(typeof val === 'undefined')
                 return;
 
@@ -39,11 +40,10 @@ module Shared.Directives {
             
             /** todo: przywracanie pozycji kursora */
             element.val(val);
-        };
-
+        }
 
         static factory(): ng.IDirectiveFactory {
             return () => new Placeholder;
-        };
-    };
-};
+        }
+    }
+}

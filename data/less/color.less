@@ -1,5 +1,10 @@
 @import "util";
 
+@red:           #ff0000;
+@green:         #00ff00;
+@blue:          #0000ff;
+@orange:        #ffa500;
+@purple:        #800080;
 @danger:        #ce4844;
 @info:          #dddddd;
 @turquoise:     #00b5ad;
@@ -7,17 +12,29 @@
 @spring_green:  #5bbd72;
 @sky_blue:      #3b83c0;
 
+/** Kolory */
+.color {
+    @colors: red, green, blue, orange, purple, danger, info, turquoise, divider, spring_green, sky_blue;
+    .for(@colors); .-each(@col) {
+        &-@{col} {
+            color: @@col;
+        };
+        &-bg-@{col} {
+            background: @@col !important;
+        };
+    };
+};
+
 /** Wielkości czcionek */
 .smallest { font-size: 0.75em; };
 .small    { font-size: 0.85em; };
 .medium   { font-size: 1.0em;  };
 
-/** Kolory */
-.text {
-    @colors: info, danger, divider;
-    .for(@colors); .-each(@col) {
-        &-@{col} {
-            color: @@col;
-        };
-    };
-};
+/** Rozmieszczenie tekstu */
+.text-center { text-align: center; };
+.text-left   { text-align: left;   };
+.text-right  { text-align: right;  };
+
+/** Rozmieszczenie elementów */
+.left-floated  { float: left;   };
+.right-floated { float: right;  };
