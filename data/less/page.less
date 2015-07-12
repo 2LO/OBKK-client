@@ -1,4 +1,4 @@
-@import "color";
+@import "const";
 @import "column";
 
 /** Domyślne zaokrąglenie */
@@ -40,7 +40,7 @@ h5, h4, h3, h2 {
     color:      white;
   };
 };
-.control, .labeled *, .icon+input * {
+.control, .icon+input * {
   padding: 4px 9px 4px 9px;
 };
 .control {
@@ -61,18 +61,22 @@ input[type='text'], input[type='password'], button {
 };
 
 /** Ikony w textbox */
+@label_size: 32px; // z paddingiem
 .icon i:extend(.inline) {
   &.right { right: 0; };
   &.left  { left: 0;  };
 
   position:    absolute;
-  height:      100%;
+  height:      @label_size;
+  line-height: @label_size;
 };
 .labeled {
-  @label_size: 32px;
   position: relative;
 
-  i, .label { padding-top: 0.5em; };
+  i, .label {
+    text-align: center;
+    width:      26px;
+  };
   &.right {
     .label { right: 0; };
     button, input { padding-right: @label_size; };
@@ -87,20 +91,19 @@ input[type='text'], input[type='password'], button {
   input, button {
     &:extend(.icon input);
     width: 100%;
-    #corner-style() {
-      font-size:  1.2em;
-      &.star::after { content: "*"; };
-    };
     &+.label:extend(.icon i, &.right) {
-      &.corner { #corner-style(); }
-      top:        0;
+      .corner {
+        left: 0;
+        width: 100%;
+      };
+      &.star::after:extend(.corner) { content: '*'; };
+
       color:      black;
-      background: @info;
-      width:      26px;
+      top:        0;
+      //background: @info;
     };
   };
   button+.label {
-    font-size:  @small;
     background: rgba(0, 0, 0, 0.1);
     color:      white;
   };
@@ -191,7 +194,6 @@ table {
     text-align: left;
     input, button, .control {
       padding: 4px;
-      height:  auto;
       width:   100%;
     };
   };

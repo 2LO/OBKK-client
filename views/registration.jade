@@ -42,7 +42,7 @@ form.form(ng-submit='fn.register()')
             .col100 #[+formField('Nazwa firmy', 'user', 'text', 'nazwa firmy', 'form.company.name')]
 
         h3.header-title Rejestracja uczestników z firmy:
-        .col100
+        .col100.segment
             table.dotted
                 tr(ng-repeat='user in form.company.users')
                     td {{ ::user.name }}
@@ -62,7 +62,7 @@ form.form(ng-submit='fn.register()')
                     .label.fa.fa-save
     .row
         +error
-        .col100
-            .pull-right.left.labeled
+        .col100.segment
+            .pull-left.left.labeled
                 button.green(type='submit') Zarejestruj się!
                 .label.fa.fa-send
