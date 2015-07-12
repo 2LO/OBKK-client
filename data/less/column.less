@@ -2,37 +2,40 @@
 
 /** dla wszystkich */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 };
+
+/** Konwersja na inline */
+.inline { display: inline-block; };
+.block  { display: block; };
+.hidden { display: none;  };
 
 /** kolumny */
 @columns: 10;
 @spacing: 5px;
-.col {
-    display:        inline-block;
-    vertical-align: top;
-    margin-bottom:  @spacing;
-    padding:        5px;
-    white-space:    normal;
-    //float:          left;
-    .for(1, @columns+1); .-each(@proc) {
-        @val: `parseInt(100 / @{columns} * @{proc})`;
-        &@{val}:extend(.col) {
-            width: percentage(@val / 100);
-        };
-        &-offset@{val} {
-            margin-left: percentage(@val / 100);
-        };
+.col:extend(.inline) {
+  vertical-align: top;
+  margin-bottom:  @spacing;
+  padding:        5px;
+  white-space:    normal;
+  .for(1, @columns+1); .-each(@proc) {
+    @val: `parseInt(100 / @{columns} * @{proc})`;
+    &@{val}:extend(.col) {
+      width: percentage(@val / 100);
     };
+    &-offset@{val} {
+      margin-left: percentage(@val / 100);
+    };
+  };
 };
 .row {
-    margin: @spacing 0 @spacing 0;
-    width:  100%;
+  margin: @spacing 0 @spacing 0;
+  width:  100%;
 };
 
 /** kontener na strone */
 @page_size: 1024px;
 .container {
-    width:  @page_size;
-    margin: 0 auto;
+  width:  @page_size;
+  margin: 0 auto;
 };

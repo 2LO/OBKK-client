@@ -10,19 +10,19 @@ module Shared {
     export interface IServerResult extends ng.resource.IResource<IServerResult> {
         code: number;
         data: any;
-    };
+    }
 
     /** Wszystkie metody API */
     export interface IApi {
         User: IUserResource
         Orders: IOrderResource
-    };
+    }
     export module API {
         export function Api($resource: ng.resource.IResourceService) {
             return <IApi> {
                  User: UserResource($resource)
                , Orders: OrderResource($resource)
             };
-        };
-    };
-};
+        }
+    }
+}

@@ -1,10 +1,10 @@
 /// <reference path="./services/auth.ts" />
 /// <reference path="./services/permission.ts" />
-
 /// <reference path="./controllers/navbar.ts" />
 /// <reference path="./controllers/login.ts" />
 /// <reference path="./controllers/registration.ts" />
 /// <reference path="./controllers/calendar.ts" />
+/// <reference path="./controllers/err.ts" />
 
 /// <reference path="./directives/placeholder.ts" />
 /// <reference path="./directives/checkboxList.ts" />
@@ -45,6 +45,7 @@ module Shared {
         .controller('LoginCtrl', Controllers.Login)
         .controller('RegistrationCtrl', Controllers.Registration)
         .controller('CalendarCtrl', Controllers.Calendar)
+        .controller('ErrorCtrl', Controllers.Err)
 
         .directive('ngPlaceholder', Directives.Placeholder.factory())
         .directive('ngCheckboxList', Directives.CheckboxList.factory())

@@ -11,8 +11,9 @@ module Shared.Directives {
 
         public link: ng.IDirectiveLinkFn = (scope: ng.IScope, element: ng.IAugmentedJQuery) => {
             this.$rootScope.$on('$stateChangeSuccess', (event, toState) => {
-                toState.title
-                    && element.text(toState.title);
+                element
+                    .toggleClass('hidden', !toState.title)
+                    .text(toState.title);
             });
         };
 

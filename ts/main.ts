@@ -8,6 +8,13 @@ module Application {
         $stateProvider: ng.ui.IStateProvider
     ) {
         $stateProvider
+            /** Ekran błędu */
+            .state('error', {
+                  url: '/error/:code'
+                , templateUrl: 'views/err.html'
+                , controller: 'ErrorCtrl'
+                , title: 'Błąd:'
+            })
             .state('login', {
                   url: '/login'
                 , templateUrl: 'views/login.html'
@@ -35,6 +42,9 @@ module Application {
                 , templateUrl: 'views/calendar.html'
                 , controller: 'CalendarCtrl'
                 , title: 'Wykłady na konferencji:'
+                , data: {
+                    flags: [ 'logged' ]
+                }
             });
     }
 

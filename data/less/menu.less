@@ -1,29 +1,27 @@
 /** Menu */
 aside ul.segment {
-    padding: 0;
-    &, & ul { 
-        list-style-type: none; 
-    };
-    ul.submenu {
-        padding-left: 30px;
-    };
+  padding: 0;
+  &, & ul {
+    list-style-type: none;
+  };
+  ul.sub-menu {
+    padding-left: 30px;
+  };
 
-    @item_spacing: 20px;
-    li.item {
-        cursor:      pointer;
-        font-size:   0.9em;
+  @item_spacing: 20px;
+  li.item {
+    cursor:      pointer;
+    font-size:   0.9em;
 
-        &:first-child { padding-top: 6px;    };
-        &:last-child  { padding-bottom: 6px; };
-
-        &:not(:last-child) { margin-right: @item_spacing;       };
-        // &.active           { border-bottom: 1px solid @divider; };
+    &:first-child { padding-top: 6px;    };
+    &:last-child  { padding-bottom: 6px; };
+    &:not(:last-child) { margin-right: @item_spacing; };
+  };
+  & > li.item {
+    padding-top: 3px;
+    font-size:   1.0em;
+    i.fa {
+      margin-right: 6px;
     };
-    & > li.item {
-        padding-top: 3px;
-        font-size:   1.0em;
-        i.fa {
-            margin-right: 6px;
-        };
-    };
+  };
 };

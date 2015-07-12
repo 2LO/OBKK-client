@@ -4,7 +4,7 @@ module Shared {
         export interface ILogin {
               login: string
             , password: string
-        };
+        }
 
 
         /**
@@ -26,7 +26,7 @@ module Shared {
                     , website: string
                 }
             };
-        };
+        }
 
         /**
          * Formularz, który dokańcza rejestracje
@@ -41,8 +41,8 @@ module Shared {
                 password: string;
                 orders: string[];
             };
-        };
-    };
+        }
+    }
 
     /**
      * Token zwracany przez serwer po pomyślnym
@@ -50,7 +50,7 @@ module Shared {
      */
     export interface IUserToken extends ng.resource.IResource<IUserToken> {
         token: string;
-    };
+    }
 
     /** Interfejs, z którego dziedziczą ILoggedUser i IRegistrationUser */
     interface IUserInfo {
@@ -60,7 +60,7 @@ module Shared {
             , surname: string
             , phone: string
         };
-    };
+    }
 
     /**
      * Użytkownik wygenerowany po przetworzeniu
@@ -73,21 +73,21 @@ module Shared {
         /** Ważność tokenu */
         iat: number;
         exp: number;
-    };
+    }
 
     /** Użytkownik w formie rejestracyjnej */
     export interface IRegistrationUser extends IUserInfo, ILoggedUser {
         password: string;
         orders: string[];
         prelegant: boolean;
-    };
+    }
 
     /** Użytkownik rejestrowany przez firmę */
     export interface ICompanyUser {
         name: string;
         surname: string;
         email: string;
-    };
+    }
 
     /**
      * Interfejs resource dla rejestracji
@@ -97,7 +97,7 @@ module Shared {
         register(data: Form.IRegistration): IUserToken;
         complete(data: Form.IComplete);
         login(data: Form.ILogin): IUserToken;
-    };
+    }
 
     export module API {
         /** Akcja logowania */
@@ -132,6 +132,6 @@ module Shared {
                 , register: registerAction
                 , complete: completeAction
             });
-        };
-    };
-};
+        }
+    }
+}

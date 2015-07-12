@@ -1,70 +1,71 @@
-@import "color.less";
-@import "page.less";
+@import "color";
+@import "page";
 
 /** TODO: refactoring */
 table.calendar {
-    thead tr:first-of-type {
-        border-bottom: 2px solid @divider;
-        th:first-of-type {
-            width: 48px;
-        };
+  thead tr:first-of-type {
+    border-bottom: 2px solid @divider;
+    th:first-of-type {
+      width: 48px;
     };
-    tbody tr td:not(:first-of-type) {
-        border-bottom: 1px dotted @divider;
+  };
+  tbody tr td:not(:first-of-type) {
+    border-bottom: 1px dotted @divider;
+  };
+  th:extend(.text-center) {};
+
+  td, th {
+    padding:        5px 4px;
+    vertical-align: top;
+    .time {
+      float:      right;
+      color:      #ccc;
+      font-size:  .75em;
     };
-    th:extend(.text-center) {};
+  };
 
-    td, th {
-        padding:        5px 4px;
-        vertical-align: top;
-        .time {
-            float:      right;
-            color:      #ccc;
-            font-size:  .75em;
-        };
+  /** Notatka */
+  .note:extend(.no-select) {
+    width:       50%;
+    margin:      3px;
+    padding:     5px 3px 2px;
+    font-weight: bold;
+    cursor:      pointer;
+    background:  #444;
+    font-size:   @smallest;
+    color:       white;
+
+    &:first-child, &:last-child { width: 100%; };
+    &:extend(.col);
+
+    .footer {
+      font-size:   .9em;
+      height:      .9em;
+      font-weight: normal;
+      margin-top:  5px;
+    };
+    &:not(.placeholder) {
+      border-bottom:  2px solid rgba(0, 0, 0, 0.5);
+    };
+    &:hover {
+      filter:  alpha(opacity=80);
+      opacity: .8;
     };
 
-    /** Notatka */
-    .note:extend(.no-select) {
-        width:       50%;
-        margin:      3px;
-        padding:     5px 3px;
-        font-weight: bold;
-        cursor:      pointer;
-        background:  #444;
-        font-size:   .75em;
-        color:       white;
-
-        &:first-child, &:last-child { width: 100%; };
-        &:extend(.col);
-
-        .footer {
-            font-size:   .9em;
-            height:      .9em;
-            font-weight: normal;
-            margin-top:  5px;
-        };
-        &:not(.placeholder) {
-            border-bottom:  2px solid rgba(0, 0, 0, 0.5);
-        };
-        &:hover {
-            filter:  alpha(opacity=80);
-            opacity: .8;
-        };
-
-        /** Ikonka strzałek zwijania */
-        .content {
-            padding-top: 4px;
-            text-align:  justify;
-            display:     none;
-        };
-        &.expand {
-            .content {
-                white-space: normal;
-                display:     block;
-            };
-            i.expand-icon::after { content: '\f151'; };
-        };
-        & i.expand-icon::after { content: '\f150'; };
+    /** Ikonka strzałek zwijania */
+    .content:extend(.hidden) {
+      padding-top: 4px;
+      text-align:  justify;
+      button:first-of-type {
+        margin-top: 8px;
+      };
     };
+    .title.expand {
+      & + .content:extend(.block) {
+        white-space: normal;
+      };
+      i.expand-icon::after { content: '\f151'; };
+    };
+    & i.expand-icon::after { content: '\f150'; };
+  };
 };

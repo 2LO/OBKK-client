@@ -1,6 +1,6 @@
 mixin orders
     .header Wybrane usługi:
-    ul.input.list
+    ul.input.list.text-small
         li(ng-repeat='order in orders') 
             input(type='checkbox', ng-checkbox-value='order._id', ng-checkbox-list='form.user.orders')
             | {{ ::order.name }} ({{ ::order.price }}zł)

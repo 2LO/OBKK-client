@@ -1,10 +1,10 @@
 table.calendar
     thead
         tr
-            th Godz.
-            th Poniedziałek &nbsp; #[span.gray.smallest.text-info 7-11-2015 ]
-            th Wtorek &nbsp; #[span.gray.smallest.text-info 8-11-2015 ]
-            th Środa &nbsp; #[span.gray.smallest.text-info 9-11-2015 ]
+            th
+            th Poniedziałek &nbsp; #[span.gray.text-smallest.color-info 7-11-2015 ]
+            th Wtorek &nbsp; #[span.gray.text-smallest.color-info 8-11-2015 ]
+            th Środa &nbsp; #[span.gray.text-smallest.color-info 9-11-2015 ]
 
     tbody
         tr
@@ -19,17 +19,19 @@ table.calendar
                     .time #{val}:00
                 td
                     mixin note(content, title, c)
-                        .note(class='#{c}', ng-toggle-class='expand')
-                            .title
+                        .note(class='#{c}')
+                            .title(ng-toggle-class='expand')
                                 i.fa.fa-lg.expand-icon
                                 .span.text-center #{title}
-                            .content #{content}
+                            .content
+                                | #{content}
+                                button DUPA
                             .footer
-                                .left-floated
+                                .pull-left
                                     i.fa.fa-lg.fa-thumb-tack
                                     |   Łukasz Kurak
 
-                                .right-floated
+                                .pull-right
                                     i.fa.fa-lg.fa-clock-o
                                     |  2h:30min
 

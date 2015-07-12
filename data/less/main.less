@@ -1,19 +1,19 @@
 @import "page";
 
 /** Aktywny link */
-.header, .active { font-weight: bold; };
-.row.middle > * { 
-    vertical-align: middle; 
+.header, .active {
+  font-weight: bold;
+};
+.row.middle > * {
+  vertical-align: middle;
 };
 
 /** Panel z tytułem */
 .panel {
-    .head, .body {
-        padding: 10px;
-    };
-    .head:extend(.active) {
-        text-align: center;
-    };
+  .head, .body {
+    padding: 10px;
+  };
+  .head:extend(.active .text-center) {};
 };
 
 /** Zawartość strony */

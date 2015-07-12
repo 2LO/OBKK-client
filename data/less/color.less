@@ -14,21 +14,30 @@
 
 /** Kolory */
 .color {
-    @colors: red, green, blue, orange, purple, danger, info, turquoise, divider, spring_green, sky_blue;
-    .for(@colors); .-each(@col) {
-        &-@{col} {
-            color: @@col;
-        };
-        &-bg-@{col} {
-            background: @@col !important;
-        };
+  @colors: red, green, blue, orange, purple, danger, info, turquoise, divider, spring_green, sky_blue;
+  .for(@colors); .-each(@col) {
+    &-@{col} {
+      color: @@col;
     };
+    &-bg-@{col} {
+      background: @@col !important;
+    };
+  };
 };
 
 /** Wielkości czcionek */
-.smallest { font-size: 0.75em; };
-.small    { font-size: 0.85em; };
-.medium   { font-size: 1.0em;  };
+@smallest: .75em;
+@small:    .85em;
+@normal:   1.0em;
+@huge:     3.0em;
+@text-size: smallest, small, normal, huge;
+.text {
+  .for(@text-size); .-each(@val) {
+    &-@{val} {
+      font-size: @@val;
+    };
+  };
+};
 
 /** Rozmieszczenie tekstu */
 .text-center { text-align: center; };
@@ -36,5 +45,5 @@
 .text-right  { text-align: right;  };
 
 /** Rozmieszczenie elementów */
-.left-floated  { float: left;   };
-.right-floated { float: right;  };
+.pull-left  { float: left;  };
+.pull-right { float: right; };

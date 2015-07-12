@@ -18,17 +18,17 @@ form.form(ng-submit='fn.register()')
                 li
                     input(type='checkbox', ng-click='fn.toggleAdvanced()')
                     | administrator firmy&nbsp;
-                    span.smallest (konieczne wypełnienie dodatkowego formularza)
+                    span.text-smallest (konieczne wypełnienie dodatkowego formularza)
 
                 li(ng-show='advanced')
                     input(type='checkbox', ng-model='form.user.prelegant')
                     | prelegent&nbsp;
-                    span.smallest (stajesz się prelegentem stworzonej firmy)
+                    span.text-smallest (stajesz się prelegentem stworzonej firmy)
 
                 li(ng-show='advanced')
                     input(type='checkbox', ng-model='form.company.copyOrders')
                     | skopiuj usługi do uczestników&nbsp;
-                    span.smallest (uczestnik w potwierdzeniu może je zmienić)
+                    span.text-smallest (uczestnik w potwierdzeniu może je zmienić)
 
     fieldset.row(ng-show='advanced', ng-disabled='!advanced')
         h3.header-title Rejestracja firmy:
@@ -51,7 +51,7 @@ form.form(ng-submit='fn.register()')
                     td(style='width: 32px')
                         button.danger(ng-click='fn.removeCompanyUser(user)') #[i.fa.fa-times]
 
-            .smallest.text-gray (każdy użytkownik dostanie email'a zwrotnego z dopełnieniem rejestracji)
+            .text-smallest.text-gray (każdy użytkownik dostanie email'a zwrotnego z dopełnieniem rejestracji)
         .col100
             .col20 #[+subformField('user', 'text', 'imię', 'companyUser.name')]
             .col20 #[+subformField('user', 'text', 'nazwisko', 'companyUser.surname')]

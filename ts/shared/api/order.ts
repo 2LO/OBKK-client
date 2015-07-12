@@ -5,12 +5,12 @@ module Shared {
     export interface IOrder extends ng.resource.IResource<IOrder> {
         price: number;
         name: string;
-    };
+    }
 
     /** Interfejs resource dla zamówień */
     export interface IOrderResource extends ng.resource.IResourceClass<IOrder> {
         list(): IOrder[];
-    };
+    }
 
     export module API {
         /** Akcja logowania */
@@ -22,6 +22,6 @@ module Shared {
             return <IOrderResource> $resource('/order', {}, {
                 list: listAction
             });
-        };
-    };
-};
+        }
+    }
+}
