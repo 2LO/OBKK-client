@@ -25,3 +25,7 @@ mixin error
         .message.danger
             i.fa.fa-exclamation-triangle.fa-lg
             | &nbsp;{{ error }}
+
+mixin toolbarBtn(icon, click)
+    button.default(ng-click=click)
+        i.fa(class='fa-#{icon}')

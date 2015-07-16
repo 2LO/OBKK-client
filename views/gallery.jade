@@ -1,0 +1,39 @@
+include ./functions
+h3.header-title.toolbar
+    span.pull-left {{ pathName }}
+    span.pull-right
+        span.btn-group
+            +toolbarBtn('arrow-circle-left', 'fn.go("../")')
+            +toolbarBtn('home', 'fn.go("/")')
+            +toolbarBtn('arrow-circle-right', 'fn.go("-")')
+
+        span(ng-show='currentPath.files.length > 1')
+            strong.segment
+            span.btn-group
+                button.default( ng-repeat='p in currentPath.files'
+                                ng-class='{ active: $index == page }'
+                                ng-click='fn.openPage($index)') {{ $index }}
+
+.gallery.folders
+    .col30(ng-repeat='(title, folder) in currentPath', ng-if='title != "files" && title != "parent"')
+        .frame(ng-click='fn.go("./"+title)')
+            .placeholder(ng-if='!folder.files.length') Folder pusty
+            .text-ellipsis
+                span
+                    i.fa.fa-folder-o.fa-fw
+                    |  {{ title }}
+                span.pull-right
+                    i.fa.fa-files-o.fa-fw
+                    | {{ folder.files.length }}
+.gallery.files
+    .col100.preview(ng-show='currentFile', ng-click='currentFile = null')
+        img(src='{{ currentFile.url }}')
+
+    .col20( ng-repeat='file in currentPath.files[page]'
+            ng-toggle-class='expand'
+            ng-click='fn.openFile(file)')
+        .frame.thumbnail
+            img(src='{{ file.url }}')
+            .text-ellipsis
+                i.fa.fa-file-o.fa-fw
+                |  {{ file.name }}

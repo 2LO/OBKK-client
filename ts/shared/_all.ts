@@ -1,10 +1,13 @@
 /// <reference path="./services/auth.ts" />
 /// <reference path="./services/permission.ts" />
+/// <reference path="./services/loader.ts" />
+
 /// <reference path="./controllers/navbar.ts" />
 /// <reference path="./controllers/login.ts" />
 /// <reference path="./controllers/registration.ts" />
 /// <reference path="./controllers/calendar.ts" />
 /// <reference path="./controllers/err.ts" />
+/// <reference path="./controllers/gallery.ts" />
 
 /// <reference path="./directives/placeholder.ts" />
 /// <reference path="./directives/checkboxList.ts" />
@@ -20,6 +23,7 @@ module Shared {
     export enum Message {
           USER_LOGIN
         , USER_LOGOUT
+        , MODS_LOADED
     }
 
     let mod = angular
@@ -38,6 +42,7 @@ module Shared {
             };
         })
 
+        .service('loader', Services.Loader)
         .service('auth', Services.Auth)
         .factory('api', API.Api)
 
@@ -46,6 +51,7 @@ module Shared {
         .controller('RegistrationCtrl', Controllers.Registration)
         .controller('CalendarCtrl', Controllers.Calendar)
         .controller('ErrorCtrl', Controllers.Err)
+        .controller('GalleryCtrl', Controllers.Gallery)
 
         .directive('ngPlaceholder', Directives.Placeholder.factory())
         .directive('ngCheckboxList', Directives.CheckboxList.factory())

@@ -1,9 +1,11 @@
 *~
 .*
 !.gitignore
+!.gitkeep
 !.bowerrc
 build/
 data/ts_def/
 data/lib/
+data/img/gallery
 node_modules/
 typings/

@@ -5,6 +5,7 @@ module Shared.Directives {
     interface IToggleScope extends ng.IScope {
         className: string;
     }
+
     export class ToggleClass implements ng.IDirective {
         public restrict: string = 'A';
         public scope = {

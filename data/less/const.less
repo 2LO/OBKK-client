@@ -37,12 +37,16 @@
       font-size: @@val;
     };
   };
+  &-ellipsis {
+    text-overflow: ellipsis;
+    overflow:      hidden;
+    white-space:   nowrap;
+  };
+  /** Rozmieszczenie tekstu */
+  &-center { text-align: center; };
+  &-left   { text-align: left;   };
+  &-right  { text-align: right;  };
 };
-
-/** Rozmieszczenie tekstu */
-.text-center { text-align: center; };
-.text-left   { text-align: left;   };
-.text-right  { text-align: right;  };
 
 /** Rozmieszczenie elementów */
 .pull-left  { float: left;  };

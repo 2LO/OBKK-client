@@ -16,21 +16,23 @@ module Shared.Controllers {
         advanced: boolean;
     }
 
-    export class Registration {
+    export class Registration extends Controller {
         constructor(
               private $scope: IRegistrationScope
             , private $state: { params: { id?: string; orders?: string; } }
             , private api: IApi
         ) {
-            $scope.fn = this;
-            $scope.advanced = false;
+            super($scope, {
+                  advanced: false
+                , totalCost: 0
+            });
+
+            /** Pobieranie listy ofert cenowych */
             $scope.companyUser = {
                   name: ''
                 , surname: ''
                 , email: ''
             };
-
-            /** Pobieranie listy ofert cenowych */
             api.Orders.list().$promise.then(data => {
                 $scope.orders = data;
                 $scope.form.user.orders =
@@ -47,7 +49,6 @@ module Shared.Controllers {
              * Na podstawie modyfikacji listy z checkbox
              * sumują się listy
              */
-            $scope.totalCost = 0;
             $scope.$watchCollection('form.user.orders', orders => {
                 if($scope.orders)
                     $scope.totalCost = _.reduce(orders
@@ -104,7 +105,7 @@ module Shared.Controllers {
          * przy ng-submit w formularzu
          */
         public register() {
-            this.api.User
+            this.api.Auth
                 .register(this.$scope.form)
                 .$promise.then(
                       this.onSuccess.bind(this)
@@ -118,7 +119,7 @@ module Shared.Controllers {
         public complete() {
             let id = this.$state.params.id;
             if(id) {
-                this.api.User
+                this.api.Auth
                     .complete(<any> _(this.$scope.form).extend({id : id}))
                     .$promise.then(
                           this.onSuccess.bind(this)

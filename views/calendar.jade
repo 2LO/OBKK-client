@@ -19,14 +19,15 @@ table.calendar
                     .time #{val}:00
                 td
                     mixin note(content, title, c)
-                        .note(class='#{c}')
-                            .title(ng-toggle-class='expand')
+                        .note(class='#{c}', ng-toggle-class='expand')
+                            .title
                                 i.fa.fa-lg.expand-icon
-                                .span.text-center #{title}
+                                span #{title}
                             .content
-                                .col100 #{content}
-                                .col100
-                                    i.fa.fa-external-link.pull-right ...więcej
+                                | #{content} &nbsp;&nbsp;
+                                a(href='#/calendar/123')
+                                    i.fa.fa-external-link
+                                    | &nbsp;...więcej
                             .footer
                                 .pull-left
                                     i.fa.fa-lg.fa-thumb-tack

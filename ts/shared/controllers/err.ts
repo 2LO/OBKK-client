@@ -6,11 +6,13 @@ module Shared.Controllers {
         code: number;
         info: string;
     }
-    export class Err {
+
+    export class Err extends Controller {
         constructor(
               private $scope: ErrScope
             , private $stateParams: { code: number; }
         ) {
+            super($scope);
             $scope.code = $stateParams.code;
             $scope.info = {
                   401: 'brak uprawnień do przeglądania strony!'

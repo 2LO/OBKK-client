@@ -8,11 +8,11 @@ module Shared.Controllers {
     interface ICalendarScope extends ICtrlScope<Calendar> {
     }
 
-    export class Calendar {
+    export class Calendar extends Controller {
         constructor(
             private $scope: ICalendarScope
         ) {
-            $scope.fn = this;
+            super($scope);
         }
     }
 }

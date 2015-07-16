@@ -1,5 +1,5 @@
-@import "const";
-@import "page";
+@import "../const";
+@import "../page";
 
 /** TODO: refactoring */
 table.calendar {
@@ -47,9 +47,16 @@ table.calendar {
     &:not(.placeholder) {
       border-bottom:  2px solid rgba(0, 0, 0, 0.5);
     };
-    &:hover {
+    &:not(.expand):hover {
       filter:  alpha(opacity=80);
       opacity: .8;
+    };
+
+    /** Ikona rozwijania */
+    .title:extend(.text-ellipsis) {
+      i.fa {
+        margin-right: 5px;
+      };
     };
 
     /** Ikonka strzałek zwijania */
@@ -60,8 +67,8 @@ table.calendar {
         margin-top: 8px;
       };
     };
-    .title.expand {
-      & + .content:extend(.block) {
+    &.expand {
+      & > .content:extend(.block) {
         white-space: normal;
       };
       i.expand-icon::after { content: '\f151'; };

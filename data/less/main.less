@@ -11,7 +11,7 @@
 /** Panel z tytułem */
 .panel {
   .head, .body {
-    padding: 10px;
+    padding: 5px;
   };
   .head:extend(.active .text-center) {};
 };
@@ -23,7 +23,9 @@
 };
 
 /** Logowanie */
-@import "login";
-@import "menu";
+@import "views/login";
+@import "views/menu";
 @import "main";
-@import "calendar";
+@import "views/calendar";
+@import "views/account";
+@import "views/gallery";

@@ -1,4 +1,5 @@
 /// <reference path="../services/auth.ts" />
+/// <reference path="../services/loader.ts" />
 /// <reference path="../interfaces/custom.ts" />
 
 /**
@@ -9,25 +10,36 @@ module Shared.Controllers {
     interface INavbarScope extends ICtrlScope<Navbar>  {
         displayName: string;
         lastLogged: string;
+        mods: IModuleInfo[];
     }
 
     /**
      * Navbar zwykle nie jest przeładowywany
      * po zalogowaniu aktualizowane są wartości
      */
-    export class Navbar {
+    export class Navbar extends Controller {
         constructor(
               private $scope: INavbarScope
-            , private auth: Services.Auth
             , private $rootScope: ng.IRootScopeService
+            , private auth: Services.Auth
+            , private loader: Services.Loader
         ) {
-            $scope.fn = this;
+            super($scope);
+
+            $rootScope.$on(Message[Message.MODS_LOADED], this.loadModules.bind(this));
             $rootScope.$on(Message[Message.USER_LOGIN], this.reload.bind(this));
             this.reload();
         }
 
+        /** Wczytywanie menu modułów */
+        private loadModules() {
+            this.$scope.mods = this.loader.info;
+        }
+
         /**
-         * Ponowne wczytywanie elementu
+         * Ponowne wczytywanie elementu po
+         * zalogowaniu użytkownika bo kontroler
+         * się nie wczytuje od nowa
          */
         private reload() {
             if(this.auth.logged) {

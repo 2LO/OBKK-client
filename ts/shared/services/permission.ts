@@ -55,7 +55,7 @@ module Shared.Services {
                 /** Wymagania modułów */
                 if(data.mods 
                         && this.auth.logged
-                        && _.difference(data.mods, _.pluck(this.auth.logged.groups, 'name')).length)
+                        && _.difference(data.mods, _.pluck(this.auth.logged.mods, 'name')).length)
                     return false;
             }
             return true;
@@ -126,7 +126,7 @@ module Shared.Services {
                     console.assert(
                            encodeURI(token).split(/%..|./).length-1 < 512
                         , 'Token is too big!');
-                    (<any> config.headers).user = token
+                    (<any> config.headers).authorization = 'Bearer '.concat(token);
                 }
             });
             return config;

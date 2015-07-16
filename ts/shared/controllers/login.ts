@@ -10,14 +10,14 @@ module Shared.Controllers {
         error: string;
     }
 
-    export class Login {
+    export class Login extends Controller{
         constructor(
               private $scope: ILoginScope
             , private $state: ng.ui.IStateService
             , private $rootScope: ng.IRootScopeService
             , private auth: Services.Auth
         ) {
-            $scope.fn = this;
+            super($scope);
         }
 
         /** Funkcja wywoływana po poprawnym zalogowaniu */

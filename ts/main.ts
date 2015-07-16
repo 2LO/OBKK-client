@@ -37,11 +37,24 @@ module Application {
                 , templateUrl: 'views/registration.html'
                 , title: 'Rejestracja użytkownika:'
             })
+            .state('gallery', {
+                  url: '/gallery'
+                , templateUrl: 'views/gallery.html'
+                , controller: 'GalleryCtrl'
+            })
             .state('calendar', {
                   url: '/calendar'
                 , templateUrl: 'views/calendar.html'
                 , controller: 'CalendarCtrl'
                 , title: 'Wykłady na konferencji:'
+                , data: {
+                    flags: [ 'logged' ]
+                }
+            })
+            .state('account', {
+                  url: '/account'
+                , templateUrl: 'views/account.html'
+                , title: 'Twoje konto:'
                 , data: {
                     flags: [ 'logged' ]
                 }

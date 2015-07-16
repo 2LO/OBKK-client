@@ -71,7 +71,7 @@ module Shared.Services {
                 throw new Error('User is already logged in');
 
             return (
-                this.api.User
+                this.api.Auth
                         .login(form)
                         .$promise.then((data: { token: string }) => {
                     /** Token ładowany jest do localstorage */

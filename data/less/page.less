@@ -109,6 +109,15 @@ input[type='text'], input[type='password'], button {
   };
 };
 
+/** Linki */
+a {
+  color:           inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  };
+};
+
 /** Textbox */
 input {
   @focus: darken(@info, 10%);
@@ -132,7 +141,7 @@ button:extend(.control, .active) {
       background:    @color;
       color:         @text;
       border-color:  darken(@color, 4%);
-      &:not(.label):active {
+      &.active, &:not(.label):active {
         background: darken(@color, 10%);
       };
     };
