@@ -3,7 +3,7 @@ h3.header-title.toolbar
     span.pull-left {{ pathName }}
     span.pull-right
         span.btn-group
-            +toolbarBtn('arrow-circle-left', 'fn.go("../")')
+            +toolbarBtn('level-up', 'fn.go("../")')
             +toolbarBtn('home', 'fn.go("/")')
             +toolbarBtn('arrow-circle-right', 'fn.go("-")')
 
@@ -19,7 +19,7 @@ h3.header-title.toolbar
         .frame(ng-click='fn.go("./"+title)')
             .placeholder(ng-if='!folder.files.length') Folder pusty
             .text-ellipsis
-                span
+                span.pull-left
                     i.fa.fa-folder-o.fa-fw
                     |  {{ title }}
                 span.pull-right

@@ -6,8 +6,9 @@ mixin item(title, icon, sref)
         = title
 
 ul.segment
+    +item('Aktualności', 'newspaper-o', 'news')
     +item('Galeria', 'photo', 'gallery')
-
+    +item('Wiadomości', 'envelope-o')
 ul.segment(app-permission, app-flag='anon')
     +item('Zaloguj się', 'sign-in', 'login')
     +item('Zarejestruj się', 'user-plus', 'register.request')

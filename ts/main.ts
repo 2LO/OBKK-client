@@ -37,6 +37,10 @@ module Application {
                 , templateUrl: 'views/registration.html'
                 , title: 'Rejestracja użytkownika:'
             })
+            .state('news', {
+                  url: '/news'
+                , templateUrl: 'views/news.html'
+            })
             .state('gallery', {
                   url: '/gallery'
                 , templateUrl: 'views/gallery.html'

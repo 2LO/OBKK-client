@@ -27,6 +27,7 @@ module Shared {
                 , Orders: OrderResource($resource)
                 , Auth: AuthResource($resource)
                 , Gallery: $resource('/gallery', {}, {})
+                , News: $resource('/news', {}, {})
             };
         }
     }
