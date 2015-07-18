@@ -5,7 +5,7 @@ h3.header-title.toolbar
         span.btn-group
             +toolbarBtn('level-up', 'fn.go("../")')
             +toolbarBtn('home', 'fn.go("/")')
-            +toolbarBtn('arrow-circle-right', 'fn.go("-")')
+            +toolbarBtn('arrow-right', 'fn.go("-")')
 
         span(ng-show='currentPath.files.length > 1')
             strong.segment
@@ -15,16 +15,15 @@ h3.header-title.toolbar
                                 ng-click='fn.openPage($index)') {{ $index }}
 
 .gallery.folders
-    .col30(ng-repeat='(title, folder) in currentPath', ng-if='title != "files" && title != "parent"')
+    .col20(ng-repeat='(title, folder) in currentPath', ng-if='title != "files" && title != "parent"')
         .frame(ng-click='fn.go("./"+title)')
-            .placeholder(ng-if='!folder.files.length') Folder pusty
             .text-ellipsis
                 span.pull-left
                     i.fa.fa-folder-o.fa-fw
                     |  {{ title }}
                 span.pull-right
                     i.fa.fa-files-o.fa-fw
-                    | {{ folder.files.length }}
+                    |  {{ folder.files.length }}
 .gallery.files
     .col100.preview(ng-show='currentFile', ng-click='currentFile = null')
         img(src='{{ currentFile.url }}')

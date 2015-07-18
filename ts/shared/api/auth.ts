@@ -4,7 +4,7 @@ module Shared {
     export module Form {
         /** Formularz logowania */
         export interface ILogin {
-            login: string
+              login: string
             , password: string
         }
 
@@ -69,6 +69,9 @@ module Shared {
      * tokenu, który otrzymywany jest po zalogowaniu
      */
     export interface ILoggedUser extends IUserInfo, ng.resource.IResource<ILoggedUser> {
+        /** identyfikator użytkownika */
+        id: string;
+
         /** moduły to string może kiedyś stanie się strukturą */
         mods: string[];
 

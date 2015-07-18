@@ -1,6 +1,11 @@
 /// <reference path="../api/api.ts" />
 
 module Shared.Controllers {
+    /**
+     * Interfejsy ścieżek zwracanych z serwera
+     * url dla ułatwienia parsowania, zwiększa
+     * nieco wagę JSONa ale to nic
+     */
     interface IFile {
         url: string;
         path: string;
@@ -8,6 +13,8 @@ module Shared.Controllers {
     interface IDir {
         files: IFile[][];
     }
+
+    /** Scope galerii */
     interface IGalleryScope extends ICtrlScope<Gallery>  {
         currentPath: IDir;
         currentFile: IFile;
@@ -15,6 +22,7 @@ module Shared.Controllers {
         page: number;
     }
 
+    /** todo: Parametry URL galerii */
     interface IGalleryState extends ng.ui.IState {
         params: {
             path: string;

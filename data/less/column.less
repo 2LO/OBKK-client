@@ -10,6 +10,14 @@
 .block  { display: block; };
 .hidden { display: none;  };
 
+/** Do input'a dobry */
+.flex   {
+  display: flex;
+  &.middle {
+    align-items: baseline;
+  };
+};
+
 /** kolumny */
 @columns: 10;
 @spacing: 5px;
@@ -24,7 +32,7 @@
       width: percentage(@val / 100);
     };
     &-offset@{val} {
-      margin-left: percentage(@val / 100);
+      margin-left: percentage(@val / 100) !important;
     };
   };
 };

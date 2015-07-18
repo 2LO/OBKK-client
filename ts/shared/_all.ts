@@ -8,6 +8,7 @@
 /// <reference path="./controllers/calendar.ts" />
 /// <reference path="./controllers/err.ts" />
 /// <reference path="./controllers/gallery.ts" />
+/// <reference path="./controllers/news.ts" />
 
 /// <reference path="./directives/placeholder.ts" />
 /// <reference path="./directives/checkboxList.ts" />
@@ -52,6 +53,7 @@ module Shared {
         .controller('CalendarCtrl', Controllers.Calendar)
         .controller('ErrorCtrl', Controllers.Err)
         .controller('GalleryCtrl', Controllers.Gallery)
+        .controller('NewsCtrl', Controllers.News)
 
         .directive('ngPlaceholder', Directives.Placeholder.factory())
         .directive('ngCheckboxList', Directives.CheckboxList.factory())

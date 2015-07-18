@@ -1,0 +1,39 @@
+@import "../const";
+
+.shoutbox .shout {
+  padding:       5px 5px 0;
+  width:         100%;
+  border-bottom: 1px dotted @info;
+  i {
+    margin-right: 5px;
+  };
+  .content {
+    margin: 0 0 5px;
+    text-align: justify;
+  };
+  div {
+    margin-bottom: 0px;
+  };
+};
+
+.group {
+  margin-bottom: 5px;
+  .content {
+    text-align:    justify;
+    font-size:     @small;
+  };
+  .news:not(:last-child) {
+    border-bottom: 1px dotted @info;
+  };
+  .news {
+    font-size:   0.85em;
+    &:not(:first-child) {
+      margin-left: 16px;
+      .fa { display: none; };
+    };
+    span.date:extend(.pull-right, .text-smallest) {};
+  };
+  * {
+    margin: 0;
+  };
+};

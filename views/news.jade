@@ -1,1 +1,41 @@
-| DUPA
+// Panel wysyłania wiadomości
+logged-only
+    .row.flex.middle
+        .col80
+            .labeled.icon
+                i(class='right fa fa-share')
+                input(type='text', placeholder='Wiadomość', ng-model='form.message')
+
+        .segment.col20
+            .left.labeled
+                button.default(ng-click='fn.sendFeed()') Wyślij!
+                .label.fa.fa-paper-plane
+
+
+.row
+    .col60.shoutbox
+        .text-center.color-divider(ng-hide='data.posts.length') Brak informacji :(
+
+        .shout(ng-repeat='feed in data.posts')
+            .col10.text-center
+                i.fa.fa-newspaper-o.fa-2x
+            .col90
+                .content {{ feed.data.msg }}
+                .text-right
+                    i.fa.fa-thumb-tack
+                    strong {{ feed.user.info.name+' '+feed.user.info.surname }}
+                    span.color-divider.pull-left {{ feed.date }}
+
+    .col40.logs
+        h4.header-title Aktywność użytkowników:
+        .group(ng-repeat='group in data.news')
+            .news(ng-repeat='feed in group')
+                .col10.text-center
+                    .fa.fa-save.fa-1x
+                .col90
+                    .text-small
+                        strong {{ feed.user.info.name+' '+feed.user.info.surname }}
+                        span.date.color-info {{ feed.date }}
+                    .content(ng-switch='feed.type')
+                        div(ng-switch-when='1') zarejestrował się do serwisu!
+                        div(ng-switch-when='2') zarejestrował firmę #[i {{ feed.data.company.name }}]!

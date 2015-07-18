@@ -1,5 +1,6 @@
 /// <reference path="./user.ts" />
 /// <reference path="./order.ts" />
+/// <reference path="./news.ts" />
 /// <reference path="./auth.ts"/>
 
 module Shared {
@@ -16,18 +17,19 @@ module Shared {
     /** Wszystkie metody API */
     export interface IApi {
         User: IUserResource;
-        Orders: IOrderResource;
         Auth: IAuthResource;
-        Gallery: ng.resource.IResourceClass<any>
+        Orders: IOrderResource;
+        News: INewsResource;
+        Gallery: ng.resource.IResourceClass<any>;
     }
     export module API {
         export function Api($resource: ng.resource.IResourceService) {
             return <IApi> {
                   User: UserResource($resource)
-                , Orders: OrderResource($resource)
                 , Auth: AuthResource($resource)
+                , Orders: OrderResource($resource)
+                , News: NewsResource($resource)
                 , Gallery: $resource('/gallery', {}, {})
-                , News: $resource('/news', {}, {})
             };
         }
     }

@@ -33,7 +33,7 @@ module Shared.Controllers {
                 , surname: ''
                 , email: ''
             };
-            api.Orders.list().$promise.then(data => {
+            api.Orders.get().$promise.then(data => {
                 $scope.orders = data;
                 $scope.form.user.orders =
                         $state.params.orders

@@ -40,6 +40,8 @@ module Application {
             .state('news', {
                   url: '/news'
                 , templateUrl: 'views/news.html'
+                , controller: 'NewsCtrl'
+                , title: 'Aktualności systemu:'
             })
             .state('gallery', {
                   url: '/gallery'
