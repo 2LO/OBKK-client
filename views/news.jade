@@ -2,29 +2,60 @@
 logged-only
     .row.flex.middle
         .col80
-            .labeled.icon
-                i(class='right fa fa-share')
-                input(type='text', placeholder='Wiadomość', ng-model='form.message')
+            .row
+                .labeled.icon
+                    i(class='right fa fa-share')
+                    input(type='text', placeholder='Wiadomość', ng-model='form.message')
+
+            .row
+                span
+                    span.segment Ikonki:
+                    span.btn-group
+                        mixin templates(icons)
+                            each icon in icons
+                                -icon = 'fa fa-' + icon;
+                                button.default(ng-click='form.message = form.message + " <i class=\'#{icon}\'></i> "')
+                                    i(class=icon)
+                        +templates([
+                              'smile-o'
+                            , 'quote-left'
+                            , 'quote-right'
+                            , 'thumbs-o-up'
+                            , 'file-text-o'
+                            , 'cut'
+                            , 'plane'
+                            , 'user'
+                            , 'users'
+                            , 'wifi'
+                        ])
+                span.pull-right.color-divider.text-small
+                    | Znaków: {{ form.message.length }}
 
         .segment.col20
             .left.labeled
                 button.default(ng-click='fn.sendFeed()') Wyślij!
                 .label.fa.fa-paper-plane
 
-
 .row
     .col60.shoutbox
         .text-center.color-divider(ng-hide='data.posts.length') Brak informacji :(
 
-        .shout(ng-repeat='feed in data.posts')
-            .col10.text-center
-                i.fa.fa-newspaper-o.fa-2x
-            .col90
-                .content {{ feed.data.msg }}
-                .text-right
-                    i.fa.fa-thumb-tack
-                    strong {{ feed.user.info.name+' '+feed.user.info.surname }}
-                    span.color-divider.pull-left {{ feed.date }}
+        // Shout na tablicy
+        mixin shout(html, date, userName)
+            .shout
+                .col10.text-center
+                    i.fa.fa-newspaper-o.fa-2x
+                .col90
+                    .content(ng-bind-html=html + ' | trustHtml')
+                    .text-right.text-small
+                        i.fa.fa-thumb-tack
+                        strong= date
+                        span.color-divider.pull-left= userName
+
+        div(ng-show='form.message.length', style='margin-bottom: 32px')
+            +shout('form.message', 'Podgląd posta', 'Teraz')
+        div(ng-repeat='feed in data.posts')
+            +shout('feed.data.msg', '{{ feed.user.info.name+" "+feed.user.info.surname }}', '{{ feed.date }}')
 
     .col40.logs
         h4.header-title Aktywność użytkowników:

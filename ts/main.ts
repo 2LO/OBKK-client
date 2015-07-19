@@ -64,6 +64,14 @@ module Application {
                 , data: {
                     flags: [ 'logged' ]
                 }
+            })
+            .state('inbox', {
+                  url: '/inbox'
+                , templateUrl: 'views/inbox.html'
+                , title: 'Skrzynka pocztowa:'
+                , data: {
+                    flags: [ 'logged' ]
+                }
             });
     }
 

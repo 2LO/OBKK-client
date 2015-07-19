@@ -155,10 +155,9 @@ button:extend(.control, .active) {
 .btn-group {
   margin: 0 5px;
   button {
-    &:not(:first-child):not(:last-child) {
-      border-radius: 0;
-      border-right:  0;
-      border-left:   0;
+    border-radius: 0;
+    &:not(:last-child) {
+      border-right: 0;
     };
     &:first-of-type {
       border-top-right-radius:    0;

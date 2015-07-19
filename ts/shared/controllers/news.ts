@@ -62,6 +62,7 @@ module Shared.Controllers {
                         msg: this.$scope.form.message
                     }
                 }, _(this.$timeout).partial(this.reload.bind(this), 400));
+            this.$scope.form.message = '';
         }
     }
 }

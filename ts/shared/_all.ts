@@ -16,6 +16,7 @@
 /// <reference path="./directives/alias.ts" />
 /// <reference path="./directives/title.ts" />
 /// <reference path="./directives/toggleClass.ts" />
+/// <reference path="./directives/filters.ts" />
 
 module Shared {
     'use strict';
@@ -60,7 +61,8 @@ module Shared {
 
         .directive('appPermission', Directives.Permission.factory())
         .directive('appTitle', Directives.Title.factory())
-        .directive('ngToggleClass', Directives.ToggleClass.factory());
+        .directive('ngToggleClass', Directives.ToggleClass.factory())
+        .filter('trustHtml', Filters.trustHtml);
 
     /** Dodawanie alliasów */
     _(Directives.aliases).each((val: any, attribute: string) => {

@@ -1,14 +1,16 @@
 h3.header OBKK 2.0
 //- img(style='max-height: 128px; width: auto;', src='img/logo.png')
-mixin item(title, icon, sref)
+mixin item(title, icon, sref, href)
     li.item(ui-sref=sref, ui-sref-active='active')&attributes(attributes)
-        i.fa(class="fa-#{icon} fa-fw")
-        = title
+        a(href=href)
+            i.fa(class="fa-#{icon} fa-fw")
+            = title
 
 ul.segment
     +item('Aktualności', 'newspaper-o', 'news')
     +item('Galeria', 'photo', 'gallery')
-    +item('Wiadomości', 'envelope-o')
+    +item('Informacje', 'info')
+
 ul.segment(app-permission, app-flag='anon')
     +item('Zaloguj się', 'sign-in', 'login')
     +item('Zarejestruj się', 'user-plus', 'register.request')
@@ -19,6 +21,7 @@ logged-only
         +item('Wyloguj się', 'sign-out')(ng-click='fn.logout()')
 
     ul.segment
+        +item('Wiadomości', 'envelope-o', 'inbox')
         +item('Kalendarz', 'calendar', 'calendar')
         li.item(ng-repeat='mod in mods', ui-sref='{{ mod.menu.ref }}', ui-sref-active='active')
             i.fa(class="fa-{{ mod.menu.icon }} fa-fw")
@@ -28,4 +31,9 @@ logged-only
                 | {{ link.title }}
 
 ul.segment
-    +item('Informacje', 'info')
+    +item('Github', 'github', '', 'http://github.com/2LO')
+    +item('Facebook', 'facebook-f', '', 'https://www.facebook.com/OdBecikaKazdyKlika')
+    span.about
+        div Wersja: 0.1
+        div Skin: main.css
+        div Autor: Mateusz Bagiński
