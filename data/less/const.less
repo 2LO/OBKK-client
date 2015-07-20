@@ -37,24 +37,26 @@
       font-size: @@val;
     };
   };
-  &-ellipsis {
-    text-overflow: ellipsis;
-    overflow:      hidden;
-    white-space:   nowrap;
-  };
-  /** Rozmieszczenie tekstu */
-  &-center  { text-align: center; };
-  &-left    { text-align: left;   };
-  &-right   { text-align: right;  };
-  &-justify {
-    text-align: justify;
-    word-break: break-all;
-  };
-
-  &-italic    { font-style: italic;         };
-  &-bold      { font-weight: bold;          };
-  &-underline { text-decoration: underline; };
 };
+
+/** Rozmieszczenie tekstu BUG w LESS nie mogę &-*/
+.text-center  { text-align: center; };
+.text-left    { text-align: left;   };
+.text-right   { text-align: right;  };
+.text-justify {
+  text-align: justify;
+  word-break: break-all;
+};
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow:      hidden;
+  white-space:   nowrap;
+  word-wrap:     break-word;
+};
+
+.text-italic    { font-style: italic;         };
+.text-bold      { font-weight: bold;          };
+.text-underline { text-decoration: underline; };
 
 /** Rozmieszczenie elementów */
 .pull-left  { float: left;  };

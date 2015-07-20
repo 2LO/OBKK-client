@@ -1,10 +1,7 @@
+include ./functions
+
 h3.header OBKK 2.0
 //- img(style='max-height: 128px; width: auto;', src='img/logo.png')
-mixin item(title, icon, sref, href)
-    li.item(ui-sref=sref, ui-sref-active='active')&attributes(attributes)
-        a(href=href)
-            i.fa(class="fa-#{icon} fa-fw")
-            = title
 
 ul.segment
     +item('Aktualności', 'newspaper-o', 'news')

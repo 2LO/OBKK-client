@@ -1,3 +1,4 @@
+// Lista checkboxów z zamówieniami
 mixin orders
     .header Wybrane usługi:
     ul.input.list.text-small
@@ -8,6 +9,7 @@ mixin orders
     .divider.vertical
     | Łączny koszt: #[strong {{ totalCost }}]zł
 
+// Pole formularza
 mixin formField(header, icon, type, placeholder, model)
     .header.small #{header}:
         .left.labeled.icon
@@ -15,17 +17,28 @@ mixin formField(header, icon, type, placeholder, model)
             input(type=type, placeholder=placeholder, ng-model=model, required)&attributes(attributes)
             .label.corner.star
 
+// Zagnieżdżone pole formularza
 mixin subformField(icon, type, placeholder, model)
     .labeled.icon
         i(class='left fa fa-#{icon}')
         input(type=type, placeholder=placeholder, ng-model=model)&attributes(attributes)
 
+// Dymek błędu
 mixin error
     .col100(ng-show='error') 
         .message.danger
             i.fa.fa-exclamation-triangle.fa-lg
             | &nbsp;{{ error }}
 
-mixin toolbarBtn(icon, click)
+// Przycisk w toolbarze
+mixin toolbarBtn(icon, click, text)
     button.default(ng-click=click)
         i.fa(class='fa-#{icon}')
+        =text
+
+// Element menu
+mixin item(title, icon, sref, href)
+    li.item(ui-sref=sref, ui-sref-active='active')&attributes(attributes)
+        a(href=href)
+            i.fa(class="fa-#{icon} fa-fw")
+            = title

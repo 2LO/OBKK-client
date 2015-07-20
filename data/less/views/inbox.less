@@ -1,0 +1,19 @@
+@import "../page";
+@import "../const";
+
+table.inbox {
+  thead tr th {
+
+  };
+  tr {
+    cursor: pointer;
+    &.read {
+      background: #fbfbfb;
+    };
+    &:hover {
+      .text-bold;
+    };
+    td:extend(.text-ellipsis) {
+    };
+  };
+};
