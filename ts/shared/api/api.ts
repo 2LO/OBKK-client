@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts" />
 /// <reference path="./user.ts" />
 /// <reference path="./order.ts" />
 /// <reference path="./news.ts" />
@@ -32,5 +33,6 @@ module Shared {
                 , Gallery: $resource('/gallery', {}, {})
             };
         }
+        mod.factory('api', Api);
     }
 }

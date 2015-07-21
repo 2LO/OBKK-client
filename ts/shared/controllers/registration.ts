@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts"/>
 /// <reference path="../api/api.ts" />
 
 /**
@@ -128,4 +129,5 @@ module Shared.Controllers {
                 throw new Error('Cannot complete registration!');
         }
     }
+    mod.controller('RegistrationCtrl', Registration);
 }

@@ -41,4 +41,5 @@ module Shared.Controllers {
                 });
         }
     }
+    mod.controller('LoginCtrl', Login);
 }

@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts"/>
 /// <reference path="../api/api.ts" />
 
 module Shared.Controllers {
@@ -65,4 +66,5 @@ module Shared.Controllers {
             this.$scope.form.message = '';
         }
     }
+    mod.controller('NewsCtrl', News);
 }

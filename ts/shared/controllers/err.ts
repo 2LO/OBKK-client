@@ -20,4 +20,5 @@ module Shared.Controllers {
             }[$scope.code];
         }
     }
+    mod.controller('ErrorCtrl', Err);
 }

@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts"/>
 /// <reference path="../services/auth.ts" />
 /// <reference path="../services/loader.ts" />
 /// <reference path="../interfaces/custom.ts" />
@@ -57,4 +58,5 @@ module Shared.Controllers {
             this.$rootScope.$broadcast(Message[Message.USER_LOGOUT]);
         }
     }
+    mod.controller('NavbarCtrl', Navbar);
 }

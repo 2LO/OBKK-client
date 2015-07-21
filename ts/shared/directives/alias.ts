@@ -16,4 +16,10 @@ module Shared.Directives {
             , 'anonOnly':   '{flags: [\'anon\']}'
         }
     };
+    /** Dodawanie alliasów */
+    _(Directives.aliases).each((val: any, attribute: string) => {
+        _(val).each((val: string, alliasName: string) => {
+            mod.directive(alliasName, Directives.createAlias(attribute, val));
+        });
+    });
 }

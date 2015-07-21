@@ -48,4 +48,5 @@ module Shared.Directives {
             return () => new CheckboxList;
         }
     }
+    mod.directive('ngCheckboxList', CheckboxList.factory());
 }

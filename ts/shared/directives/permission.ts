@@ -63,4 +63,5 @@ module Shared.Directives {
             return ($state, $rootScope, permission) => new Permission($state, $rootScope, permission);
         }
     }
+    mod.directive('appPermission', Directives.Permission.factory());
 }

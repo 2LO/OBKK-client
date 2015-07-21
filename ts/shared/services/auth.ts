@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts"/>
 /// <reference path="../api/api.ts" />
 
 /**
@@ -90,4 +91,5 @@ module Shared.Services {
             this.user = null;
         }
     }
+    mod.service('auth', Auth);
 }

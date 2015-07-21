@@ -136,4 +136,8 @@ module Shared.Services {
             return ($injector) => new AuthInterceptor($injector);
         }
     }
+    mod
+        .factory('authInterceptor', AuthInterceptor.factory())
+        .service('permission', Permission)
+        .run(statePermission);
 }

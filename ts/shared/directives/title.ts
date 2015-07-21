@@ -18,7 +18,8 @@ module Shared.Directives {
         };
 
         static factory(): ng.IDirectiveFactory {
-            return ($rootScope) => new Title($rootScope);
+            return $rootScope => new Title($rootScope);
         }
     }
+    mod.directive('appTitle', Directives.Title.factory());
 }

@@ -22,4 +22,5 @@ module Shared.Directives {
             return () => new ToggleClass;
         }
     }
+    mod.directive('ngToggleClass', Directives.ToggleClass.factory());
 }

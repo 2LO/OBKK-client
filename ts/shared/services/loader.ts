@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts" />
 /// <reference path="../api/api.ts" />
 /// <reference path="./auth.ts" />
 
@@ -31,4 +32,5 @@ module Shared.Services {
             return this.userData;
         }
     }
+    mod.service('loader', Loader);
 }

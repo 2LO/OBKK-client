@@ -1,3 +1,4 @@
+/// <reference path="../_all.ts"/>
 /// <reference path="../api/api.ts" />
 
 module Shared.Controllers {
@@ -50,21 +51,11 @@ module Shared.Controllers {
         }
 
         /** Dane galerii odebrane z serwera */
-        private elementsPerPage: number = 30;
         private data: any = {};
 
         /** Aktualna ścieżka */
         public get current(): IDir     { return this.$scope.currentPath; }
         public set current(path: IDir) { this.$scope.currentPath = path; }
-
-        /**
-         * Otwieranie strony
-         * @param {number} index Index strony
-         */
-        public openPage(index: number) {
-            this.$scope.page = !this.current || index > this.current.files.length ? 0 : index;
-            return this;
-        }
 
         public openFile(file: IFile) {
             this.$scope.currentFile = file;
@@ -110,15 +101,9 @@ module Shared.Controllers {
 
             /** Dzielenie listy na chunks */
             this.current = <any> _(this.current).clone();
-            this.current.files = <any>
-                _(this.current.files)
-                    .chain()
-                    .groupBy((e, index) => {
-                        return Math.floor(index / this.elementsPerPage);
-                    })
-                    .toArray()
-                    .value();
+            this.current.files = <any> this.current.files;
             return this.current;
         }
     }
+    mod.controller('GalleryCtrl', Gallery);
 }

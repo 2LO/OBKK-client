@@ -46,4 +46,5 @@ module Shared.Directives {
             return () => new Placeholder;
         }
     }
+    mod.directive('ngPlaceholder', Directives.Placeholder.factory());
 }

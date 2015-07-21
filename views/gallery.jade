@@ -1,4 +1,5 @@
 include ./functions
+
 h3.header-title.toolbar
     span.pull-left {{ pathName }}
     span.pull-right
@@ -7,12 +8,8 @@ h3.header-title.toolbar
             +toolbarBtn('home', 'fn.go("/")')
             +toolbarBtn('arrow-right', 'fn.go("-")')
 
-        span(ng-show='currentPath.files.length > 1')
-            strong.segment
-            span.btn-group
-                button.default( ng-repeat='p in currentPath.files'
-                                ng-class='{ active: $index == page }'
-                                ng-click='fn.openPage($index)') {{ $index }}
+        strong.segment
+        span(app-tabs-buttons)
 
 .gallery.folders
     .col20(ng-repeat='(title, folder) in currentPath', ng-if='title != "files" && title != "parent"')
@@ -28,7 +25,8 @@ h3.header-title.toolbar
     .col100.preview(ng-show='currentFile', ng-click='currentFile = null')
         img(src='{{ currentFile.url }}')
 
-    .col20( ng-repeat='file in currentPath.files[page]'
+    .col20( app-tabs='file in currentPath.files'
+            app-tabs-visible='40'
             ng-toggle-class='expand'
             ng-click='fn.openFile(file)')
         .frame.thumbnail

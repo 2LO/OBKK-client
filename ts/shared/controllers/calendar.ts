@@ -1,3 +1,5 @@
+/// <reference path="../_all.ts"/>
+
 /**
  * Kontroller kalendarza, kalendarz
  * posiada różne tryby np. pokazanie
@@ -15,4 +17,5 @@ module Shared.Controllers {
             super($scope);
         }
     }
+    mod.controller('CalendarCtrl', Calendar);
 }
