@@ -3,6 +3,7 @@
 /// <reference path="./order.ts" />
 /// <reference path="./news.ts" />
 /// <reference path="./auth.ts"/>
+/// <reference path="./inbox.ts"/>
 
 module Shared {
     /** 
@@ -21,6 +22,7 @@ module Shared {
         Auth: IAuthResource;
         Orders: IOrderResource;
         News: INewsResource;
+        Inbox: IInboxResource;
         Gallery: ng.resource.IResourceClass<any>;
     }
     export module API {
@@ -30,6 +32,7 @@ module Shared {
                 , Auth: AuthResource($resource)
                 , Orders: OrderResource($resource)
                 , News: NewsResource($resource)
+                , Inbox: InboxResource($resource)
                 , Gallery: $resource('/gallery', {}, {})
             };
         }

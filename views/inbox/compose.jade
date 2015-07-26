@@ -1,0 +1,30 @@
+include ../functions
+
+.row
+    +error
+form.row(ng-submit='fn.sendMail()')
+    .col30
+        .header.small Odbiorcy:
+        ul.input.list.text-small
+            li(ng-repeat='user in receivers')
+                input(  type='checkbox'
+                        ng-checkbox-value='user._id'
+                        ng-checkbox-list='form.receiver')
+                i.fa.fa-user
+                |   {{ user.info.fullName }}
+    .col70
+        .col100
+            +formField('Tytuł', 'pencil', 'text', 'Tytuł', 'form.title')
+        .col100
+            .header.small Wiadomość:
+            .left.labeled.icon
+                i(class='right fa fa-pencil')
+                textarea(rows='15', placeholder='Wiadomość', ng-model='form.body', required)
+                .label.corner.star
+            .row
+                .letter-count Znaków: {{ form.body.length }}
+
+        .col100
+            .left.labeled
+                button.danger(type='submit') Wyślij
+                .label.fa.fa-send

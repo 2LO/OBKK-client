@@ -2,7 +2,7 @@
 
 module Shared {
     /** Interfejs zamówienia */
-    export interface IOrder extends ng.resource.IResource<IOrder[]> {
+    export interface IOrder extends ng.resource.IResource<IOrder> {
         price: number;
         name: string;
     }
@@ -17,7 +17,7 @@ module Shared {
         };
         export function OrderResource($resource: ng.resource.IResourceService) {
             return <IOrderResource> $resource('/order', {}, {
-                get: listAction
+                query: listAction
             });
         }
     }

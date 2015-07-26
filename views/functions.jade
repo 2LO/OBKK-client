@@ -12,10 +12,10 @@ mixin orders
 // Pole formularza
 mixin formField(header, icon, type, placeholder, model)
     .header.small #{header}:
-        .left.labeled.icon
-            i(class='right fa fa-#{icon}')
-            input(type=type, placeholder=placeholder, ng-model=model, required)&attributes(attributes)
-            .label.corner.star
+    .left.labeled.icon
+        i(class='right fa fa-#{icon}')
+        input(type=type, placeholder=placeholder, ng-model=model, required)&attributes(attributes)
+        .label.corner.star
 
 // Zagnieżdżone pole formularza
 mixin subformField(icon, type, placeholder, model)

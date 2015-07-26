@@ -41,19 +41,17 @@ module Shared.Controllers {
         private loadNews(data: INewsGroup) {
             /** Grupowanie tylko newsów */
             (this.$scope.data = data)
-                .news = <any> _(data.news)
-                    .chain()
-                    .groupBy(feed => {
+                .news = <any>
+                    (<any>_(data.news)).groupFlatten(feed => {
                         return feed.user._id;
-                    })
-                    .toArray()
-                    .value();
+                    });
         }
 
         /**
          * Wysyłanie wiadomości na stronę
          * aktualności, powinno automatycznie
          * się dodać na głównej
+         *
          */
         public sendFeed() {
             this.api.News

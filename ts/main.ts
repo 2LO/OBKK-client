@@ -29,12 +29,12 @@ module Application {
             })
             .state('register.complete', {
                   url: '/complete?id&orders'
-                , templateUrl: 'views/registrationComplete.html'
+                , templateUrl: 'views/registration/complete.html'
                 , title: 'Dopełnienie rejestracji:'
             })
             .state('register.request', {
                   url: '/request'
-                , templateUrl: 'views/registration.html'
+                , templateUrl: 'views/registration/registration.html'
                 , title: 'Rejestracja użytkownika:'
             })
             .state('news', {
@@ -66,11 +66,27 @@ module Application {
             })
             .state('inbox', {
                   url: '/inbox'
-                , templateUrl: 'views/inbox.html'
+                , templateUrl: 'views/inbox/inbox.html'
+                , controller: 'InboxCtrl'
                 , title: 'Skrzynka pocztowa:'
                 , data: {
                     flags: [ 'logged' ]
                 }
+            })
+            .state('inbox.folder', {
+                  url: '/folder/:folder'
+                , templateUrl: 'views/inbox/folder.html'
+                , controller: 'InboxCtrl.FolderCtrl'
+            })
+            .state('inbox.compose', {
+                  url: '/compose'
+                , templateUrl: 'views/inbox/compose.html'
+                , controller: 'InboxCtrl.ComposeCtrl'
+            })
+            .state('inbox.folder.message', {
+                  url: '/message/:message'
+                , templateUrl: 'views/inbox/view.html'
+                , controller: 'InboxCtrl.ViewCtrl'
             });
     }
 
@@ -86,6 +102,12 @@ module Application {
         .config(config);
 }
 (() => {
+    /** Prototypy */
+    (<any> Array.prototype).last = function() {
+        return this[this.length - 1];
+    };
+
+    /** Startowanie aplkacji */
     angular
         .element(document)
         .ready(angular.bootstrap.bind(null, document, [ 'app' ]));

@@ -79,28 +79,32 @@ input[type='text'], input[type='password'], button {
   };
   &.right {
     .label { right: 0; };
-    button, input { padding-right: @label_size; };
+    button, input, textarea { padding-right: @label_size; };
   };
   &.left {
     .label { left: 0; };
-    button, input { padding-left: @label_size; }
+    button, input, textarea { padding-left: @label_size; }
   };
-  i.right+input { &:extend(.labeled.right input); };
-  i.left+input  { &:extend(.labeled.left input);  };
+  i.right {
+    &+input, &+textarea { &:extend(.labeled.right input); }
+  };
+  i.left {
+    &+input, &+textarea { &:extend(.labeled.left input); }
+  };
 
-  input, button {
+  input, button, textarea {
     &:extend(.icon input);
     width: 100%;
     &+.label:extend(.icon i, &.right) {
       .corner {
-        left: 0;
+        left:  0;
         width: 100%;
       };
-      &.star::after:extend(.corner) { content: '*'; };
-
+      &.star::after:extend(.corner) {
+        content: '*';
+      };
       color:      black;
       top:        0;
-      //background: @info;
     };
   };
   button+.label {
@@ -119,7 +123,7 @@ a {
 };
 
 /** Textbox */
-input {
+input, textarea {
   @focus: darken(@info, 10%);
   box-shadow: none;
 
@@ -152,33 +156,46 @@ button:extend(.control, .active) {
   .create(green, @spring_green, white);
   .create(blue, @sky_blue, white);
 };
+
+/** Grupy przycisków */
 .btn-group {
   margin: 0 5px;
-  button {
-    border-radius: 0;
-    &:not(:last-child) {
-      border-right: 0;
-    };
-    &:first-of-type {
-      border-top-right-radius:    0;
-      border-bottom-right-radius: 0;
-    };
-    &:last-of-type {
-      border-top-left-radius:    0;
-      border-bottom-left-radius: 0;
+  &:not(.horizontal) button:not(:last-of-type) {
+    border-right: 0;
+  };
+  &.horizontal button {
+    width: 100%;
+    &:not(:last-of-type) {
+      border-bottom: 0;
     };
   };
 };
-.label {
-  cursor:        default;
-  font-weight:   bold;
-};
 
 /** Lista */
-ul.input.list {
+.clean-list {
   list-style-type: none;
   padding:         0;
   margin:          0;
+};
+ul.input.list:extend(.clean-list) {  };
+
+.drop-menu {
+  cursor: pointer;
+  ul {
+    display: none;
+  };
+  & > a.active:first-of-type ~ ul:extend(.clean-list) {
+    padding:    5px;
+    position:   absolute;
+    display:    block;
+    background: white;
+  };
+};
+
+/** Menu rozwijane */
+.label {
+  cursor:        default;
+  font-weight:   bold;
 };
 
 /** Tabele */
@@ -240,4 +257,25 @@ table {
   color:    @color;
   padding:  5px;
   overflow: hidden;
+};
+
+/** Grupowanie elementów listy */
+.group {
+  margin-bottom: 5px;
+  .content {
+    text-align: justify;
+    font-size: @small;
+  };
+  & > div:not(:first-child) {
+    padding-left: 16px;
+  };
+  * {
+    margin: 0;
+  };
+};
+
+/** Licznik słów */
+.letter-count:extend(.pull-right, .text-right) {
+  color:     @info;
+  font-size: @small;
 };

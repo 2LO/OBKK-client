@@ -34,7 +34,7 @@ module Shared.Controllers {
                 , surname: ''
                 , email: ''
             };
-            api.Orders.get().$promise.then(data => {
+            api.Orders.query().$promise.then(data => {
                 $scope.orders = data;
                 $scope.form.user.orders =
                         $state.params.orders

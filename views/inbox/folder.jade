@@ -1,0 +1,18 @@
+.inbox
+    div(ui-view='')
+    .row
+        .text-center.color-info(ng-hide='headers.length') Nie otrzymałeś jeszcze żadnej wiadomości
+        .group( app-tabs='group in headers'
+                app-tabs-visible='30')
+            .mail(  ng-repeat='header in group'
+                    ui-sref='.message({message: header._id})'
+                    ui-sref-active='active'
+                    ng-class='{ "text-bold": !header.read }')
+                .col30
+                    input(type='checkbox')
+                    i.segment.fa.fa-envelope-o
+                    | {{ header.fullName }}
+                .col40 #[.text-underline {{ header.title }}]
+                .col30 {{ header.date }}
+    .row
+        .pull-right(app-tabs-buttons)

@@ -17,7 +17,7 @@ module Shared {
         export interface IRegistration {
             user: IRegistrationUser;
             company?: {
-                name: string
+                  name: string
                 , users: ICompanyUser[]
                 , nip: string
                 , copyOrders: boolean /** kopiuje zamówienia admina do uczestników */
@@ -70,7 +70,7 @@ module Shared {
      */
     export interface ILoggedUser extends IUserInfo, ng.resource.IResource<ILoggedUser> {
         /** identyfikator użytkownika */
-        id: string;
+        _id: string;
 
         /** moduły to string może kiedyś stanie się strukturą */
         mods: string[];
@@ -108,19 +108,19 @@ module Shared {
     export module API {
         /** Akcja logowania */
         let loginAction: ng.resource.IActionDescriptor = {
-            method: 'POST'
+              method: 'POST'
             , params: { action: 'login' }
         };
 
         /** Akcja rejestrowania */
         let registerAction: ng.resource.IActionDescriptor = {
-            method: 'PUT'
+              method: 'PUT'
             , params: { action: 'register' }
         };
 
         /** Akcja rejestrowania */
         let completeAction: ng.resource.IActionDescriptor = {
-            method: 'PUT'
+              method: 'PUT'
             , url: '/auth/:action/:id'
             , params: {
                   action: 'register'

@@ -24,14 +24,17 @@ module Shared {
         });
 
     _.mixin({
-        chunk: function(array: any[], size: number) {
-            return _(array)
-                .chain()
-                .groupBy((e, index) => {
-                    return Math.floor(index / size);
-                })
-                .toArray()
-                .value();
+          groupFlatten: function(array: any[], callback) {
+              return <any> _(array)
+                  .chain()
+                  .groupBy(callback)
+                  .toArray()
+                  .value();
+        }
+        , chunk: function(array: any[], size: number) {
+            return this.groupFlatten(array, (e, index) => {
+                return Math.floor(index / size);
+            });
         }
     });
 }

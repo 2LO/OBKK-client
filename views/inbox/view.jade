@@ -1,0 +1,29 @@
+include ../functions
+
+.row
+    .col80.mail-headers
+        mixin headerTitle(label, field)
+            .header
+                .col20= label
+                .col80 {{ #{field} }}
+        .col100
+            +headerTitle('Data:', 'data.date')
+            +headerTitle('Nadawca:', 'data.sender.info.fullName')
+            +headerTitle('Odbiorca:', 'data.receiver.info.fullName')
+            +headerTitle('Tytuł:', 'data.title')
+
+        .col100
+            .header.small Wiadomość:
+            .text-justify {{ data.body }}
+
+    .col20
+        // todo: rozwijane menu
+        .drop-menu
+            a(ng-toggle-class, ng-toggled) #[i.fa.fa-caret-down] Opcje
+            ul
+                +item('Kasuj', 'trash')
+                +item('Odpowiedz', 'mail-reply')
+                +item('Prenieś', 'folder-open-o')
+                +item('Zamknij', 'close')(ng-click='fn.close()')
+
+h4.header-title #[i.fa.fa-list] Pozostałe wiadomości:

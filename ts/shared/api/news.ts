@@ -44,8 +44,7 @@ module Shared {
     export module API {
         export function NewsResource($resource: ng.resource.IResourceService) {
             return <INewsResource> $resource('/news', {}, {
-                  get:  { method: 'GET' }
-                , save: { method: 'POST' }
+                save:  { method: 'POST' }
             });
         }
     }

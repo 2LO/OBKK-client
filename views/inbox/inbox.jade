@@ -1,0 +1,11 @@
+include ../functions
+
+.col20.inbox.menu
+    ul.segment
+        +item('{{ folder.name }}', '{{ folder.icon }}', '.folder({folder: folder._id})')(ng-repeat='folder in folders')
+    ul.segment
+        .btn-group
+            button.default(ui-sref='inbox.compose()') #[i.fa.fa-send-o] Nowy
+            button.default(ng-click='fn.refresh()') #[i.fa.fa-refresh]
+
+.col80(ui-view="")
