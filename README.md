@@ -4,6 +4,8 @@
 ## Screens
 ![Screenshoot](/doc/screen/1.png?raw=true "Screen")
 ![Screenshoot](/doc/screen/6.png?raw=true "Screen")
+![Screenshoot](/doc/screen/7.png?raw=true "Screen")
+![Screenshoot](/doc/screen/8.png?raw=true "Screen")
 ![Screenshoot](/doc/screen/3.png?raw=true "Screen")
 ![Screenshoot](/doc/screen/5.png?raw=true "Screen")
 ![Screenshoot](/doc/screen/4.png?raw=true "Screen")
