@@ -21,13 +21,13 @@ module Shared.Controllers {
         constructor(
               public $scope: IInboxScope
             , private $state: ng.ui.IStateService
-            , private $stateParams: IInboxURL
             , private api: IApi
         ) {
             super($scope);
             api.Inbox.query().$promise.then(data => {
                 $scope.folders = data;
-                this.openFolder();
+                if(_.isEmpty($state.params))
+                    this.openFolder();
             });
         }
 
@@ -43,7 +43,7 @@ module Shared.Controllers {
 
         /** Odświeżanie skrzynki */
         public refresh() {
-            this.openFolder(this.$stateParams.folder, { reload: true });
+            this.openFolder((<any> this.$state.params).folder);
         }
     }
 
@@ -52,20 +52,47 @@ module Shared.Controllers {
         constructor(
               private $scope: { headers: IMailHeader[][] }
             , private $stateParams: IInboxURL
+            , private $interval: ng.IIntervalService
             , private api: IApi
         ) {
             super($scope);
+
+            /** Wstępne wczytywanie nagłówków wszystko */
             api.Inbox
                 .headers($stateParams)
-                .$promise.then(this.loadFolder.bind(this));
+                .$promise.then(this.setFolder.bind(this));
+
+            /** Pobieranie co 5s nowych wiadomości */
+            $interval(() => {
+                if(this.$scope.headers.length)
+                    api.Inbox
+                        .headers(
+                            _($stateParams).extend({
+                                lastDate: this.$scope.headers[0][0].date
+                            }))
+                        .$promise.then(this.concatFolder.bind(this));
+            }, 2000);
         }
 
         /**
-         * Wczytywania folderu
-         * @param {IFolder} data Nagłówki i flagi folderu
+         * Łączenie folderów ponowne tworzenie listy
+         * @param {IFolder} folder Folder
          */
-        private loadFolder(data: IFolder) {
+        private concatFolder(folder: IFolder) {
+            this.setFolder(
+                  (this.cache.headers = folder.headers.concat(_(this.cache.headers).flatten()))
+                && this.cache);
+        }
+
+        /**
+         * Wczytywanie listy nagłówków z folderu
+         * @param {IFolder} data Folder z niepogrupowanymi nagłówkami
+         */
+        private cache: IFolder = null;
+        private setFolder(data: IFolder = this.cache) {
             this.$scope.headers = [];
+            this.cache = data;
+
             if(data.flags & FolderFlag.MAIL_GROUPING)
                 _(data.headers).each((mail: any, index: number) => {
                     let lastGroup = this.$scope.headers[this.$scope.headers.length - 1];
@@ -76,6 +103,8 @@ module Shared.Controllers {
                 });
             else if(data.headers.length)
                 this.$scope.headers[0] = data.headers;
+
+            return data;
         }
     }
 

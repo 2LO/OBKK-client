@@ -19,6 +19,10 @@
     margin:    0;
     padding:   0;
     font-size: @small;
+    div:extend(.text-ellipsis) {
+      margin-bottom: 0;
+      padding:       1px 0;
+    };
   };
   &:not(:nth-last-child(1)) .mail {
     &:hover { font-weight: bold; };
@@ -26,10 +30,6 @@
       font-size: @smallest;
       padding-left: 32px;
     }
-    div:extend(.text-ellipsis) {
-      margin-bottom: 0;
-      padding:       1px 0;
-    };
   };
   &:nth-last-child(1) .mail {
     padding-left: 0;

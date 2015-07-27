@@ -64,7 +64,7 @@ module Shared {
 
     export interface IInboxResource extends ng.resource.IResourceClass<IFolder> {
         content(data: IInboxURL): IMailContent;
-        headers(data: { folder: string }): IFolder;
+        headers(data: { folder: string; lastDate?: string; }): IFolder;
         receivers(): IMailUser[];
         send(data: Form.IMailData);
     }
