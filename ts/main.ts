@@ -82,6 +82,9 @@ module Application {
                   url: '/compose'
                 , templateUrl: 'views/inbox/compose.html'
                 , controller: 'InboxCtrl.ComposeCtrl'
+                , params: {
+                    reply: null
+                }
             })
             .state('inbox.folder.message', {
                   url: '/message/:message'

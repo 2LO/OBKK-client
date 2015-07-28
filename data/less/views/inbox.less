@@ -11,9 +11,15 @@
     };
   };
 };
-.inbox .group {
+.inbox {
   margin-bottom: 0;
-
+  .visible-pages select {
+    height: 32px;
+  };
+  .message-box {
+    font-size: @small;
+    width:     100%;
+  };
   .mail {
     cursor:    pointer;
     margin:    0;
@@ -23,15 +29,23 @@
       margin-bottom: 0;
       padding:       1px 0;
     };
-  };
-  &:not(:nth-last-child(1)) .mail {
-    &:hover { font-weight: bold; };
-    &:not(:first-child) {
-      font-size: @smallest;
+    &:hover {
+      font-weight: bold;
+    };
+    &.nested {
+      font-size:    @smallest;
       padding-left: 32px;
-    }
-  };
-  &:nth-last-child(1) .mail {
-    padding-left: 0;
+    };
+    &.unread:extend(.text-bold) {
+      @keyframes textPulse {
+        0%    { opacity: 1     }
+        50%   { opacity: 0.05; }
+        100%  { opacity: 1;    }
+      };
+      animation: textPulse 2s infinite;
+    };
+    &.selected:extend(.active) {
+      animation: none;
+    };
   };
 };

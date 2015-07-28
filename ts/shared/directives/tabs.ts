@@ -2,6 +2,8 @@
 
 /** Zamiana tytułu strony po wczytaniu state */
 module Shared {
+    const DEFAULT_TAB_ID = 'dick';
+
     /** Dane pojedynczej karty */
     class TabData {
         constructor(
@@ -45,14 +47,12 @@ module Shared {
              * @param {string} val Zawartość karty
              */
             private data: { [index: string]: TabData } = {};
-            public tab(id: string, val?: TabData): TabData {
+            public tab(id: string = DEFAULT_TAB_ID, val?: TabData): TabData {
                 return val ? this.data[id] = val : this.data[id];
             }
         }
     }
     export module Directives {
-        const DEFAULT_TAB_ID = 'dick';
-
         /**
          * Ref:
          * http://liamkaufman.com/blog/2013/05/13/understanding-angularjs-directives-part1-ng-repeat-and-compile/
@@ -83,7 +83,8 @@ module Shared {
             // };
 
             constructor(
-                private tabsManager: Services.TabsManager) {
+                  private $parse: ng.IParseService
+                , private tabsManager: Services.TabsManager) {
             }
 
             /** Podmienianie na ng-repeat */
@@ -106,21 +107,20 @@ module Shared {
                   , id = attr.appTabsId || DEFAULT_TAB_ID;
                 return (scope: ng.IScope, $element) => {
                     /** Obserwowanie tablicy kontrolera i rozdzielanie jej na części */
-                    scope.$watch(arrayName, array => {
+                    scope.$watchGroup([ arrayName, attr.appTabsVisible], data => {
                         /** Dane do renderingu */
-                        this.tabsManager
-                            .tab( id
-                                , new TabData(
-                                    array
-                                    , parseInt(attr.appTabsVisible)
-                                ))
-                            .array;
+                        if(data[0])
+                            this.tabsManager
+                                .tab( id
+                                    , new TabData(
+                                          data[0]
+                                        , data[1] || parseInt(this.$parse(attr.appTabsVisible)(scope))
+                                    ))
+                                .array;
                     });
 
-                    /** Nasłuchiwanie na zmiany w kliknięciach przycisków */
-                    scope.$watch(() => {
-                        return this.tabsManager.tab(id).array;
-                    }, (data) => {
+                    /** Kasowanie poprzednich i tworzenie tablicy */
+                    let rebuildArray = data => {
                         /** kasowanie poprzednich danych */
                         elements = _(elements).reject((el: IScopeElement) => {
                             el.element.remove();
@@ -134,17 +134,22 @@ module Shared {
                             linker(childScope, clone => {
                                 $element.parent().append(clone);
                                 elements.push({
-                                      scope: childScope
+                                    scope: childScope
                                     , element: clone
                                 });
                             });
                         });
-                    });
+                    };
+                    /** Nasłuchiwanie na zmiany w kliknięciach przycisków */
+                    scope.$watch(() => {
+                        let tab = this.tabsManager.tab(id);
+                        return tab && tab.array;
+                    }, rebuildArray);
                 };
             };
 
             static factory(): ng.IDirectiveFactory {
-                return tabsManager => new Tabs(tabsManager);
+                return ($parse, tabsManager) => new Tabs($parse, tabsManager);
             }
         }
 
@@ -182,6 +187,9 @@ module Shared {
                 scope.$watch(() => {
                     return tab = getTab();
                 }, () => {
+                    if(!tab)
+                        return;
+
                     // https://groups.google.com/forum/#!topic/angular/S2W4XIyo4oQ
                     element.html('');
                     if(tab.pages.length > 1)

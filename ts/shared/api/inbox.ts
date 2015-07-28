@@ -38,6 +38,7 @@ module Shared {
     export interface IMailContent extends ng.resource.IResource<IMailContent> {
         _id: string;
         body: string;
+        title: string;
         date: string;
         receiver: IMailUser;
         sender: IMailUser;

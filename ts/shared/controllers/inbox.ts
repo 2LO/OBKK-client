@@ -43,32 +43,45 @@ module Shared.Controllers {
 
         /** Odświeżanie skrzynki */
         public refresh() {
-            this.openFolder((<any> this.$state.params).folder);
+            this.openFolder((<any> this.$state.params).folder, { reload: true });
         }
     }
 
     /** Widok folderu, emaile są grupowane */
+    interface IHeaderLabel extends IMailHeader {
+        nested?: boolean; /** Jeśli jest zgrupowany */
+    }
+    interface IFolderScope extends ICtrlScope<Folder> {
+        headers: IHeaderLabel[];
+        visible: number;
+    }
     class Folder extends Controller {
         constructor(
-              private $scope: { headers: IMailHeader[][] }
+              private $scope: IFolderScope
             , private $stateParams: IInboxURL
             , private $interval: ng.IIntervalService
             , private api: IApi
+            , private tabsManager: Services.TabsManager
         ) {
-            super($scope);
+            super($scope, {
+                visible: 20
+            });
 
             /** Wstępne wczytywanie nagłówków wszystko */
             api.Inbox
                 .headers($stateParams)
                 .$promise.then(this.setFolder.bind(this));
 
-            /** Pobieranie co 5s nowych wiadomości */
+            /**
+             * Pobieranie co 5s nowych wiadomości tylko
+             * na pierwszej stronie jeśli jest otwarta
+             */
             $interval(() => {
-                if(this.$scope.headers.length)
+                if(this.$scope.headers.length && !tabsManager.tab().current)
                     api.Inbox
                         .headers(
                             _($stateParams).extend({
-                                lastDate: this.$scope.headers[0][0].date
+                                lastDate: this.$scope.headers[0].date
                             }))
                         .$promise.then(this.concatFolder.bind(this));
             }, 2000);
@@ -80,7 +93,7 @@ module Shared.Controllers {
          */
         private concatFolder(folder: IFolder) {
             this.setFolder(
-                  (this.cache.headers = folder.headers.concat(_(this.cache.headers).flatten()))
+                  (this.cache.headers = folder.headers.concat(this.cache.headers))
                 && this.cache);
         }
 
@@ -90,20 +103,16 @@ module Shared.Controllers {
          */
         private cache: IFolder = null;
         private setFolder(data: IFolder = this.cache) {
-            this.$scope.headers = [];
+            this.$scope.headers = data.headers;
             this.cache = data;
 
-            if(data.flags & FolderFlag.MAIL_GROUPING)
-                _(data.headers).each((mail: any, index: number) => {
-                    let lastGroup = this.$scope.headers[this.$scope.headers.length - 1];
-                    if(!index || (<any> lastGroup).last().fullName !== mail.fullName)
-                        this.$scope.headers.push([ mail ]);
-                    else
-                        lastGroup.push(mail);
+            /** Grupowanie jest nie do [ [], [] ] bo wtedy cężej rozbić na strony */
+            if(data.flags & FolderFlag.MAIL_GROUPING) {
+                _(data.headers).each((element: IHeaderLabel, index: number) => {
+                    if(index >= 1 && element.fullName === data.headers[index - 1].fullName)
+                        element.nested = true;
                 });
-            else if(data.headers.length)
-                this.$scope.headers[0] = data.headers;
-
+            }
             return data;
         }
     }
@@ -124,7 +133,24 @@ module Shared.Controllers {
 
         /** Zamykanie emaila */
         public close() {
-            this.$state.go('inbox.folder', { folder: this.$stateParams.folder });
+            this.$state.go(
+                  'inbox.folder'
+                , { folder: this.$stateParams.folder });
+        }
+
+        /**
+         * Odpowiedź na emaila, przenoszenie na formę
+         * tworzenia email'a
+         */
+        public reply() {
+            this.$state.go(
+                  'inbox.compose'
+                , { reply: this.$scope.data });
+        }
+
+        /** Kasowanie emaila */
+        public remove() {
+            this.close();
         }
     }
 
@@ -139,6 +165,7 @@ module Shared.Controllers {
         constructor(
               private $scope: IComposeScope
             , private $state: ng.ui.IStateService
+            , private $stateParams: { reply: IMailContent }
             , private api: IApi
         ) {
             super($scope, {
@@ -149,6 +176,8 @@ module Shared.Controllers {
                     , receiver: []
                 }
             });
+            if($stateParams.reply)
+                this.reply($stateParams.reply);
         }
 
         /** Wysyłanie maila */
@@ -163,6 +192,31 @@ module Shared.Controllers {
                     });
             } else
                 this.$scope.error = 'Brak odbiorcy wiadomości :(';
+        }
+
+        /**
+         * Odpowiadanie na emaila
+         * @param {IMailContent} mail Wiadomość, na którą się odpowiada
+         */
+        public reply(mail: IMailContent) {
+            let form = this.$scope.form;
+
+            /** Dodawanie odbiorcy */
+            form.receiver.push(mail.sender._id);
+
+            /** Tytuł, trochę lamerskie */
+            if(!/RE:/.test(form.title = mail.title))
+                form.title = 'RE: ' + form.title;
+
+            /** Cytowanie */
+            form.body = _.template(
+                'W dniu <%= date %> <%= fullName %> napisał:\n<%= divider %>\n<%= body %>\n<%= divider %>\n'
+            )({
+                  date: mail.date
+                , fullName: mail.sender.info.fullName
+                , body: mail.body.replace( /(^|\n)/g, '\n   ')
+                , divider: '----------------------------'
+            });
         }
     }
 

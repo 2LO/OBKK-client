@@ -14,15 +14,15 @@ include ../functions
 
         .col100
             .header.small Wiadomość:
-            .text-justify {{ data.body }}
+            .text-justify.text-pre-wrap {{ data.body }}
 
     .col20
         // todo: rozwijane menu
         .drop-menu
             a(ng-toggle-class, ng-toggled) #[i.fa.fa-caret-down] Opcje
             ul
-                +item('Kasuj', 'trash')
-                +item('Odpowiedz', 'mail-reply')
+                +item('Kasuj', 'trash')(ng-click='fn.remove()')
+                +item('Odpowiedz', 'mail-reply')(ng-click='fn.reply()')
                 +item('Prenieś', 'folder-open-o')
                 +item('Zamknij', 'close')(ng-click='fn.close()')
 
