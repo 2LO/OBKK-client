@@ -51,11 +51,13 @@
   white-space: pre-wrap;
 };
 
-.text-ellipsis {
-  text-overflow: ellipsis;
+.text-overflow-hidden {
   overflow:      hidden;
   white-space:   nowrap;
   word-wrap:     break-word;
+};
+.text-ellipsis:extend(.text-overflow-hidden) {
+  text-overflow: ellipsis;
 };
 
 .text-italic    { font-style: italic;         };

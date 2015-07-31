@@ -16,6 +16,9 @@ module Shared.Controllers {
     /** Widok inboxa */
     interface IInboxScope extends ICtrlScope<Inbox> {
         folders: IFolderHeader[];
+        createdFolder: {
+            name: string;
+        }
     }
     export class Inbox extends Controller {
         constructor(
@@ -24,11 +27,51 @@ module Shared.Controllers {
             , private api: IApi
         ) {
             super($scope);
-            api.Inbox.query().$promise.then(data => {
-                $scope.folders = data;
-                if(_.isEmpty($state.params))
+            this.reloadFolders();
+        }
+
+        /**
+         * Zwraca true jeśli jest folderem wbudowanym, nie można
+         * go skasować, jeśli ktoś sobie skasuje inbox'a to jego
+         * problem :-)
+         * @param {string}  id  Identyfikator folderu
+         * @return {Boolean}    Jeśli jest wbudowany to true
+         */
+        public isBuiltin(id: string = (<any>this.$state.params).folder) {
+            let folder = _(this.$scope.folders).findWhere({ _id: id });
+            return folder && folder.flags & FolderFlag.REMOVABLE;
+        }
+
+        /** Ponowne wczytywanie folderów */
+        private reloadFolders() {
+            this.api.Inbox.query().$promise.then(data => {
+                this.$scope.folders = data;
+                if(_.isEmpty(this.$state.params))
                     this.openFolder();
             });
+        }
+
+        /**
+         * Tworzenie folderu
+         * @param { name: string } folder Nazwa folderu
+         */
+        public createFolder(folder: { name: string } = this.$scope.createdFolder) {
+            this.api.Inbox
+                .createFolder(folder)
+                .$promise.then(this.reloadFolders.bind(this));
+        }
+
+        /**
+         * Kasowanie folderu
+         * @param {string} folderId Identyfikator folderu
+         */
+        public removeFolder(folderId: string = (<any> this.$state.params).folder) {
+            if(confirm('Napewno chcesz skasować folder z identyfikatorem ' + folderId + '?'))
+                this.api.Inbox
+                    .remove({ folder: folderId })
+                    .$promise.then(() => {
+                        this.$state.go('inbox', {}, { reload: true });
+                    });
         }
 
         /**
@@ -76,7 +119,7 @@ module Shared.Controllers {
              * Pobieranie co 5s nowych wiadomości tylko
              * na pierwszej stronie jeśli jest otwarta
              */
-            $interval(() => {
+            let refreshInterval = $interval(() => {
                 if(this.$scope.headers.length && !tabsManager.tab().current)
                     api.Inbox
                         .headers(
@@ -85,6 +128,7 @@ module Shared.Controllers {
                             }))
                         .$promise.then(this.concatFolder.bind(this));
             }, 2000);
+            $scope.$on('$destroy', $interval.cancel.bind(this, refreshInterval));
         }
 
         /**
@@ -131,11 +175,15 @@ module Shared.Controllers {
             });
         }
 
-        /** Zamykanie emaila */
-        public close() {
+        /**
+         * Zamykanie emaila
+         * @param {string} redirect Adres przekierowania
+         */
+        public close(redirect: string = this.$stateParams.folder) {
             this.$state.go(
                   'inbox.folder'
-                , { folder: this.$stateParams.folder });
+                , { folder: redirect }
+                , { reload: true });
         }
 
         /**
@@ -150,7 +198,21 @@ module Shared.Controllers {
 
         /** Kasowanie emaila */
         public remove() {
-            this.close();
+            this.api.Inbox
+                .remove(this.$stateParams)
+                .$promise.then(this.close.bind(this, undefined));
+        }
+
+        /**
+         * Przenoszenie do folderu
+         * @param {string} folderId Identyfikator folderu
+         */
+        public move(folderId: string) {
+            this.api.Inbox
+                .moveMail(_.extend(this.$stateParams, {
+                    newFolder: folderId
+                }))
+                .$promise.then(this.close.bind(this, folderId));
         }
     }
 
@@ -204,13 +266,11 @@ module Shared.Controllers {
             /** Dodawanie odbiorcy */
             form.receiver.push(mail.sender._id);
 
-            /** Tytuł, trochę lamerskie */
+            /** Cytowanie, tytuł, trochę lamerskie */
             if(!/RE:/.test(form.title = mail.title))
                 form.title = 'RE: ' + form.title;
-
-            /** Cytowanie */
             form.body = _.template(
-                'W dniu <%= date %> <%= fullName %> napisał:\n<%= divider %>\n<%= body %>\n<%= divider %>\n'
+                'W dniu <%= date %> <%= fullName %> napisał:\n<%= divider %><%= body %>\n<%= divider %>\n'
             )({
                   date: mail.date
                 , fullName: mail.sender.info.fullName

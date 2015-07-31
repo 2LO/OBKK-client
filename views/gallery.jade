@@ -22,7 +22,7 @@ h3.header-title.path-toolbar
                     i.fa.fa-files-o.fa-fw
                     |  {{ folder.files.length }}
 .gallery.files
-    .col100.preview(ng-show='currentFile', ng-click='currentFile = null')
+    .col100.preview(ng-show='currentFile', ng-click='fn.closeFile()')
         img(src='{{ currentFile.url }}')
 
     .col20( app-tabs='file in currentPath.files'

@@ -43,15 +43,16 @@ module Application {
                 , controller: 'NewsCtrl'
             })
             .state('gallery', {
-                  url: '/gallery'
+                  url: '/gallery?{path:any}&{file:any}'
                 , templateUrl: 'views/gallery.html'
                 , controller: 'GalleryCtrl'
+                , reloadOnSearch: false
             })
             .state('calendar', {
                   url: '/calendar'
                 , templateUrl: 'views/calendar.html'
                 , controller: 'CalendarCtrl'
-                , title: 'Wykłady na konferencji:'
+                , title: 'Kalendarz konferencji:'
                 , data: {
                     flags: [ 'logged' ]
                 }

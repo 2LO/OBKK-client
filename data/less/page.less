@@ -159,7 +159,8 @@ button:extend(.control, .active) {
 
 /** Grupy przycisków */
 .btn-group {
-  margin: 0 5px;
+  @selectors: ~'button, input';
+  //margin: 0 5px;
   &:not(.horizontal) button:not(:last-of-type) {
     border-right: 0;
   };
@@ -181,8 +182,12 @@ ul.input.list:extend(.clean-list) {  };
 
 .drop-menu {
   cursor: pointer;
-  ul {
-    display: none;
+  ul:extend(.clean-list) {
+    margin-left: 16px;
+    display:     none;
+  };
+  .active + ul {
+    display: block;
   };
   & > a.active:first-of-type ~ ul:extend(.clean-list) {
     padding:    5px;
@@ -272,6 +277,11 @@ table {
   * {
     margin: 0;
   };
+};
+
+/** Chowanie elementu */
+.invisible {
+  visibility: hidden;
 };
 
 /** Licznik słów */

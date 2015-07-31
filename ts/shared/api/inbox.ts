@@ -49,30 +49,34 @@ module Shared {
         _id: string;
         name: string;
         icon: string;
+        flags: number;
     }
 
     /** Dla parametrów URL */
     export interface IInboxURL {
         folder: string;
-        message: string;
+        message?: string;
     }
 
     /** Folder z emailami */
     export interface IFolder extends IFolderHeader, ng.resource.IResource<IFolder> {
-        flags: number;
         headers: IMailHeader[];
     }
 
     export interface IInboxResource extends ng.resource.IResourceClass<IFolder> {
         content(data: IInboxURL): IMailContent;
-        headers(data: { folder: string; lastDate?: string; }): IFolder;
         receivers(): IMailUser[];
         send(data: Form.IMailData);
+
+        headers(data: { folder: string; lastDate?: string; }): IFolder;
+        moveMail(data: { newFolder: string });
+
+        createFolder(data: { name: string });
     }
     export module API {
         /** Akcja  */
         export function InboxResource($resource: ng.resource.IResourceService) {
-            let folderAction: ng.resource.IActionDescriptor = {
+            let getFolderAction: ng.resource.IActionDescriptor = {
                   method: 'GET'
                 , params: { action: 'folder' }
             };
@@ -84,15 +88,24 @@ module Shared {
                 , isArray: true
             };
 
+            /** Akcja tworzenia folderu */
+            let createFolderAction: ng.resource.IActionDescriptor = {
+                  method: 'PUT'
+                , params: { action: 'folder' }
+            };
+
             return <IInboxResource> $resource('/user/inbox/:action/:folder/:message', {
                   action: '@action'
                 , folder: '@folder'
                 , message: '@message'
             }, {
-                  content: folderAction
-                , headers: folderAction
+                  content: getFolderAction
+                , headers: getFolderAction
                 , receivers: receiversAction
-                , send: { method: 'PUT' }
+                , moveMail:     createFolderAction
+                , createFolder: createFolderAction
+                , remove: { method: 'DELETE', params: { action: 'folder' }}
+                , send:   { method: 'PUT' }
             });
         }
     }

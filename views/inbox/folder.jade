@@ -7,11 +7,10 @@
                 ui-sref='.message({message: header._id})'
                 ui-sref-active='selected'
                 ng-class='{ "unread": !header.read, "nested": header.nested }')
-            .col30
-                input(type='checkbox')
+            .col20
                 i.segment.fa.fa-envelope-o
                 | {{ header.fullName }}
-            .col40 #[.text-underline {{ header.title }}]
+            .col50 #[.text-underline {{ header.title }}]
             .col30 {{ header.date }}
 
     div(ng-show='headers.length')

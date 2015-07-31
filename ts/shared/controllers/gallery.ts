@@ -9,7 +9,7 @@ module Shared.Controllers {
      */
     interface IFile {
         url: string;
-        path: string;
+        name: string;
     }
     interface IDir {
         files: IFile[][];
@@ -27,6 +27,7 @@ module Shared.Controllers {
     interface IGalleryState extends ng.ui.IState {
         params: {
             path: string;
+            file: string;
         };
     }
 
@@ -38,6 +39,7 @@ module Shared.Controllers {
         constructor(
               private $scope: IGalleryScope
             , private $state: IGalleryState
+            , private $location: ng.ILocationService
             , private api: IApi
         ) {
             super($scope, {
@@ -46,19 +48,30 @@ module Shared.Controllers {
             });
             api.Gallery.get().$promise.then(data => {
                 this.data = data;
-                this.go($state.params.path || '/');
+                this
+                    .go($state.params.path)
+                    .openFile($state.params.file && <IFile> { url: $state.params.file })
             });
         }
 
         /** Dane galerii odebrane z serwera */
         private data: any = {};
 
-        /** Aktualna ścieżka */
         public get current(): IDir     { return this.$scope.currentPath; }
         public set current(path: IDir) { this.$scope.currentPath = path; }
 
+        /**
+         * Otwieranie pliku
+         * @param {IFile} file
+         */
         public openFile(file: IFile) {
-            this.$scope.currentFile = file;
+            if(file) {
+                this.$scope.currentFile = file;
+                this.$location.search('file', encodeURI(file.url));
+            }
+        }
+        public closeFile() {
+            this.$location.search('file',  this.$scope.currentFile = null);
         }
 
         /**
@@ -66,10 +79,7 @@ module Shared.Controllers {
          * @param {string} path ścieżka
          */
         private previousPath: string = null;
-        public go(path: string) {
-            if(!path.length)
-                return this.current;
-
+        public go(path: string = '/') {
             let segments = path.match(/(?:([^\/]*)\/)|(.*\..*)/g);
 
             /** Jeśli ścieżka jest relatywna to odcinanie './' */
@@ -102,7 +112,12 @@ module Shared.Controllers {
             /** Dzielenie listy na chunks */
             this.current = <any> _(this.current).clone();
             this.current.files = <any> this.current.files;
-            return this.current;
+
+            /** Aktualizowanie URL */
+            this.$location
+                .search('path', encodeURI(this.$scope.pathName))
+                .search('file', null);
+            return this;
         }
     }
     mod.controller('GalleryCtrl', Gallery);
