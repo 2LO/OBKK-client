@@ -16,11 +16,14 @@ module Shared {
 
         /** gettery */
         public set(page: number) {
-            this.current = page > this.total ? 0 : page;
+            this.current =
+                page >= this.total
+                    ? 0
+                    : (page < 0 ? this.total - 1 : page);
             return this;
         }
-        public previous = this.set.bind(this, this.current - 1);
-        public next     = this.set.bind(this, this.current + 1);
+        public previous() { this.set(--this.current); }
+        public next()     { this.set(++this.current); }
 
         /** zliaczanie rozmiarów elementów */
         private chunks: any[] = [];
@@ -179,8 +182,66 @@ module Shared {
                   , getTab = (): TabData => {
                         return this.tabsManager.tab(id);
                     };
+
                 /** Konfiguracja elementu */
                 element.addClass('btn-group');
+                let createButton = (callback: (param: any) => any) => {
+                    let created = angular.element('<button class="default"></button>');
+                    callback(created);
+                    return element.append(this.$compile(created)(scope)) && created;
+                };
+
+                // https://groups.google.com/forum/#!topic/angular/S2W4XIyo4oQ
+                let createNavigation = () => {
+                    /**
+                     * Tworzenie grupy przycisków z akcjami
+                     * @param {any} pack Paczka przycisków
+                     */
+                    let createPack = (pack: { [index: string]: any }) => {
+                        _(pack).each((val, index: string) => {
+                            if(index.length)
+                                createButton(btn => {
+                                    btn
+                                        .html('<i class="fa '+ index + '"></i>')
+                                        .on('click', () => {
+                                            (<any>val)();
+                                            scope.$parent.$digest();
+                                        });
+                                });
+                            else
+                                (<any>val)();
+                        });
+                    };
+
+                    /** Tworzenie numerów stron */
+                    let createPageList = () => {
+                        /** Tworzenie przycisków stron */
+                        _(tab.pages).each((pages: any[], index: number) => {
+                            createButton(btn => {
+                                btn
+                                    .text(index + 1)
+                                    .attr( 'ng-class'
+                                         , _.template('{ active: tabsManager.tab("<%= tabId %>").current == <%= index %> }')(
+                                            { tabId: id
+                                            , index: index
+                                            })
+                                    )
+                                    .on('click', () => {
+                                        tab.set(index);
+                                        scope.$parent.$digest();
+                                    });
+                            });
+                        });
+                    };
+
+                    createPack({
+                          'fa-angle-double-left': tab.set.bind(tab, 0)
+                        , 'fa-angle-left': tab.previous.bind(tab)
+                        , '': createPageList
+                        , 'fa-angle-right': tab.next.bind(tab)
+                        , 'fa-angle-double-right': tab.set.bind(tab, -1)
+                    });
+                };
 
                 /** Podstawowe metody */
                 scope.tabsManager = this.tabsManager;
@@ -190,25 +251,8 @@ module Shared {
                     if(!tab)
                         return;
 
-                    // https://groups.google.com/forum/#!topic/angular/S2W4XIyo4oQ
                     element.html('');
-                    if(tab.pages.length > 1)
-                        _(tab.pages).each((pages: any[], index: number) => {
-                            let created = angular.element('<button class="default"></button>');
-                            created
-                                .text(index + 1)
-                                .attr( 'ng-class'
-                                     , _.template('{ active: tabsManager.tab("<%= tabId %>").current == <%= index %> }')(
-                                        { tabId: id
-                                        , index: index
-                                        })
-                                     )
-                                .on('click', () => {
-                                    this.tabsManager.tab(id).set(index);
-                                    scope.$parent.$digest();
-                                });
-                            element.append(this.$compile(created)(scope));
-                        });
+                    tab.pages.length > 1 && createNavigation();
                 });
             };
 
