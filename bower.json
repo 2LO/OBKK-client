@@ -26,6 +26,7 @@
     "ngstorage": "~0.3.6",
     "ngAnimate": "*",
     "angular-animate": "~1.4.1",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "cleancss": "git@github.com:Mati365/CleanCSS.git"
   }
 }

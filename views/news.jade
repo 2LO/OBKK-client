@@ -42,14 +42,11 @@ logged-only
         // Shout na tablicy
         mixin shout(html, date, userName)
             .shout
-                .col10.text-center
-                    i.fa.fa-newspaper-o.fa-2x
-                .col90
-                    .content(ng-bind-html=html + ' | trustHtml')
-                    .text-right.text-small
-                        i.fa.fa-thumb-tack
-                        strong= date
-                        span.color-divider.pull-left= userName
+                .content(ng-bind-html=html + ' | trustHtml')
+                .text-right.text-small
+                    i.fa.fa-newspaper-o
+                    strong= date
+                    span.color-divider.pull-left= userName
 
         div(ng-show='form.message.length', style='margin-bottom: 32px')
             +shout('form.message', 'Podgląd posta', 'Teraz')

@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                   src: [ 'views/index.jade' ]
                 , dependencies: true
                 , devDependencies: false
+                , exclude: [ 'cleancss' ]
             }
         }
         , banner: 

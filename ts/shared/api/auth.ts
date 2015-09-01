@@ -22,7 +22,7 @@ module Shared {
                 , nip: string
                 , copyOrders: boolean /** kopiuje zamówienia admina do uczestników */
                 , info: {
-                    street: string
+                      street: string
                     , code: string
                     , city: string
                     , website: string

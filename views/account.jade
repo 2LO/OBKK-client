@@ -1,5 +1,36 @@
-.panel
-    .head Podstawowe informacje
-    .body
-        .col30
-            img.user-avatar(src='/img/avatarPlaceholder.png')
+mixin fieldsetRow(header, content)
+    .row
+        .col30.header= header
+        .col70= content
+mixin fields(rows)
+    each val, key in rows
+        +fieldsetRow(key, val)
+
+
+.col50
+    h3.header-title Dane personalne:
+    .col-fieldset.hover
+        +fields({
+              'Imię:': '{{ ::user.info.name }}'
+            , 'Nazwisko:': '{{ ::user.info.surname }}'
+            , 'E-Mail:': '{{ ::user.email }}'
+            , 'Telefon:': '{{ ::user.info.phone }}'
+        })
+
+.col50
+    h3.header-title Dane konta:
+    .col-fieldset.hover
+        +fields({
+              'ID:': '{{ ::user._id }}'
+            , 'Klucz nadany:': '{{ ::key.iat }}'
+            , 'Klucz wygasa:': '{{ ::key.exp }}'
+            , 'Moduły:': '{{ ::mods }}'
+        })
+
+.col100
+    h3.header-title Dane firmy:
+    .col-fieldset.hover
+        +fields({
+              'ID:': '{{ ::user._id }}'
+            , 'Nazwa firmy:': 'Malysh corporation'
+        })

@@ -16,7 +16,7 @@ module Shared.Directives {
 
         public link: ng.IDirectiveLinkFn = (scope: IToggleScope, element: ng.IAugmentedJQuery) => {
             // bug: element.bind('click', <any> element.toggleClass.bind(element, scope.className));
-            var toggle = function() {
+            let toggle = function() {
                 element.toggleClass(
                     scope.className === 'ng-toggle-class' || !scope.className.length
                         ? 'active'

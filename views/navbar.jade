@@ -1,12 +1,12 @@
 include ./functions
 
 h3.header OBKK 2.0
-//- img(style='max-height: 128px; width: auto;', src='img/logo.png')
+//img(style='max-height: 128px; width: auto;', src='img/logo.png')
 
 ul.segment
     +item('Aktualności', 'newspaper-o', 'news')
     +item('Galeria', 'photo', 'gallery')
-    +item('Informacje', 'info')
+    +item('Informacje', 'info', 'info')
 
 ul.segment(app-permission, app-flag='anon')
     +item('Zaloguj się', 'sign-in', 'login')

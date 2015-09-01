@@ -42,6 +42,11 @@ module Application {
                 , templateUrl: 'views/news.html'
                 , controller: 'NewsCtrl'
             })
+            .state('info', {
+                  url: '/info'
+                , templateUrl: 'views/info.html'
+                , title: 'Informacje:'
+            })
             .state('gallery', {
                   url: '/gallery?{path:any}&{file:any}'
                 , templateUrl: 'views/gallery.html'
@@ -60,7 +65,7 @@ module Application {
             .state('account', {
                   url: '/account'
                 , templateUrl: 'views/account.html'
-                , title: 'Twoje konto:'
+                , controller: 'AccountCtrl'
                 , data: {
                     flags: [ 'logged' ]
                 }
